@@ -125,8 +125,12 @@ public class KeyboardHelpers {
 			 * TODO(jharty): improve the precision and reliability of the 
 			 * matching as we learn more about how to interact with elements
 			 * on the page. 
+			 * 
+			 * TODO(jharty): replace custom method with
+			 *     currentElement.equals(firstElement) 
+			 * once I've had chance to test online (I'm in VS019 currently twixt LHR and SFO)
 			 */
-			if (doWebElementsMatch(driver, firstElement, currentElement)) {
+			if (GeneralHelpers.doWebElementsMatch(driver, firstElement, currentElement)) {
 				LOG.info(String.format(
 						"Looped through elements OK, tabbed through %d elements", tabsIssued));
 				LOG.info(String.format(
@@ -145,43 +149,6 @@ public class KeyboardHelpers {
 			throw wde;
 		}
 		return -1;
-	}
-
-
-	/**
-	 * Uses the JavaScript Executor capability to compare web elements.
-	 * 
-	 * TODO (jharty): Enforce the JavaScript Executor.
-	 * 
-	 * @param driver WebDriver instance (needs to support JavaScript Executor).
-	 * @param a first webElement
-	 * @param b second webElement
-	 * @return true if JavaScript within the Web Browser / WebDriver matches.
-	 */
-	static boolean doWebElementsMatch(WebDriver driver, WebElement a, WebElement b) {
-		Boolean result = (Boolean)((JavascriptExecutor)(driver))
-			.executeScript("return arguments[0] == arguments[1]; ", a, b);
-		return result;
-		}
-	/**
-	 * Compares two nullable strings.
-	 * 
-	 * Class access only used for testing, otherwise this would be private.
-	 * 
-	 * @return true if they match or if both are null.
-	 */
-	 static boolean compareNullableStrings(String aString,
-			String bString) {
-		boolean valuesCompare;
-		
-		if (aString == null && bString == null) {
-			valuesCompare = true;
-		} else if (aString == null) {
-			valuesCompare = false;
-		} else {
-			valuesCompare = aString.equals(bString);
-		}
-		return valuesCompare;
 	}
 	
 	/*
