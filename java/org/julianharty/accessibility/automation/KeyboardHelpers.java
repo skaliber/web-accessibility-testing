@@ -81,7 +81,7 @@ public class KeyboardHelpers {
 					String.format("%03d: Tag name %s WebElement %s name %s text %s value %s", 
 							tabsIssued, currentElement.getTagName(), currentElement.hashCode(),
 							currentElement.toString(), currentElement.getText(),
-							currentElement.getValue()));
+							getValueFromWebdriverIfAvailable(currentElement)));
 
 			String currentTagName = currentElement.getTagName();
 			
@@ -137,7 +137,7 @@ public class KeyboardHelpers {
 						"Tag name %s WebElement %s name %s text %s value %s",
 						currentElement.getTagName(), currentElement.hashCode(),
 						currentElement.toString(), currentElement.getText(),
-						currentElement.getValue()));
+						getValueFromWebdriverIfAvailable(currentElement)));
 				return tabsIssued;
 			}
 		}
@@ -149,6 +149,25 @@ public class KeyboardHelpers {
 			throw wde;
 		}
 		return -1;
+	}
+
+	/**
+	 * Gets the value of a webdriver element if it's available.
+	 * 
+	 * Current versions of Webdriver throw an exception if the value isn't 
+	 * available, older versions did not. This helper method catches the 
+	 * exception and returns (unavailable) as a string. 
+	 * @param currentElement a webdriver element.
+	 */
+	private static String getValueFromWebdriverIfAvailable(
+			WebElement currentElement) {
+		String valueOfCurrentElement;
+		try {
+		valueOfCurrentElement = currentElement.getValue();
+		} catch (UnsupportedOperationException uoe) {
+			valueOfCurrentElement = "(not available)";
+		}
+		return valueOfCurrentElement;
 	}
 	
 	/*
