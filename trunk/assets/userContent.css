@@ -1,0 +1,24 @@
+/*
+ * Edit this file and copy it as userContent.css into your
+ * profile-directory/chrome/
+ */
+
+/*
+ * This file can be used to apply a style to all web pages you view
+ * Rules without !important are overruled by author rules if the
+ * author sets any.  Rules with !important overrule author rules.
+ */
+ 
+input:hover { background: aqua; color: black; }
+input:active { background: lime !important; color: black; }
+input:focus { background: yellow; color: black; }
+
+input:focus, textarea:focus{
+background-color: lightyellow;
+}
+
+:focus {
+background-color: green ! important;
+}
+
+
