@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<title>Test High Contrast Mode in Internet Explorer</title>
+
+<style type="text/css">
+<!--
+
+/* apply an image to each div, the blue makes divs easier to find */
+div{
+background-color:blue;
+background-image:url(access.png);
+background-repeat:no-repeat;
+}
+
+-->
+</style>
+</head>
+<body>
+<div id="test_element_display_none" style="display:none">&nbsp;</div>
+<br>
+<div id="test_element_visibility_hidden" title="test_element_visibility_hidden"style="visibility:hidden">&nbsp;</div>
+<br>
+<div id="test_element_positioned_off_screen" title="test_element_positioned_off_screen"style="position:relative; top:-9999px; left:-9999px; display:block; height:0px; width:0px; overflow:hidden">
+&nbsp;</div>
+<br>
+<div id="test_element_positioned_on_screen" title="test_element_positioned_on_screen" style="">&nbsp;</div>
+<br>
+<div id="test_element_no_styling" title="test_element_no_styling">test5</div>
+</body>
+</html>
