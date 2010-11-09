@@ -130,7 +130,7 @@ public class KeyboardHelpers {
 			 *     currentElement.equals(firstElement) 
 			 * once I've had chance to test online (I'm in VS019 currently twixt LHR and SFO)
 			 */
-			if (GeneralHelpers.doWebElementsMatch(driver, firstElement, currentElement)) {
+			if (firstElement.equals(currentElement) && tabsIssued >= 3) {
 				LOG.info(String.format(
 						"Looped through elements OK, tabbed through %d elements", tabsIssued));
 				LOG.info(String.format(
@@ -163,7 +163,7 @@ public class KeyboardHelpers {
 			WebElement currentElement) {
 		String valueOfCurrentElement;
 		try {
-		valueOfCurrentElement = currentElement.getValue();
+			valueOfCurrentElement = currentElement.getValue();
 		} catch (UnsupportedOperationException uoe) {
 			valueOfCurrentElement = "(not available)";
 		}

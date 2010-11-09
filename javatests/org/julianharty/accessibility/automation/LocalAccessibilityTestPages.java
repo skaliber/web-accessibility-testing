@@ -16,6 +16,7 @@ limitations under the License.
 
 package org.julianharty.accessibility.automation;
 
+import org.mortbay.log.Log;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import junit.framework.TestCase;
@@ -34,20 +35,42 @@ import junit.framework.TestCase;
  */
 public class LocalAccessibilityTestPages extends TestCase {
 
+	private static final int MAX_TABS_TO_EXPECT = 30;
+	private FirefoxDriver driver;
+	private LocalWebServer server;
+	private int port;
+	private static final int EXPECTED_MIN_TAB_COUNT = 3;
+
+	@Override
+	protected void setUp() {
+		driver = new FirefoxDriver();
+		
+		server = new LocalWebServer();
+		server.start(8080);
+		port = server.getPort();
+	}
+	
+	@Override
+	protected void tearDown() {
+		// driver.close();
+		server.stop();
+	}
 	public void testGwtHistoryIframeIncludedWhenTabbingAndNoTabindexSet() throws InterruptedException {
-		FirefoxDriver driver = new FirefoxDriver();
-		driver.get("http://localhost/accessibility/gwthistoryframe.html");
-		int maxTabsToEnter = 10; // enough to see if an exception is thrown
-		int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter );
-		assertTrue(tabs >= 3);
+		driver.get("http://localhost:" + port + "/gwthistoryframe.html");
+		int tabs = KeyboardHelpers.tabThroughWebPage(driver, MAX_TABS_TO_EXPECT);
+		assertTrue("Expected at least " + EXPECTED_MIN_TAB_COUNT + ", found " + tabs, 
+				tabs >= EXPECTED_MIN_TAB_COUNT);
 	}
 	
 	public void testGwtHistoryIframeWithTabindexIsSkippedWhenTabbing() throws InterruptedException {
-		FirefoxDriver driver = new FirefoxDriver();
-		driver.get("http://localhost/accessibility/iframetabindex.html");
-		int maxTabsToEnter = 10; // enough to see if an exception is thrown
-		int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter );
-		assertTrue(tabs >= 3);
+		driver.get("http://localhost:" + port + "/iframetabindex.html");
+		int tabs = KeyboardHelpers.tabThroughWebPage(driver, MAX_TABS_TO_EXPECT);
+		assertTrue("Expected at least " + EXPECTED_MIN_TAB_COUNT + ", found " + tabs, 
+				tabs >= EXPECTED_MIN_TAB_COUNT);
 	}
 
+	public void testCanStartLocalWebserver() {
+		driver.get("http://localhost:" + port + "/gwthistoryframe.html");
+		Log.info("Connected to: " + driver.getCurrentUrl());
+	}
 }
