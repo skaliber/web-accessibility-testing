@@ -103,6 +103,7 @@ public class KeyboardHelpers {
 				tabThroughWebPage(driver, maxTabsToEnter - tabsIssued);
 				// Will the following skip over the 'body' of the iFrame?
 				driver.switchTo().defaultContent();
+				currentElement = driver.switchTo().activeElement();
 			}
 			
 			String currentTitle = getTitleOfCurrentElement(driver, currentElement);
