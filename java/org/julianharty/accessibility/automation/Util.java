@@ -16,7 +16,7 @@ limitations under the License.
 
 package org.julianharty.accessibility.automation;
 
-import java.awt.Point;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.RenderedWebElement;
 import org.openqa.selenium.WebElement;
 
