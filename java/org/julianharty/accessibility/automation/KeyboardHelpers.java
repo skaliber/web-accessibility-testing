@@ -33,6 +33,7 @@ import org.openqa.selenium.WebElement;
  */
 public class KeyboardHelpers {
 	private static final Logger LOG = Logger.getLogger(KeyboardHelpers.class.getCanonicalName());
+	private static final String TAB_KEYWORD = "Tab:";
 	
 	private KeyboardHelpers() {
 		// Helper class. Stop callers from instantiating us.
@@ -74,6 +75,7 @@ public class KeyboardHelpers {
 		
 		int tabsIssued = 0;
 		int iFrame = 0;
+		String currentTagName = "(not set)";
 		try {
 		while (tabsIssued < (maxTabsToEnter)) {
 			// Probably want to print various attributes e.g. the link text
@@ -83,7 +85,7 @@ public class KeyboardHelpers {
 							currentElement.toString(), currentElement.getText(),
 							getValueFromWebdriverIfAvailable(currentElement)));
 
-			String currentTagName = currentElement.getTagName();
+			currentTagName  = currentElement.getTagName();
 			
 			/*
 			 * for iframes switch to the iframe and call ourself recursively. We
@@ -102,12 +104,21 @@ public class KeyboardHelpers {
 				// Will the following skip over the 'body' of the iFrame?
 				driver.switchTo().defaultContent();
 			}
+			
+			String currentTitle = getTitleOfCurrentElement(driver, currentElement);
+
+			// Here is one of the termination conditions, if we find one of our titles.
+			if (currentTitle.contains(TAB_KEYWORD)) {
+				logValidTerminationCondition("Title of element matches the value set", currentElement, tabsIssued);
+				return tabsIssued;
+			}
+			
 			if (!currentTagName.equals("body") && !currentTagName.equals("iframe")) {
 				try {
 			      ((JavascriptExecutor) driver).executeScript(
 			    		  "arguments[0].style.background = \"orange\";", currentElement);
 			      ((JavascriptExecutor) driver).executeScript(
-			    		  "arguments[0].title = " + tabsIssued + ";", currentElement);
+			    		  "arguments[0].title = \"" + TAB_KEYWORD + tabsIssued + "\";", currentElement);
 				} catch (WebDriverException wde) {
 				  LOG.log(Level.WARNING,
 				      String.format("Tried to set the background for %s", currentTagName), wde);	
@@ -131,13 +142,7 @@ public class KeyboardHelpers {
 			 * once I've had chance to test online (I'm in VS019 currently twixt LHR and SFO)
 			 */
 			if (firstElement.equals(currentElement) && tabsIssued >= 3) {
-				LOG.info(String.format(
-						"Looped through elements OK, tabbed through %d elements", tabsIssued));
-				LOG.info(String.format(
-						"Tag name %s WebElement %s name %s text %s value %s",
-						currentElement.getTagName(), currentElement.hashCode(),
-						currentElement.toString(), currentElement.getText(),
-						getValueFromWebdriverIfAvailable(currentElement)));
+				logValidTerminationCondition("Current element matches first element", currentElement, tabsIssued);
 				return tabsIssued;
 			}
 		}
@@ -145,10 +150,47 @@ public class KeyboardHelpers {
 		catch (WebDriverException wde) {
 			String innerHTML = (String) ((JavascriptExecutor) driver).executeScript(
 		    		  "return arguments[0].innerHTML;", currentElement);
-			LOG.warning(String.format("InnerHTML for problem element is %s", innerHTML));
+			LOG.warning(String.format("Current Tag %s, InnerHTML for problem element is %s", currentTagName, innerHTML));
 			throw wde;
 		}
 		return -1;
+	}
+
+	/**
+	 * A simple helper method to log the termination condition.
+	 * 
+	 * The main reason this has been created is to reduce duplication in the
+	 * main method. 
+	 * TODO (jharty): This code is ugly and probably worth reassessing at some
+	 * point.
+	 * @param whyTerminated a text-based description of which valid termination
+	 * was detected. Useful while we're trying to improve the loop detection.
+	 * @param currentElement the current element on the web page
+	 * @param tabsIssued the number of tab keys issued so far
+	 */
+	private static void logValidTerminationCondition(String whyTerminated, WebElement currentElement,
+			int tabsIssued) {
+		LOG.info(String.format(
+				"Looped through elements OK, terminated because [%s], tabbed through %d elements", 
+				whyTerminated, tabsIssued));
+		LOG.info(String.format(
+				"Tag name %s WebElement %s name %s text %s value %s",
+				currentElement.getTagName(), currentElement.hashCode(),
+				currentElement.toString(), currentElement.getText(),
+				getValueFromWebdriverIfAvailable(currentElement)));
+	}
+
+	/**
+	 * Returns the title of the current Web Element.
+	 * 
+	 * At the moment it makes no distinction between web elements. We may want
+	 * to limit the query to elements that have a 'title'. 
+	 */
+	private static String getTitleOfCurrentElement(WebDriver driver,
+			WebElement currentElement) {
+		String currentTitle = (String) ((JavascriptExecutor) driver)
+			.executeScript("return arguments[0].title;", currentElement);
+		return currentTitle;
 	}
 
 	/**
