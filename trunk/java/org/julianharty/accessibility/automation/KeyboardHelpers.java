@@ -110,21 +110,12 @@ public class KeyboardHelpers {
 
 			// Here is one of the termination conditions, if we find one of our titles.
 			if (currentTitle.contains(TAB_KEYWORD)) {
-				logValidTerminationCondition("Title of element matches the value set", currentElement, tabsIssued);
+				logValidTerminationCondition("Title of element matches the value set",
+						currentElement, tabsIssued);
 				return tabsIssued;
 			}
 			
-			if (!currentTagName.equals("body") && !currentTagName.equals("iframe")) {
-				try {
-			      ((JavascriptExecutor) driver).executeScript(
-			    		  "arguments[0].style.background = \"orange\";", currentElement);
-			      ((JavascriptExecutor) driver).executeScript(
-			    		  "arguments[0].title = \"" + TAB_KEYWORD + tabsIssued + "\";", currentElement);
-				} catch (WebDriverException wde) {
-				  LOG.log(Level.WARNING,
-				      String.format("Tried to set the background for %s", currentTagName), wde);	
-				}
-			}
+			setWebElementAttributesAsAppropriate(driver, currentElement, tabsIssued, currentTagName);
 
 			currentElement.sendKeys(Keys.TAB);  // "\t" also works
 			tabsIssued++;
@@ -155,6 +146,37 @@ public class KeyboardHelpers {
 			throw wde;
 		}
 		return -1;
+	}
+
+	/**
+	 * Sets various attributes of web elements to help visualise the tab order.
+	 * 
+	 * Some elements are inappropriate to set attributes. These will be
+	 * skipped.
+	 * 
+	 * @param driver WebDriver instance
+	 * @param currentElement the element to consider setting the attributes for
+	 * @param tabsIssued the tabs issued so far, used as part of the title 
+	 * attribute
+	 * @param currentTagName the textual description of the current element
+	 */
+	private static void setWebElementAttributesAsAppropriate(WebDriver driver,
+			WebElement currentElement, int tabsIssued, String currentTagName) {
+		if (currentTagName.equals("body") || currentTagName.equals("iframe")
+				|| currentTagName.equals("html")) {
+			return;
+		}
+		try {
+			((JavascriptExecutor) driver).executeScript(
+					"arguments[0].style.background = \"orange\";",
+					currentElement);
+			((JavascriptExecutor) driver).executeScript(
+					"arguments[0].title = \"" + TAB_KEYWORD + tabsIssued
+							+ "\";", currentElement);
+		} catch (WebDriverException wde) {
+			LOG.log(Level.WARNING, String.format(
+					"Tried to set the background for %s", currentTagName), wde);
+		}
 	}
 
 	/**
