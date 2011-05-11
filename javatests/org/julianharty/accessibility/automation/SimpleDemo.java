@@ -15,6 +15,10 @@ limitations under the License.
  */
 package org.julianharty.accessibility.automation;
 
+import java.io.File;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -57,6 +61,7 @@ public class SimpleDemo {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+		File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		System.out.println(screenshotFile.getPath());
 	}
 }
