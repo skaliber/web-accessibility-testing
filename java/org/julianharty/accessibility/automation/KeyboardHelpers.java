@@ -107,7 +107,7 @@ public class KeyboardHelpers {
 			String currentTitle = getTitleOfCurrentElement(driver, currentElement);
 
 			// Here is one of the termination conditions, if we find one of our titles.
-			if (currentTitle.contains(TAB_KEYWORD)) {
+			if (currentTitle.contains(TAB_KEYWORD + 0)) {
 				logValidTerminationCondition(
 						String.format("Title %s of element matches the value set", currentTitle),
 						currentElement, tabsIssued);
