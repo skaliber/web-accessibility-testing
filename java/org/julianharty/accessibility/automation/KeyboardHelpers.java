@@ -19,8 +19,11 @@ package org.julianharty.accessibility.automation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.mortbay.log.Log;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.RenderedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -78,13 +81,8 @@ public class KeyboardHelpers {
 		String currentTagName = "(not set)";
 		try {
 		while (tabsIssued < (maxTabsToEnter)) {
-			// Probably want to print various attributes e.g. the link text
-			LOG.info(
-					String.format("%03d: Tag name %s WebElement %s name %s text %s value %s", 
-							tabsIssued, currentElement.getTagName(), currentElement.hashCode(),
-							currentElement.toString(), currentElement.getText(),
-							getValueFromWebdriverIfAvailable(currentElement)));
 
+			logDetailsOfWebElement(currentElement, tabsIssued);
 			currentTagName  = currentElement.getTagName();
 			
 			/*
@@ -110,7 +108,8 @@ public class KeyboardHelpers {
 
 			// Here is one of the termination conditions, if we find one of our titles.
 			if (currentTitle.contains(TAB_KEYWORD)) {
-				logValidTerminationCondition("Title of element matches the value set",
+				logValidTerminationCondition(
+						String.format("Title %s of element matches the value set", currentTitle),
 						currentElement, tabsIssued);
 				return tabsIssued;
 			}
@@ -119,7 +118,7 @@ public class KeyboardHelpers {
 
 			currentElement.sendKeys(Keys.TAB);  // "\t" also works
 			tabsIssued++;
-			Thread.sleep(50L);
+			Thread.sleep(500L);
 			currentElement = driver.switchTo().activeElement();
 			
 			/* Loop termination is still imprecise. Typically the first element
@@ -128,12 +127,8 @@ public class KeyboardHelpers {
 			 * TODO(jharty): improve the precision and reliability of the 
 			 * matching as we learn more about how to interact with elements
 			 * on the page. 
-			 * 
-			 * TODO(jharty): replace custom method with
-			 *     currentElement.equals(firstElement) 
-			 * once I've had chance to test online (I'm in VS019 currently twixt LHR and SFO)
 			 */
-			if (firstElement.equals(currentElement) && tabsIssued >= 3) {
+			if (currentElement.equals(firstElement) && tabsIssued >= 3) {
 				logValidTerminationCondition("Current element matches first element", currentElement, tabsIssued);
 				return tabsIssued;
 			}
@@ -146,6 +141,24 @@ public class KeyboardHelpers {
 			throw wde;
 		}
 		return -1;
+	}
+
+	/**
+	 * A helper method to log details of the web element from WebDriver.
+	 * @param element the element to report on
+	 * @param tabsIssued the number of tab keys issued so far
+	 */
+	private static void logDetailsOfWebElement(WebElement element,
+			int tabsIssued) {
+		// Probably want to print various attributes e.g. the link text
+		LOG.info(
+				String.format("%03d: Tag name %s WebElement %s name %s text %s value %s", 
+						tabsIssued, element.getTagName(), element.hashCode(),
+						element.toString(), element.getText(),
+						getValueFromWebdriverIfAvailable(element)));
+		RenderedWebElement rwe = (RenderedWebElement) element;
+		Point location = rwe.getLocation();
+		Log.info(String.format("[%03d] Location (%03d,%03d)", tabsIssued, location.x, location.y));
 	}
 
 	/**
