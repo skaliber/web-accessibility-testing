@@ -21,9 +21,11 @@
 -->
     <classes>
       <class name="org.a11ytesting.aria.AriaTest" />
+      <class name="org.a11ytesting.test.IssueTest" />
       <class name="org.a11ytesting.test.wcag.OperableTest" />
       <class name="org.a11ytesting.test.wcag.PerceivableTest" />
       <class name="org.a11ytesting.test.wcag.RobustTest" />
+      <class name="org.a11ytesting.test.wcag.SharedTest" />
       <class name="org.a11ytesting.test.wcag.UnderstandableTest" />
       <class name="org.a11ytesting.filter.FilterTestFactory" />
     </classes>
