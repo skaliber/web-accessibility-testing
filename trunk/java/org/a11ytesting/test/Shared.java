@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -128,20 +128,28 @@ public abstract class Shared {
 		return false;
 	}
 
+	/**
+	 * Determines whether an element is not focusable using keys.
+	 * 
+	 * TODO(jharty): We need to determine which elements are generally
+	 * focusable (where focus is disabled by setting tabindex to a negative
+	 * number) and which ones generally are NOT focusable, but may become
+	 * focusable by setting a positive tabindex.
+	 * 
+	 * @param element the element to test
+	 * @return true when the element is not focusable, else false.
+	 */
 	public static boolean notFocusable(Element element) {
 		List<String> focusable = Arrays.asList(new String[]{
-				"button", "input", "select", "textarea" 
+				"a", "button", "input", "select", "textarea" 
 		});
 		if (focusable.contains(element.tagName())){
-			return false;
+			if (element.hasAttr(TAB_INDEX) && 
+					-1 >= Integer.parseInt(element.attr(TAB_INDEX))) {
+				return true;
+			}
 		}
-		if (ANCHOR.equals(element.tagName()) &&
-				(element.hasAttr(HREF) ||
-						(element.hasAttr(TAB_INDEX) && 
-						0 <= Integer.parseInt(element.attr(TAB_INDEX))))) {
-			return false;
-		}
-		return true;
+		return false;
 	}
 	
 	// @todo(dallison) check other aria roles for visible intentions

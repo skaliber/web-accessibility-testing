@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,13 @@
  */
 package org.a11ytesting.test.wcag;
 
+/**
+ * Provides group level naming method for wcag perceivable rules.
+ * 
+ * @see AbstractWcagRule
+ * 
+ * @author dallison
+ */
 public abstract class AbstractPerceivableRule extends AbstractWcagRule {
 
 	@Override

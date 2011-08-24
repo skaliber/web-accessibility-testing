@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,9 @@ import org.jsoup.nodes.Element;
 public class ButtonFilter extends ElementFilter {
 
 	private static final String BUTTON_SELECTOR = "button";
-	
-	public ButtonFilter(Element element) {
-		super(element);
-	}
 
 	@Override
-	public Iterable<Element> result() {
+	public Iterable<Element> result(Element element) {
 		return element.select(BUTTON_SELECTOR);
 	}
 }

@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ public class AccessKeyValueUnique extends AbstractOperableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.ACCESS_KEY;
+		return new AccessKeyFilter();
 	}
 
 	/**
@@ -48,8 +48,8 @@ public class AccessKeyValueUnique extends AbstractOperableRule {
 	@Override
 	public Issue check(Element access) {
 		Element root = getRootElement(access);
-		ElementFilter filter = new AccessKeyFilter(root);
-		for (Element other : filter.result()) {
+		ElementFilter filter = new AccessKeyFilter();
+		for (Element other : filter.result(root)) {
 			// if self then don't check.
 			if (other.equals(access)) {
 				continue;

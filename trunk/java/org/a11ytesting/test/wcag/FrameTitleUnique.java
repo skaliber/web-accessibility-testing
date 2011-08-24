@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ public class FrameTitleUnique extends AbstractOperableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.FRAME;
+		return new FrameFilter();
 	}
 
 	/**
@@ -52,8 +52,8 @@ public class FrameTitleUnique extends AbstractOperableRule {
 			return null;
 		}
 		Element root = getRootElement(frame);
-		ElementFilter filter = new FrameFilter(root);
-		for (Element otherFrame : filter.result()) {
+		ElementFilter filter = new FrameFilter();
+		for (Element otherFrame : filter.result(root)) {
 			// skip self
 			if (frame.equals(otherFrame)) {
 				continue;

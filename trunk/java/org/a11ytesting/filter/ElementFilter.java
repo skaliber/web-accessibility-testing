@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ import java.util.List;
 
 import org.jsoup.nodes.Element;
 
+import org.a11ytesting.test.Filter;
+
 /**
  * Default element filter which returns the root. This class should be sub
  * classed by specific filter types.
@@ -29,18 +31,9 @@ import org.jsoup.nodes.Element;
  * @author dallison
  *
  */
-public class ElementFilter {
-
-	protected Element element;
+public class ElementFilter implements Filter {
 	
-	/**
-	 * Use private constructor to avoid sub classes calling and overriding the iterator.
-	 */
-	public ElementFilter(Element element){
-		this.element = element;
-	};
-	
-	public Iterable<Element> result() {
+	public Iterable<Element> result(Element element) {
 		List<Element> result = new ArrayList<Element>(1);
 		result.add(element);
 		return result;

@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import java.util.List;
 import org.jsoup.nodes.Element;
 
 import org.a11ytesting.aria.Role;
+import org.a11ytesting.filter.EventFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
@@ -41,7 +42,7 @@ public class NonInteractiveElementWithEventHasRole
 
 	@Override
 	public Filter getFilter() {
-		return Filter.EVENT;
+		return new EventFilter();
 	}
 
 	/**
@@ -54,7 +55,6 @@ public class NonInteractiveElementWithEventHasRole
 	 */
 	@Override
 	public Issue check(Element element) {
-		// TODO Auto-generated method stub
 		List<String> interactive = Arrays.asList(new String[] {
 				ANCHOR, BUTTON, INPUT, SELECT});
 		if (!interactive.contains(element.tagName()) && !hasAriaRole(element)) {
