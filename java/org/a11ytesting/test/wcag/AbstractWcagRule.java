@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,21 @@ package org.a11ytesting.test.wcag;
 import org.a11ytesting.test.Rule;
 
 /**
- * Abstract parent class of WCAG rules
+ * Abstract parent class of Web Content Accessibility Guidelines rule set.
+ * 
+ * @see http://www.w3.org/TR/WCAG20/ - Web Content Accessibility Guidelines.
+ * 
  * @author dallison
- *
  */
 abstract class AbstractWcagRule implements Rule {
 
+	/**
+	 * Define the top level suite name for all WCAG rules.
+	 * 
+	 * @return suite name.
+	 */
 	@Override
 	public String getSuiteName() {
-		return SharedTest.class.getPackage().getName();
+		return AbstractWcagRule.class.getPackage().getName();
 	}
 }

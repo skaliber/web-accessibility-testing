@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,12 @@ import static org.a11ytesting.test.Shared.ALT_TEXT;
 import static org.a11ytesting.test.Shared.TITLE;
 import static org.a11ytesting.test.Shared.isImageInput;
 
+import org.jsoup.nodes.Element;
+
+import org.a11ytesting.filter.InputControlFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
 public class ImageInputHasDescription extends AbstractUnderstandableRule {
 
@@ -32,7 +34,7 @@ public class ImageInputHasDescription extends AbstractUnderstandableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.INPUT_CONTROL;
+		return new InputControlFilter();
 	}
 
 	/**

@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ public class LinkTextNotReplicated extends AbstractOperableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.LINK;
+		return new LinkFilter();
 	}
 
 	/**
@@ -52,8 +52,8 @@ public class LinkTextNotReplicated extends AbstractOperableRule {
 	@Override
 	public Issue check(Element link) {
 		Element root = getRootElement(link);
-		ElementFilter linkFilter = new LinkFilter(root);
-		for (Element otherLink : linkFilter.result()) {
+		ElementFilter linkFilter = new LinkFilter();
+		for (Element otherLink : linkFilter.result(root)) {
 			// skip self
 			if (link.equals(otherLink)) {
 				continue;

@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,6 @@ import java.util.Set;
 import org.jsoup.nodes.Element;
 import org.reflections.Reflections;
 
-
-import org.a11ytesting.filter.ElementFilter;
-
 /**
  * Support class providing functionality to invoke test groups
  * for given filter sets.
@@ -34,7 +31,7 @@ import org.a11ytesting.filter.ElementFilter;
  */
 public class Evaluator {
 	
-	Set<Rule> forRules = new HashSet<Rule>();
+	private Set<Rule> forRules = new HashSet<Rule>();
 	
 	/**
 	 * Add a package of rules in the class path to this evaluator
@@ -70,8 +67,8 @@ public class Evaluator {
 	public List<Issue> collectIssues(Element root) {
 		List<Issue> result = new ArrayList<Issue>();
 		for (Rule rule : forRules) {
-			ElementFilter filter = rule.getFilter().newInstance(root);
-			for (Element target : filter.result()) {
+			Filter filter = rule.getFilter();
+			for (Element target : filter.result(root)) {
 				Issue issue = rule.check(target);
 				if (null != issue) {
 					result.add(issue);

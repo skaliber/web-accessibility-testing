@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-
 /**
  * Example usage for evaluator based test case running.
  * 
@@ -35,7 +34,7 @@ public class Example {
 	public static void main(String[] args) throws Exception {
 		Document document = null;
 		try {
-			document = Jsoup.parse(new URL("http://www.ebay.com/"), TIMEOUT);
+			document = Jsoup.parse(new URL("http://px-lv00-556e6b3.qa.ebay.com:8080/_srp-jsp/i.html?_nkw=nike"), TIMEOUT);
 		} catch (MalformedURLException e) {
 			throw new RuntimeException("Error due to malformed URL parameter", e);
 		} catch (IOException e) {

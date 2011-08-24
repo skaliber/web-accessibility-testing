@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ package org.a11ytesting.filter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Factory;
@@ -42,36 +43,36 @@ public class FilterTestFactory {
 	Object[][] getFilterConfigs() {
 		Document doc = Jsoup.parse(HTML);
 		return new Object[][] {
-				{new AccessKeyFilter(doc), doc.select("[accesskey]")},
-				{new ActiveTextFilter(doc), doc.select("blink, marqee")},
-				{new ButtonFilter(doc), doc.select("button")},
-				{new ClickFilter(doc), doc.select("[onclick]")},
-				{new ElementFilter(doc), new Elements(doc)},
-				{new EventFilter(doc), doc.select(EVENTS)},
-				{new FieldsetFilter(doc), doc.select("fieldset")},
-				{new FormControlFilter(doc), doc.select(FORM_CONTROLS)},
-				{new FrameFilter(doc), doc.select("frame, iframe")},
-				{new HeadFilter(doc), doc.select("head")},
-				{new HeadingFilter(doc), doc.select("h1, h2, h3, h4, h5, h6")},
-				{new HtmlFilter(doc), doc.select("html")},
-				{new ImageFilter(doc), doc.select("img")},
-				{new InputControlFilter(doc), doc.select("input")},
-				{new LinkFilter(doc), doc.select("a")},
-				{new MouseDownFilter(doc), doc.select("[mousedown]")},
-				{new MouseEventFilter(doc), doc.select(MOUSE_EVENT)},
-				{new MouseOutFilter(doc), doc.select("[mouseout]")},
-				{new MouseOverFilter(doc), doc.select("[mouseover]")},
-				{new MouseUpFilter(doc), doc.select("[mouseup]")},
-				{new SelectFilter(doc), doc.select("select")},
-				{new TableFilter(doc), doc.select("table")},
-				{new TitleFilter(doc), doc.select("title")}};
+				{new AccessKeyFilter(), doc, doc.select("[accesskey]")},
+				{new ActiveTextFilter(), doc, doc.select("blink, marqee")},
+				{new ButtonFilter(), doc, doc.select("button")},
+				{new ClickFilter(), doc, doc.select("[onclick]")},
+				{new ElementFilter(), doc, new Elements(doc)},
+				{new EventFilter(), doc, doc.select(EVENTS)},
+				{new FieldsetFilter(), doc, doc.select("fieldset")},
+				{new FormControlFilter(), doc, doc.select(FORM_CONTROLS)},
+				{new FrameFilter(), doc, doc.select("frame, iframe")},
+				{new HeadFilter(), doc, doc.select("head")},
+				{new HeadingFilter(), doc, doc.select("h1, h2, h3, h4, h5, h6")},
+				{new HtmlFilter(), doc, doc.select("html")},
+				{new ImageFilter(), doc, doc.select("img")},
+				{new InputControlFilter(), doc, doc.select("input")},
+				{new LinkFilter(), doc, doc.select("a")},
+				{new MouseDownFilter(), doc, doc.select("[mousedown]")},
+				{new MouseEventFilter(), doc, doc.select(MOUSE_EVENT)},
+				{new MouseOutFilter(), doc, doc.select("[mouseout]")},
+				{new MouseOverFilter(), doc, doc.select("[mouseover]")},
+				{new MouseUpFilter(), doc, doc.select("[mouseup]")},
+				{new SelectFilter(), doc, doc.select("select")},
+				{new TableFilter(), doc, doc.select("table")},
+				{new TitleFilter(), doc, doc.select("title")}};
 	}
 	
 	@Factory(dataProvider = "filterConfig")
 	public Object[] getFilterTests(ElementFilter filter,
-			Elements elements) {
+			Element root, Elements elements) {
 		return new Object[] {
-				new FilterTest(filter, elements),
+				new FilterTest(filter, root, elements),
 		};
 	}
 

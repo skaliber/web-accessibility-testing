@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ import static org.a11ytesting.test.Shared.FOCUS;
 
 import org.jsoup.nodes.Element;
 
+import org.a11ytesting.filter.MouseOverFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
@@ -32,7 +33,7 @@ public class OnMouseoverAndOnFocus extends AbstractOperableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.MOUSE_OVER;
+		return new MouseOverFilter();
 	}
 
 	/**

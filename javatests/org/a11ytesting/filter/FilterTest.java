@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,17 +23,19 @@ import org.testng.annotations.Test;
 public class FilterTest {
 	
 	private ElementFilter filter;
+	private Element root;
 	private Elements elements;
 	
-	public FilterTest(ElementFilter filter, Elements expect) {
+	public FilterTest(ElementFilter filter, Element root, Elements expect) {
 		this.filter = filter;
+		this.root = root;
 		this.elements = expect;
 	}
 
 	@Test
 	public void testAllElementsReturned() {
 		int filterCount = 0;
-		for (Element check : filter.result()) {
+		for (Element check : filter.result(root)) {
 			filterCount++;
 			if (!elements.contains(check)) {
 				fail("Filtered element not in expected elements for filter " +

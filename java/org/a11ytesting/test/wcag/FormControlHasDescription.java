@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,12 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.Shared.TITLE;
 import static org.a11ytesting.test.Shared.VALUE;
 
+import org.jsoup.nodes.Element;
+
+import org.a11ytesting.filter.FormControlFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
 public class FormControlHasDescription extends AbstractUnderstandableRule {
 
@@ -31,7 +33,7 @@ public class FormControlHasDescription extends AbstractUnderstandableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.FORM_CONTROL;
+		return new FormControlFilter();
 	}
 
 	/**

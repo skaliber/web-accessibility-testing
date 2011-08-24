@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,9 @@ import org.jsoup.nodes.Element;
 public class HeadFilter extends ElementFilter {
 
 	private static final String HEAD_SELECT = "head"; 
-	
-	public HeadFilter(Element element) {
-		super(element);
-	}
 
 	@Override
-	public Iterable<Element> result() {
+	public Iterable<Element> result(Element element) {
 		return element.select(HEAD_SELECT);
 	}
 }

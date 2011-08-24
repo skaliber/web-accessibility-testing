@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import org.a11ytesting.filter.HtmlFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
@@ -34,7 +35,7 @@ public class HtmlHasValidLanguageCode extends AbstractUnderstandableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.HTML;
+		return new HtmlFilter();
 	}
 
 	/**

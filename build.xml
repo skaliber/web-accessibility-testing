@@ -1,0 +1,49 @@
+<project name="org.a11ytesting" basedir=".">
+	
+	<property name="src" value="java" />
+	<property name="lib" value="thirdparty" />
+	<property name="build" value="build" />
+	<property name="dist" value="dist" />
+	<property name="a11yjar" value="a11ytesting.jar" />
+	<property name="test.output" value="test-output" />
+	
+	<path id="classpath">
+		<fileset dir="${lib}" includes="*.jar" />
+	</path>
+	
+	<target name="info">
+		<echo message="Classpath is ${classpath}" />
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+		<mkdir dir="${test.output}" />
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" 
+			excludes="org/julianharty/accessibility/automation/GeneralHelpers.java,org/julianharty/accessibility/automation/HighContrast.java,org/julianharty/accessibility/automation/KeyboardHelpers.java,org/julianharty/accessibility/automation/LocalWebServer.java,org/julianharty/accessibility/automation/Util.java">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<jar destfile="${dist}/${a11yjar}" basedir="${build}">
+			<fileset dir="${build}" includes="**/*.class" />
+		</jar>
+	</target>
+	
+	<target name="standalone" depends="jar">
+		<zip destfile="${dist}/a11ytesting_with_deps.jar">
+			<zipgroupfileset dir="${lib}" includes="*.jar" />
+			<zipgroupfileset dir="${dist}" includes="${a11yjar}" />
+		</zip>
+	</target>
+	
+	<target name="test" depends="compile">
+		<testng fork="yes" classpathref="classpath" outputdir="${test.output}">
+			<fileset dir="javatests" includes="testng.xml" />
+		</testng>
+	</target>
+</project>

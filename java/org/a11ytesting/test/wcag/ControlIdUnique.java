@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ public class ControlIdUnique extends AbstractUnderstandableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.INPUT_CONTROL;
+		return new InputControlFilter();
 	}
 
 	/**
@@ -49,9 +49,10 @@ public class ControlIdUnique extends AbstractUnderstandableRule {
 		if (!control.hasAttr(ID)) {
 			return null;
 		}
+		// @todo (dallison) Only go up to the local form.
 		Element root = getRootElement(control);
-		ElementFilter filter = new InputControlFilter(root);
-		for (Element otherControl : filter.result()) {
+		ElementFilter filter = new InputControlFilter();
+		for (Element otherControl : filter.result(root)) {
 			// skip self
 			if (control.equals(otherControl)) {
 				continue;

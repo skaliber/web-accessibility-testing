@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,7 @@ public class MouseDownFilter extends ElementFilter {
 	
 	private static final String MOUSEDOWN_SELECTOR = "[mousedown]";
 
-	public MouseDownFilter(Element element) {
-		super(element);
-	}
-
-	@Override public Iterable<Element> result() {
+	@Override public Iterable<Element> result(Element element) {
 		return element.select(MOUSEDOWN_SELECTOR);
 	}
 }

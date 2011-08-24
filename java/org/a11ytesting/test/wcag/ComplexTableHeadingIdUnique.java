@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import static org.a11ytesting.test.Shared.notComplexTable;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
@@ -35,7 +36,7 @@ public class ComplexTableHeadingIdUnique extends AbstractPerceivableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.TABLE;
+		return new TableFilter();
 	}
 
 	/**

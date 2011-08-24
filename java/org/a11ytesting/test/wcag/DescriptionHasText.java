@@ -1,4 +1,4 @@
-/* Copyright 2011 eBay Inc.
+/* Copyright 2011 Ebay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  */
 package org.a11ytesting.test.wcag;
 
+import org.a11ytesting.filter.SummaryFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
@@ -28,7 +29,7 @@ public class DescriptionHasText extends AbstractUnderstandableRule {
 
 	@Override
 	public Filter getFilter() {
-		return Filter.SUMMARY;
+		return new SummaryFilter();
 	}
 	
 	/**
