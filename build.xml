@@ -34,15 +34,8 @@
 		</jar>
 	</target>
 	
-	<target name="standalone" depends="jar">
-		<zip destfile="${dist}/a11ytesting_with_deps.jar">
-			<zipgroupfileset dir="${lib}" includes="*.jar" />
-			<zipgroupfileset dir="${dist}" includes="${a11yjar}" />
-		</zip>
-	</target>
-	
 	<target name="test" depends="compile">
-		<testng fork="yes" classpathref="classpath" outputdir="${test.output}">
+		<testng classpathref="classpath" outputdir="${test.output}">
 			<fileset dir="javatests" includes="testng.xml" />
 		</testng>
 	</target>
