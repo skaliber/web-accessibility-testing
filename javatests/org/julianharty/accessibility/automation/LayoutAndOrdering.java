@@ -20,7 +20,7 @@ import junit.framework.TestCase;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.RenderedWebElement;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class LayoutAndOrdering extends TestCase {
@@ -51,12 +51,12 @@ public class LayoutAndOrdering extends TestCase {
 	public void testOffsetIncreasesAfterControlPlusKeyStroke() {
 		FirefoxDriver driver = new FirefoxDriver();
 		driver.get("http://localhost/accessibility/explicittabindex.html");
-		RenderedWebElement firstElement = (RenderedWebElement) driver.switchTo().activeElement();
-		RenderedWebElement currentElement = (RenderedWebElement) firstElement;
+		WebElement firstElement = driver.switchTo().activeElement();
+		WebElement currentElement = firstElement;
 		
 		// Go to first tabbable element on page
 		currentElement.sendKeys(Keys.TAB); 
-		currentElement = (RenderedWebElement) driver.switchTo().activeElement();
+		currentElement = driver.switchTo().activeElement();
 		Point initialElementLocation = currentElement.getLocation();
 		System.out.println("testOffsetIncreasesAfterControlPlusKeyStroke");
 		int maxChanges = 5;
@@ -97,7 +97,7 @@ public class LayoutAndOrdering extends TestCase {
 	 * @param modifierKey the key to apply, currently expected to be Keys.ADD
 	 * or Keys.SUBTRACT
 	 */
-	private void applyModifierKeyTo(RenderedWebElement currentElement,
+	private void applyModifierKeyTo(WebElement currentElement,
 			int maxChanges, Keys modifierKey) {
 		Point currentElementLocation = currentElement.getLocation();
 		for (int i = 0; i < maxChanges; i++) {
@@ -116,8 +116,8 @@ public class LayoutAndOrdering extends TestCase {
 	private void tabLayoutTest(FirefoxDriver driver)
 			throws InterruptedException {
 		
-		RenderedWebElement firstElement = (RenderedWebElement) driver.switchTo().activeElement();
-		RenderedWebElement currentElement = (RenderedWebElement) firstElement;
+		WebElement firstElement = driver.switchTo().activeElement();
+		WebElement currentElement = firstElement;
 		Point preTabLocation = currentElement.getLocation();
 		int tabsIssued = 0;
 		while (tabsIssued < MAX_TABS) {
@@ -125,7 +125,7 @@ public class LayoutAndOrdering extends TestCase {
 			currentElement.sendKeys(Keys.TAB);  // "\t" also works
 			tabsIssued++;
 			Thread.sleep(50L);
-			currentElement = (RenderedWebElement) driver.switchTo().activeElement();
+			currentElement = driver.switchTo().activeElement();
 			Point postTabLocation = currentElement.getLocation();
 			System.out.println(GeneralHelpers.printElementLocations(tabsIssued, preTabLocation, postTabLocation));
 			if (currentElement.equals(firstElement) 

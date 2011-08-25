@@ -17,7 +17,6 @@ limitations under the License.
 package org.julianharty.accessibility.automation;
 
 import org.openqa.selenium.Point;
-import org.openqa.selenium.RenderedWebElement;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -41,7 +40,7 @@ public class Util {
    */
 
   public static boolean hasPointerCursor(WebElement elem) {
-    String cursor = ((RenderedWebElement) elem).getValueOfCssProperty("cursor");
+    String cursor = elem.getCssValue("cursor");
     return cursor.equals("pointer");
   }
 
@@ -53,8 +52,7 @@ public class Util {
    *         background image, {@code false} otherwise
    */
   public static boolean hasCSSBackground(WebElement elem) {
-    String cssBackground =
-        ((RenderedWebElement) elem).getValueOfCssProperty("background-image");
+    String cssBackground = elem.getCssValue("background-image");
     return !cssBackground.equals("none");
   }
 
@@ -72,9 +70,9 @@ public class Util {
   public static boolean isDisplayedOnWebPage(WebElement elem) {
     // Get element's location, to determine if it's located outside the
     // viewport.
-    Point p = ((RenderedWebElement) elem).getLocation(); 
+    Point p = elem.getLocation(); 
 
-    if (((RenderedWebElement) elem).isDisplayed() && (p.x >= 0 || p.y >= 0))
+    if (elem.isDisplayed() && (p.x >= 0 || p.y >= 0))
       return true;
  
     return false;
