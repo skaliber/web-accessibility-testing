@@ -16,13 +16,9 @@
 	
 	<path id="classpath.test">
 		<fileset dir="${lib}" includes="*.jar" />
-		<pathelement location="${dist}/${a11yjar}" />
+		<pathelement location="${build}" />
 		<pathelement location="${tests}" />
 	</path>
-	
-	<target name="info">
-		<echo message="Classpath is ${classpath}" />
-	</target>
 	
 	<target name="init">
 		<mkdir dir="${build}" />
@@ -32,14 +28,14 @@
 	</target>
 	
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build}" 
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="false"
 			excludes="org/julianharty/accessibility/automation/GeneralHelpers.java,org/julianharty/accessibility/automation/HighContrast.java,org/julianharty/accessibility/automation/KeyboardHelpers.java,org/julianharty/accessibility/automation/LocalWebServer.java,org/julianharty/accessibility/automation/Util.java">
 			<classpath refid="classpath" />
 		</javac>
 	</target>
 	
 	<target name="compile.test" depends="init,compile">
-		<javac srcdir="${src.test}" destdir="${tests}"
+		<javac srcdir="${src.test}" destdir="${tests}" includeantruntime="false"
 			excludes="org/julianharty/accessibility/automation/LayoutAndOrdering.java,org/julianharty/accessibility/automation/LocalAccessibilityTestPages.java,org/julianharty/accessibility/automation/GoogleSearchResults.java,org/julianharty/accessibility/automation/SimpleDemo.java,org/julianharty/accessibility/automation/eBayHomepage.java">
 			<classpath refid="classpath.test" />
 		</javac>
@@ -51,9 +47,16 @@
 		</jar>
 	</target>
 	
-	<target name="test" depends="jar,compile.test">
+	<target name="test" depends="compile,compile.test">
 		<testng classpathref="classpath.test" outputdir="${test.output}">
 			<xmlfileset dir="javatests" includes="testng.xml" />
 		</testng>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+		<delete dir="${tests}" />
+		<delete dir="${test.output}" />
 	</target>
 </project>
