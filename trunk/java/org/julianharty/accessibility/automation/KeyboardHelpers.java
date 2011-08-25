@@ -19,11 +19,9 @@ package org.julianharty.accessibility.automation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.mortbay.log.Log;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.RenderedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -156,9 +154,8 @@ public class KeyboardHelpers {
 						tabsIssued, element.getTagName(), element.hashCode(),
 						element.toString(), element.getText(),
 						getValueFromWebdriverIfAvailable(element)));
-		RenderedWebElement rwe = (RenderedWebElement) element;
-		Point location = rwe.getLocation();
-		Log.info(String.format("[%03d] Location (%03d,%03d)", tabsIssued, location.x, location.y));
+		Point location = element.getLocation();
+		LOG.info(String.format("[%03d] Location (%03d,%03d)", tabsIssued, location.x, location.y));
 	}
 
 	/**
@@ -241,7 +238,10 @@ public class KeyboardHelpers {
 			WebElement currentElement) {
 		String valueOfCurrentElement;
 		try {
-			valueOfCurrentElement = currentElement.getValue();
+			valueOfCurrentElement = currentElement.getAttribute("value");
+			if (valueOfCurrentElement == null) {
+				valueOfCurrentElement = "(null)";
+			}
 		} catch (UnsupportedOperationException uoe) {
 			valueOfCurrentElement = "(not available)";
 		}
