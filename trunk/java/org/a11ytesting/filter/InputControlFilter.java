@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ public class InputControlFilter extends ElementFilter {
 
 	private static final String CONTROL_SELECT = "input[type=checkbox], " +
 			"input[type=file], input[type=password], " +
-			"input[type=image], " +
-			"input[type=radio], input[type=text], select, textarea"; 
+			"input[type=image], input[type=radio], input[type=text], " +
+			"select, textarea"; 
 
 	@Override
 	public Iterable<Element> result(Element element) {

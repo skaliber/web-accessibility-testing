@@ -15,21 +15,21 @@ import org.a11ytesting.test.Issue.Severity;
  */
 public class IssueTest {
 	
-	private final String name = "Erm, there was an issue dude",
-			description = "like, er, something is broken";
+	private static final String NAME = "Erm, there was an issue dude",
+			DESCRIPTION = "like, er, something is broken";
 	private final Severity severity = Severity.WARNING;
 	private final Element doc = Jsoup.parse("<html><body><p>Im a body</p>" +
 			"</body></html>");
-	private Issue testIssue = new Issue(name, description, severity, doc);
+	private Issue testIssue = new Issue(NAME, DESCRIPTION, severity, doc);
 	
 	@Test
 	public void testName() {
-		assertEquals(testIssue.getTestName(), name);
+		assertEquals(testIssue.getTestName(), NAME);
 	}
 	
 	@Test
 	public void testDescription() {
-		assertEquals(testIssue.getDescription(), description);
+		assertEquals(testIssue.getDescription(), DESCRIPTION);
 	}
 	
 	@Test
@@ -46,8 +46,8 @@ public class IssueTest {
 	// @todo(dallison) Fix this brittle test which relies on the jsoup outer html
 	public void testStringEncoding() {
 		assertEquals(testIssue.toString(),
-				"{\"testName\":\"" + name + "\",\"description\":\"" +
-				description + "\",\"severity\":\"warning\",\"elementCode\":\"" +
+				"{\"testName\":\"" + NAME + "\",\"description\":\"" +
+				DESCRIPTION + "\",\"severity\":\"warning\",\"elementCode\":\"" +
 				"<html>\\n <head></head>\\n <body>\\n  <p>Im a body</p>\\n </body>\\n</html>\"}");
 	}
 }

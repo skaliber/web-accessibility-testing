@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.ACCESS_KEY;
+import static org.a11ytesting.test.wcag.Shared.ACCESS_KEY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +26,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
+/**
+ * Rule for MS internet explorer reserved access key value usage.
+ * 
+ * @author dallison
+ */
 public class IeReservedAccessKeyValueNotUsed extends AbstractOperableRule {
 
 	@Override
@@ -58,5 +63,4 @@ public class IeReservedAccessKeyValueNotUsed extends AbstractOperableRule {
 		}
 		return null;
 	}
-
 }

@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,23 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.ALT_TEXT;
+import static org.a11ytesting.test.wcag.Shared.ALT_TEXT;
 
 import java.util.Arrays;
 import java.util.List;
+
+import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
+/**
+ * Rule for alt text badness.
+ * 
+ * @author dallison
+ */
 public class AltTextOnImageNotBad extends AbstractPerceivableRule {
 
 	private static final List<String> BAD_ALT_WORDS = Arrays.asList(

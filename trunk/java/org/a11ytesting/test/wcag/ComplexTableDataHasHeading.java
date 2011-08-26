@@ -14,9 +14,9 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.HEADERS;
-import static org.a11ytesting.test.Shared.TD;
-import static org.a11ytesting.test.Shared.notComplexTable;
+import static org.a11ytesting.test.wcag.Shared.HEADERS;
+import static org.a11ytesting.test.wcag.Shared.TD;
+import static org.a11ytesting.test.wcag.Shared.notComplexTable;
 
 import org.jsoup.nodes.Element;
 
@@ -25,6 +25,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
+/**
+ * Complex table rule.
+ * 
+ * @author dallison
+ */
 public class ComplexTableDataHasHeading extends AbstractPerceivableRule {
 
 	@Override
@@ -39,12 +44,12 @@ public class ComplexTableDataHasHeading extends AbstractPerceivableRule {
 
 	/**
 	 * Check that complex table with colspan or rowspan headers also use table
-	 * data element ids referring to the header they are aligned to.
+	 * data element IDs referring to the header they are aligned to.
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/8/
 	 * 
 	 * @param table to check
-	 * @return issues identified.
+	 * @return issue identified or null
 	 */
 	@Override
 	public Issue check(Element table) {
@@ -62,5 +67,4 @@ public class ComplexTableDataHasHeading extends AbstractPerceivableRule {
 		}
 		return null;
 	}
-
 }

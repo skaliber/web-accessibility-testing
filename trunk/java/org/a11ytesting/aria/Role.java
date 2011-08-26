@@ -15,7 +15,7 @@
 package org.a11ytesting.aria;
 
 /**
- * Aria role set definitions.
+ * Aria roles enumeration.
  *
  * @author dallison
  */

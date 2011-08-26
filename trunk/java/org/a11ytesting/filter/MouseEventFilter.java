@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,12 @@ package org.a11ytesting.filter;
 import org.jsoup.nodes.Element;
 
 /**
- * Filter for mouse events on any element.
+ * Filter for elements which have a mouse event.
  * 
  * @author dallison
  */
 public class MouseEventFilter extends ElementFilter {
-	
+
 	protected static final String MOUSE_EVENT_SELECTOR = "[onclick], " +
 			"[onmousedown], [onmouseup], [onmousemove], [onmouseout], " +
 			"[onmouseover]";

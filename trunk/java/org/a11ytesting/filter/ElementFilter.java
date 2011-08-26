@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,7 @@ import org.a11ytesting.test.Filter;
  * Default element filter which returns the root. This class should be sub
  * classed by specific filter types.
  * 
- * When sub classing this implementation ensure overriding of the iterator
- * method to return an iterator for the correct element type. 
- * 
  * @author dallison
- *
  */
 public class ElementFilter implements Filter {
 	

@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.KEY_DOWN;
-import static org.a11ytesting.test.Shared.KEY_PRESS;
-import static org.a11ytesting.test.Shared.KEY_UP;
+import static org.a11ytesting.test.wcag.Shared.KEY_DOWN;
+import static org.a11ytesting.test.wcag.Shared.KEY_PRESS;
+import static org.a11ytesting.test.wcag.Shared.KEY_UP;
 
 import org.jsoup.nodes.Element;
 
@@ -25,6 +25,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
+/**
+ * Rule for mouse event having keyboard equivalent.
+ * 
+ * @author dallison
+ */
 public class MouseEventHasKeyboardEvent extends AbstractOperableRule {
 
 	@Override
@@ -57,5 +62,4 @@ public class MouseEventHasKeyboardEvent extends AbstractOperableRule {
 				"Check that elements that have mouse actions also have " +
 				"keyboard actions.", Severity.ERROR, element);
 	}
-
 }

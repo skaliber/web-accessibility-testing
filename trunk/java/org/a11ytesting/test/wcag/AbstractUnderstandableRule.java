@@ -14,6 +14,13 @@
  */
 package org.a11ytesting.test.wcag;
 
+/**
+ * Provides group level naming for understandable rules from the WCAG spec.
+ * 
+ * @see AbstractWcagRule
+ * 
+ * @author dallison
+ */
 public abstract class AbstractUnderstandableRule extends AbstractWcagRule {
 
 	@Override

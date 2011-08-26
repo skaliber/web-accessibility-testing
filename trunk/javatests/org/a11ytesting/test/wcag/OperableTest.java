@@ -21,7 +21,6 @@ import static org.a11ytesting.test.wcag.SharedTest.*;
 
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.a11ytesting.test.Shared;
 import org.jsoup.nodes.Element;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

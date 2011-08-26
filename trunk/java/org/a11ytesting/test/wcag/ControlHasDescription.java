@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,24 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.ID;
-import static org.a11ytesting.test.Shared.TITLE;
-import static org.a11ytesting.test.Shared.getRootElement;
-import static org.a11ytesting.test.Shared.isImageInput;
+import static org.a11ytesting.test.wcag.Shared.ID;
+import static org.a11ytesting.test.wcag.Shared.TITLE;
+import static org.a11ytesting.test.wcag.Shared.getRootElement;
+import static org.a11ytesting.test.wcag.Shared.isImageInput;
+
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import org.a11ytesting.filter.InputControlFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
+/**
+ * Page control has a description rule.
+ * 
+ * @author dallison
+ */
 public class ControlHasDescription extends AbstractUnderstandableRule {
 
 	@Override

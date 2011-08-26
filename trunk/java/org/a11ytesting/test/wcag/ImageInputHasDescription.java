@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.ALT_TEXT;
-import static org.a11ytesting.test.Shared.TITLE;
-import static org.a11ytesting.test.Shared.isImageInput;
+import static org.a11ytesting.test.wcag.Shared.ALT_TEXT;
+import static org.a11ytesting.test.wcag.Shared.TITLE;
+import static org.a11ytesting.test.wcag.Shared.isImageInput;
 
 import org.jsoup.nodes.Element;
 
@@ -58,5 +58,4 @@ public class ImageInputHasDescription extends AbstractUnderstandableRule {
 				"Check that image input element has either alt or title",
 				Severity.ERROR, image);
 	}
-
 }

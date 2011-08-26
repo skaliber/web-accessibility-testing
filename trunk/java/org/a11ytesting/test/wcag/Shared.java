@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,56 +12,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.a11ytesting.test;
+package org.a11ytesting.test.wcag;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.a11ytesting.aria.Role;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
+import org.a11ytesting.aria.Role;
+
 /**
- * Shared variables for common html element selectors.
+ * Shared variables for common HTML element selectors.
  * @author dallison
  *
  */
 public abstract class Shared {
 	
-	public static final String ACCESS_KEY = "accesskey";
-	public static final String ALT_TEXT = "alt";
-	public static final String ANCHOR = "a";
-	public static final String ARIA_PRESENTATION = "presentation";
-	public static final String ARIA_ROLE = "role";
-	public static final String BLUR = "onblur";
-	public static final String BUTTON = "button";
-	public static final String COLSPAN = "colspan";
-	public static final String FOCUS = "onfocus";
-	public static final String HEAD = "head";
-	public static final String HEADERS = "headers";
-	public static final String HREF = "href";
-	public static final String ID = "id";
-	public static final String IMAGE = "image";
-	public static final String INPUT = "input";
-	public static final String KEY_DOWN = "onkeydown";
-	public static final String KEY_PRESS = "onkeypress";
-	public static final String KEY_UP = "onkeyup";
-	public static final String LANG = "lang";
-	public static final String LEGEND = "legend";
-	public static final String ON_CHANGE = "onchange";
-	public static final String ROLE = "role";
-	public static final String ROWSPAN = "rowspan";
-	public static final String SELECT = "select";
-	public static final String SUMMARY = "summary";
-	public static final String TAB_INDEX = "tabindex";
-	public static final String TD = "td";
-	public static final String TH = "th";
-	public static final String TITLE = "title";
-	public static final String TYPE = "type";
-	public static final String VALUE = "value";
+	static final String ACCESS_KEY = "accesskey";
+	static final String ALT_TEXT = "alt";
+	static final String ANCHOR = "a";
+	static final String ARIA_PRESENTATION = "presentation";
+	static final String ARIA_ROLE = "role";
+	static final String BLUR = "onblur";
+	static final String BUTTON = "button";
+	static final String COLSPAN = "colspan";
+	static final String FOCUS = "onfocus";
+	static final String HEAD = "head";
+	static final String HEADERS = "headers";
+	static final String HREF = "href";
+	static final String ID = "id";
+	static final String IMAGE = "image";
+	static final String INPUT = "input";
+	static final String KEY_DOWN = "onkeydown";
+	static final String KEY_PRESS = "onkeypress";
+	static final String KEY_UP = "onkeyup";
+	static final String LANG = "lang";
+	static final String LEGEND = "legend";
+	static final String ON_CHANGE = "onchange";
+	static final String ROLE = "role";
+	static final String ROWSPAN = "rowspan";
+	static final String SELECT = "select";
+	static final String SUMMARY = "summary";
+	static final String TAB_INDEX = "tabindex";
+	static final String TD = "td";
+	static final String TH = "th";
+	static final String TITLE = "title";
+	static final String TYPE = "type";
+	static final String VALUE = "value";
 	
 	
 	
@@ -72,7 +73,7 @@ public abstract class Shared {
 	 * @param element starting point
 	 * @return the root element or the passed element if no parents
 	 */
-	public static Element getRootElement(Element element) {
+	static Element getRootElement(Element element) {
 		Elements parents = element.parents();
 		if (parents.isEmpty()) {
 			return element;
@@ -86,36 +87,42 @@ public abstract class Shared {
 	 * 
 	 * @see http://code.google.com/p/ainspector/source/browse/trunk/chrome/content/ainspector/OAA/scripts/util.js?spec=svn116&r=116
 	 * 
-	 * @param root of the construction
-	 * @return String with normalised spaces
+	 * @param root node to traverse from.
+	 * @return String with white space normalised as single spaces.
 	 */
-	public static String containedText(Element root) {
+	static String containedText(Element root) {
 		// strip leading and trailing spaces added by building
-		return recurseNode(root).trim().replaceAll("\\W+", " ");
-	}
-	
-	// recurse into nodes and construct spaced string
-	// @todo(dallison) handle rtl text
-	private static String recurseNode(Node node) {
 		StringBuilder builder = new StringBuilder();
+		recurseNode(root, builder);
+		return builder.toString().trim().replaceAll("\\W+", " ");
+		//return recurseNode(root).trim().replaceAll("\\W+", " ");
+	}
+
+	// @todo(dallison) handle rtl text
+	private static void recurseNode(Node node, StringBuilder builder) {
+		// boundry case for text
 		if (node instanceof TextNode) {
 			builder.append(((TextNode) node).text());
 			builder.append(" ");
-			return builder.toString();
+			return;
 		}
 		
+		// if the current node has alt text append it
 		if (node.hasAttr(ALT_TEXT)) {
 			builder.append(node.attr(ALT_TEXT));
 			// Add trailing white space to separate elements
 			builder.append(" ");
 		}
+		
+		// recurse into the child nodes.
 		for (Node child : node.childNodes()) {
-			builder.append(recurseNode(child));
+			recurseNode(child, builder);
 		}
-		return builder.toString();
 	}
 	
-	public static boolean hasAriaRole(Element element) {
+	// TODO(jharty) This has moved to NonInteractiveElementHasRole, could you
+	// move the test also?
+	static boolean hasAriaRole(Element element) {
 		if (!element.hasAttr(ROLE)) {
 			return false;
 		}
@@ -135,11 +142,12 @@ public abstract class Shared {
 	 * focusable (where focus is disabled by setting tabindex to a negative
 	 * number) and which ones generally are NOT focusable, but may become
 	 * focusable by setting a positive tabindex.
+	 * TODO(jharty): This could move to OnClickIsFocusable?
 	 * 
 	 * @param element the element to test
 	 * @return true when the element is not focusable, else false.
 	 */
-	public static boolean notFocusable(Element element) {
+	static boolean notFocusable(Element element) {
 		List<String> focusable = Arrays.asList(new String[]{
 				"a", "button", "input", "select", "textarea" 
 		});
@@ -152,8 +160,15 @@ public abstract class Shared {
 		return false;
 	}
 	
-	// @todo(dallison) check other aria roles for visible intentions
-	public static boolean isVisible(Element element) {
+	/**
+	 * Check if an element is visible based on whether it has an aria
+	 * presentation tag.
+	 * 
+	 * @param element
+	 * @return true if the element is visible rather than just presentation.
+	 * @todo(dallison) check other aria roles for visible intentions
+	 */
+	static boolean isVisible(Element element) {
 		Attributes attributes = element.attributes();
 		if (attributes.hasKey("role")) {
 			if(attributes.get(ARIA_ROLE).equals(ARIA_PRESENTATION)) {
@@ -166,8 +181,16 @@ public abstract class Shared {
 		}
 	}
 	
-	// place holder for heuristic decision of whether is 'complex' table.
-	public static boolean notComplexTable(Element table) {
+	/**
+	 * Check if a HTML table is not complex. Typically a complex table has at
+	 * least one cell which is a multi column or multi row. In those cases it
+	 * is required that the table use heading id alignment to aid screen
+	 * readers.
+	 * 
+	 * @param table to check
+	 * @return true if the table is not complex.
+	 */
+	static boolean notComplexTable(Element table) {
 		// @todo(dallison) Define a heuristic for this starting with > 1
 		for (Element cell : table.select(TH + ", " + TD)) {
 			if (cell.hasAttr(COLSPAN) || cell.hasAttr(ROWSPAN)) {
@@ -177,7 +200,12 @@ public abstract class Shared {
 		return true;
 	}
 	
-	public static boolean isImageInput(Element element) {
+	/**
+	 * Check if an HTML input is an image input type.
+	 * @param element
+	 * @return
+	 */
+	static boolean isImageInput(Element element) {
 		return element.nodeName().equals(INPUT) && 
 				element.hasAttr(TYPE) && element.attr(TYPE).equals(IMAGE);
 	}

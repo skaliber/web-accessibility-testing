@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,20 +24,19 @@ import org.jsoup.nodes.Element;
 /**
  * Representation of an issue with an element returned by a test.
  * 
- * @todo(dallison) Consider converting to an error.
- * @todo(dallison) Add url reference for addressing the issue highlighted.
+ * @author dallison
  */
 public class Issue {
 
 	public enum Severity {
-		WARNING {
-			@Override public String toString() {
-				return "warning";
-			}
-		},
 		ERROR {
 			@Override public String toString() {
 				return "error";
+			}
+		},
+		WARNING {
+			@Override public String toString() {
+				return "warning";
 			}
 		}
 	};
@@ -48,6 +47,14 @@ public class Issue {
 	private Severity severity;
 	private Element element = null;
 
+	/**
+	 * Construct an issue given the context.
+	 * 
+	 * @param testName A unique name for the test.
+	 * @param description A long description of the issue.
+	 * @param severity An indication of how severe the issue is.
+	 * @param element The element that is the cause of the issue.
+	 */
 	public Issue(String testName, String description, Severity severity,
 			Element element) {
 		this.testName = testName;
@@ -72,6 +79,12 @@ public class Issue {
 		return element;
 	}
 
+	/**
+	 * Get a representation of the issue as a JSON string.
+	 * 
+	 * @return json String.
+	 */
+	@Override
 	public String toString() {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		JsonFactory factory = new JsonFactory();

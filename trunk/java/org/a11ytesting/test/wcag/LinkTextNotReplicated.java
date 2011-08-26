@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.HREF;
-import static org.a11ytesting.test.Shared.containedText;
-import static org.a11ytesting.test.Shared.getRootElement;
+import static org.a11ytesting.test.wcag.Shared.HREF;
+import static org.a11ytesting.test.wcag.Shared.containedText;
+import static org.a11ytesting.test.wcag.Shared.getRootElement;
 
 import org.jsoup.nodes.Element;
 
@@ -26,6 +26,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
+/**
+ * Rule for link text not replicated on different targets.
+ * 
+ * @author dallison
+ */
 public class LinkTextNotReplicated extends AbstractOperableRule {
 
 	@Override
@@ -71,7 +76,7 @@ public class LinkTextNotReplicated extends AbstractOperableRule {
 		return null;
 	}
 	
-	boolean sameHref(Element link, Element otherLink) {
+	private boolean sameHref(Element link, Element otherLink) {
 		if (link.hasAttr(HREF) && otherLink.hasAttr(HREF)) {
 			return link.attr(HREF).equals(otherLink.attr(HREF));
 		} else {
@@ -79,5 +84,4 @@ public class LinkTextNotReplicated extends AbstractOperableRule {
 		}
 		
 	}
-
 }

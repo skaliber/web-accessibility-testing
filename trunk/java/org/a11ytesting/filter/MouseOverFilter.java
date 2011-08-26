@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import org.jsoup.nodes.Element;
  * @author dallison
  */
 public class MouseOverFilter extends ElementFilter {
-	
+
 	private static final String MOUSEOVER_SELECTOR = "[mouseover]";
 
 	@Override public Iterable<Element> result(Element element) {

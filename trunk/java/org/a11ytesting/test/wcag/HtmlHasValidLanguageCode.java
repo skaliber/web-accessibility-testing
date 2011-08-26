@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,24 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.LANG;
+import static org.a11ytesting.test.wcag.Shared.LANG;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.HtmlFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
+/**
+ * Rule for HTML must have a valid language code.
+ * 
+ * @author dallison
+ */
 public class HtmlHasValidLanguageCode extends AbstractUnderstandableRule {
 
 	@Override
@@ -58,5 +64,4 @@ public class HtmlHasValidLanguageCode extends AbstractUnderstandableRule {
 		}
 		return null;
 	}
-
 }

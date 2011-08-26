@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.ANCHOR;
-import static org.a11ytesting.test.Shared.HREF;
-import static org.a11ytesting.test.Shared.TAB_INDEX;
+import static org.a11ytesting.test.wcag.Shared.ANCHOR;
+import static org.a11ytesting.test.wcag.Shared.HREF;
+import static org.a11ytesting.test.wcag.Shared.TAB_INDEX;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +28,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
+/**
+ * Rule for on click elements also being focusable.
+ * 
+ * @author dallison
+ */
 public class OnClickIsFocusable extends AbstractOperableRule {
 
 	@Override
@@ -58,6 +63,8 @@ public class OnClickIsFocusable extends AbstractOperableRule {
 		return null;
 	}
 
+	// TODO(jharty) In this focusable method links with either an href or a tab index
+	// of 0 or more are focusable. Does your implementation cover those cases?
 	private boolean notFocusable(Element element) {
 		List<String> focusable = Arrays.asList(new String[]{
 				"button", "input", "select", "textarea" 
