@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
+/**
+ * Rule for active text elements.
+ * 
+ * @author dallison
+ */
 public class ActiveTextElementNotPresent extends AbstractOperableRule {
 
 	@Override
@@ -47,5 +52,4 @@ public class ActiveTextElementNotPresent extends AbstractOperableRule {
 				"Check that active text elements like marqee and blink " +
 				"are not present.", Severity.ERROR, active);
 	}
-
 }

@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,21 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.TITLE;
-import static org.a11ytesting.test.Shared.isVisible;
+import static org.a11ytesting.test.wcag.Shared.TITLE;
+import static org.a11ytesting.test.wcag.Shared.isVisible;
+
+import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
+/**
+ * Rule for invisible image with title.
+ * 
+ * @author dallison
+ */
 public class InvisibleImageNoTitle extends AbstractPerceivableRule {
 
 	@Override
@@ -54,5 +60,4 @@ public class InvisibleImageNoTitle extends AbstractPerceivableRule {
 		}
 		return null;
 	}
-
 }

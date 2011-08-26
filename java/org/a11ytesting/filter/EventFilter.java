@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,11 @@ package org.a11ytesting.filter;
 import org.jsoup.nodes.Element;
 
 /**
- * Subset of html events.
+ * Subset of HTML events for standard events of interest to rules. 
  * 
  * @see http://en.wikipedia.org/wiki/DOM_events
  * 
  * @author dallison
- * 
- * @todo(dallison) Consider adding all events
  */
 public class EventFilter extends ElementFilter {
 	
@@ -32,7 +30,8 @@ public class EventFilter extends ElementFilter {
 			"[onmouseup], [onmousemove], [onmouseout], [onmouseover]" +
 			"[onfocus], [onblur]";
 
-	@Override public Iterable<Element> result(Element element) {
+	@Override
+	public Iterable<Element> result(Element element) {
 		return element.select(EVENT_ELEMENT_SELECTOR);
 	}
 }

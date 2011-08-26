@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,12 @@ package org.a11ytesting.filter;
 import org.jsoup.nodes.Element;
 
 /**
- * Filter for mouse down events.
+ * Filter for mouse down event elements.
  * 
  * @author dallison
  */
 public class MouseDownFilter extends ElementFilter {
-	
+
 	private static final String MOUSEDOWN_SELECTOR = "[mousedown]";
 
 	@Override public Iterable<Element> result(Element element) {

@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
 package org.a11ytesting.test.wcag;
 
 /**
- * Abstract operable rule
+ * Abstract operable rule.
+ * 
  * @author dallison
- *
  */
 abstract class AbstractOperableRule extends AbstractWcagRule {
 

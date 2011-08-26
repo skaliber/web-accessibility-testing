@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@ import org.reflections.Reflections;
 
 /**
  * Support class providing functionality to invoke test groups
- * for given filter sets.
+ * by loading a package containing implementations of the Rule
+ * interface.
  * 
  * @author dallison
  */
@@ -34,9 +35,11 @@ public class Evaluator {
 	private Set<Rule> forRules = new HashSet<Rule>();
 	
 	/**
-	 * Add a package of rules in the class path to this evaluator
+	 * Add a package containing rule implementations to the evaluator. Every
+	 * class implementing the Rule interface in the given package will be added
+	 * to the evaluator.
 	 *  
-	 * @param packageName to add
+	 * @param packageName of package name in the current classpath to add.
 	 */
 	public void addPackage(String packageName) {
 		Reflections reflection = new  Reflections(packageName);
@@ -48,7 +51,7 @@ public class Evaluator {
 			}
 			try {
 				Rule instance = rule.newInstance();
-				forRules.add(instance);
+				addRule(instance);
 			} catch (InstantiationException e) {
 				throw new RuntimeException(e);
 			} catch (IllegalAccessException e) {
@@ -59,10 +62,19 @@ public class Evaluator {
 	}
 	
 	/**
+	 * Add a single rule implementation to the evaluator.
+	 * 
+	 * @param rule to add to the evaluator.
+	 */
+	public void addRule(Rule rule) {
+		forRules.add(rule);
+	}
+	
+	/**
 	 * Collect the issues for the current loaded set of
 	 * rules 
-	 * @param root
-	 * @return
+	 * @param root element for analysis.
+	 * @return the collection of issues identified.
 	 */
 	public List<Issue> collectIssues(Element root) {
 		List<Issue> result = new ArrayList<Issue>();

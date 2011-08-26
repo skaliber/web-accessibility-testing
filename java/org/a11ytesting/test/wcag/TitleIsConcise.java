@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
+/**
+ * Rule for concise title text.
+ * 
+ * @author dallison
+ */
 public class TitleIsConcise extends AbstractOperableRule {
 
 	private static final int MAX_TITLE_LENGTH = 60;
@@ -52,5 +57,4 @@ public class TitleIsConcise extends AbstractOperableRule {
 		}
 		return null;
 	}
-
 }

@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,21 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.ALT_TEXT;
-import static org.a11ytesting.test.Shared.isVisible;
+import static org.a11ytesting.test.wcag.Shared.ALT_TEXT;
+import static org.a11ytesting.test.wcag.Shared.isVisible;
+
+import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
+/**
+ * Rule for alt text of a reasonable length.
+ * 
+ * @author dallison
+ */
 public class AltTextLengthReasonable extends AbstractPerceivableRule {
 
 	private static final int MIN_ALT_LENGTH = 7;
@@ -51,11 +57,10 @@ public class AltTextLengthReasonable extends AbstractPerceivableRule {
 		if (isVisible(image) && image.hasAttr(ALT_TEXT)
 				&& (image.attr(ALT_TEXT).length() < MIN_ALT_LENGTH || 
 						image.attr(ALT_TEXT).length() > MAX_ALT_LENGTH)) {
-		return new Issue("checkAltTextLengthReasonable",
-				"Check that visible images use good alt text length",
-				Severity.WARNING, image);
+			return new Issue("checkAltTextLengthReasonable",
+					"Check that visible images use good alt text length",
+					Severity.WARNING, image);
+		}
+		return null;
 	}
-	return null;
-	}
-
 }

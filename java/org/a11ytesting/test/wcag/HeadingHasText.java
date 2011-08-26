@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.containedText;
+import static org.a11ytesting.test.wcag.Shared.containedText;
 
 import org.jsoup.nodes.Element;
 
@@ -23,6 +23,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
+/**
+ * Rule for heading having text.
+ * 
+ * @author dallison
+ */
 public class HeadingHasText extends AbstractOperableRule {
 
 	@Override
@@ -52,5 +57,4 @@ public class HeadingHasText extends AbstractOperableRule {
 		}
 		return null;
 	}
-
 }

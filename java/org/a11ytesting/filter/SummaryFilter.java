@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import org.jsoup.nodes.Element;
 public class SummaryFilter extends ElementFilter {
 
 	private static final String SUMMARY_SELECT = "label, legend"; 
-	
+
 	@Override
 	public Iterable<Element> result(Element element) {
 		return element.select(SUMMARY_SELECT);

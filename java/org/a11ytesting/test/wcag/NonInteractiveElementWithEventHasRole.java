@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.ANCHOR;
-import static org.a11ytesting.test.Shared.BUTTON;
-import static org.a11ytesting.test.Shared.INPUT;
-import static org.a11ytesting.test.Shared.ROLE;
-import static org.a11ytesting.test.Shared.SELECT;
+import static org.a11ytesting.test.wcag.Shared.ANCHOR;
+import static org.a11ytesting.test.wcag.Shared.BUTTON;
+import static org.a11ytesting.test.wcag.Shared.INPUT;
+import static org.a11ytesting.test.wcag.Shared.ROLE;
+import static org.a11ytesting.test.wcag.Shared.SELECT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +31,11 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
-
+/**
+ * Rule for non interactive elements with an even also has an Aria role.
+ * 
+ * @author dallison
+ */
 public class NonInteractiveElementWithEventHasRole
 		extends AbstractOperableRule {
 
@@ -77,5 +81,4 @@ public class NonInteractiveElementWithEventHasRole
 		}
 		return false;
 	}
-
 }

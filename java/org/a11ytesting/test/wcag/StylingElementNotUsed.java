@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,18 @@
  */
 package org.a11ytesting.test.wcag;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.StyleElementFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
+/**
+ * Rule for styling element not present.
+ * 
+ * @author dallison
+ */
 public class StylingElementNotUsed extends AbstractRobustRule {
 
 	@Override
@@ -52,5 +58,4 @@ public class StylingElementNotUsed extends AbstractRobustRule {
 				"Check that style elements are not used",
 				Severity.ERROR, style);
 	}
-
 }

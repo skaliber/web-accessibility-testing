@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,18 @@
  */
 package org.a11ytesting.test.wcag;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.ButtonFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
+/**
+ * Rule for button content.
+ * 
+ * @author dallison
+ */
 public class ButtonHasContent extends AbstractUnderstandableRule {
 
 	@Override
@@ -44,12 +50,11 @@ public class ButtonHasContent extends AbstractUnderstandableRule {
 	@Override
 	public Issue check(Element button) {
 		if ((button.hasText() && !button.text().trim().isEmpty())
-				| !button.children().isEmpty()) {
+				|| !button.children().isEmpty()) {
 			return null;
 		}
 		return new Issue("checkButtonHasContent",
 				"Check that button elements have content",
 				Severity.ERROR, button);
 	}
-
 }

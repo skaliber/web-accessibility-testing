@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,22 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.ID;
-import static org.a11ytesting.test.Shared.getRootElement;
+import static org.a11ytesting.test.wcag.Shared.ID;
+import static org.a11ytesting.test.wcag.Shared.getRootElement;
+
+import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.ElementFilter;
 import org.a11ytesting.filter.InputControlFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
+/**
+ * Rule for Control id uniqueness.
+ * 
+ * @author dallison
+ */
 public class ControlIdUnique extends AbstractUnderstandableRule {
 
 	@Override
@@ -37,7 +43,7 @@ public class ControlIdUnique extends AbstractUnderstandableRule {
 	}
 
 	/**
- 	 * Check that form controls have unique ids
+ 	 * Check that form controls have unique IDs
  	 * 
  	 *  @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/83/
  	 *  
@@ -49,7 +55,6 @@ public class ControlIdUnique extends AbstractUnderstandableRule {
 		if (!control.hasAttr(ID)) {
 			return null;
 		}
-		// @todo (dallison) Only go up to the local form.
 		Element root = getRootElement(control);
 		ElementFilter filter = new InputControlFilter();
 		for (Element otherControl : filter.result(root)) {
@@ -66,5 +71,4 @@ public class ControlIdUnique extends AbstractUnderstandableRule {
 		}
 		return null;
 	}
-
 }

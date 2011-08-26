@@ -1,4 +1,4 @@
-/* Copyright 2011 Ebay Inc.
+/* Copyright 2011 eBay Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,21 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.Shared.LEGEND;
+import static org.a11ytesting.test.wcag.Shared.LEGEND;
+
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import org.a11ytesting.filter.FieldsetFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
+/**
+ * Rule for fieldset elements having a legend.
+ * 
+ * @author dallison
+ */
 public class FieldsetHasLegend extends AbstractUnderstandableRule {
 
 	@Override
@@ -53,5 +59,4 @@ public class FieldsetHasLegend extends AbstractUnderstandableRule {
 		}
 		return null;
 	}
-
 }
