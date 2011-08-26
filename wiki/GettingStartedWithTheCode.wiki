@@ -25,3 +25,15 @@ If you use eclipse:
 You should now be able to compile and run the tests. The tests are written as JUnit tests. The tests should each start a fresh instance of Firefox, tab around the web page - highlighting the visited elements with an orange background and complete without error.
 
 Now you can experiment with creating tests for your web application. Good luck with your bug hunting!
+
+== Fixing errors ==
+You might encounter strange errors when first getting the code working on your machine; or you may discover problems and issues with the code, our designs, implementations, strange quirks on web sites you'd like to test, etc. This section is the starting point for all these topics.
+
+=== Fixing Build and Runtime issues ===
+   * HttpHost not found - check you've included all the supporting jar files for Selenium/WebDriver. Currently there are roughly 10 jars in addition to the main selenium jar file.
+
+=== Problems and Issues with the code ===
+Please create a new issue on this site. Tell us which revision of the code you're using, the operating system details, which version of Selenium/WebDriver you're using, the Driver you're using (Firefox, Chrome, IE, etc), and ideally provide either a URL of a web page where you're finding problems or some sample Web Content and a simple example of the failing test.
+
+=== Strange quirks ===
+Raise an issue on this site. Like reporting an issue with the code, please provide as much detail as you can and describe the quirk(s) you discovered.  
