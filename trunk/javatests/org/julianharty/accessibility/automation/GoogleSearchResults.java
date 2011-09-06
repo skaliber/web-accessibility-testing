@@ -19,17 +19,25 @@ limitations under the License.
  */
 package org.julianharty.accessibility.automation;
 
-import org.openqa.selenium.firefox.FirefoxDriver;
-
 import junit.framework.TestCase;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class GoogleSearchResults extends TestCase {
 
+	private static final int MAXIMUM_TAB_COUNT = 300;
+	private static final int MINIMUM_TAB_COUNT = 20;
+
 	public void testTabbingThroughGoogleSearchResults() throws InterruptedException {
-		FirefoxDriver driver = new FirefoxDriver();
-		driver.get("http://www.google.com/search?q=cheese");
-		int maxTabsToEnter = 300;
+
+		WebDriver driver = new FirefoxDriver();
+		  
+		driver.get("http://www.google.co.uk/search?q=cheese");
+		int maxTabsToEnter = MAXIMUM_TAB_COUNT;
 		int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);
-		assertTrue("Expected at least 50 tabs, only needed " + tabs, tabs > 50);
+		assertTrue(
+			String.format("Expected at least %02d tabs, only needed " + tabs, MINIMUM_TAB_COUNT),
+			tabs > MINIMUM_TAB_COUNT);
 	}
 }

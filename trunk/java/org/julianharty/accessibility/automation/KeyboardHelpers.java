@@ -79,8 +79,8 @@ public class KeyboardHelpers {
 		String currentTagName = "(not set)";
 		try {
 		while (tabsIssued < (maxTabsToEnter)) {
-
-			logDetailsOfWebElement(currentElement, tabsIssued);
+			Point currentLocation = currentElement.getLocation();
+			logDetailsOfWebElement(currentElement, currentLocation, tabsIssued);
 			currentTagName  = currentElement.getTagName();
 			
 			/*
@@ -116,8 +116,11 @@ public class KeyboardHelpers {
 
 			currentElement.sendKeys(Keys.TAB);  // "\t" also works
 			tabsIssued++;
-			Thread.sleep(500L);
+			// TODO 2011Aug16 Don't sleep with IE driver, it's too slow
+			// Thread.sleep(500L);
+			Point previousLocation = currentLocation;
 			currentElement = driver.switchTo().activeElement();
+			currentLocation = currentElement.getLocation();
 			
 			/* Loop termination is still imprecise. Typically the first element
 			 * is the body element, however in some GWT applications it's a div
@@ -126,6 +129,13 @@ public class KeyboardHelpers {
 			 * matching as we learn more about how to interact with elements
 			 * on the page. 
 			 */
+			
+			if (GeneralHelpers.compareLocations(currentLocation, previousLocation)) {
+				// TODO 20110906 (jharty): log termination condition;
+				// Tell the user to check native events are working
+				return -1;
+			}
+			
 			if (currentElement.equals(firstElement) && tabsIssued >= 3) {
 				logValidTerminationCondition("Current element matches first element", currentElement, tabsIssued);
 				return tabsIssued;
@@ -144,17 +154,18 @@ public class KeyboardHelpers {
 	/**
 	 * A helper method to log details of the web element from WebDriver.
 	 * @param element the element to report on
+	 * @param location the co-ordinates of the element
 	 * @param tabsIssued the number of tab keys issued so far
 	 */
 	private static void logDetailsOfWebElement(WebElement element,
-			int tabsIssued) {
+			Point location, int tabsIssued) {
 		// Probably want to print various attributes e.g. the link text
 		LOG.info(
 				String.format("%03d: Tag name %s WebElement %s name %s text %s value %s", 
 						tabsIssued, element.getTagName(), element.hashCode(),
 						element.toString(), element.getText(),
 						getValueFromWebdriverIfAvailable(element)));
-		Point location = element.getLocation();
+		// RenderedWebElement rwe = (RenderedWebElement) element;
 		LOG.info(String.format("[%03d] Location (%03d,%03d)", tabsIssued, location.x, location.y));
 	}
 
@@ -239,9 +250,6 @@ public class KeyboardHelpers {
 		String valueOfCurrentElement;
 		try {
 			valueOfCurrentElement = currentElement.getAttribute("value");
-			if (valueOfCurrentElement == null) {
-				valueOfCurrentElement = "(null)";
-			}
 		} catch (UnsupportedOperationException uoe) {
 			valueOfCurrentElement = "(not available)";
 		}

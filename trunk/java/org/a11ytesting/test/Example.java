@@ -34,8 +34,7 @@ public class Example {
 	public static void main(String[] args) throws Exception {
 		Document document = null;
 		try {
-			document = Jsoup.parse(new URL("http://px-lv00-556e6b3" +
-					".qa.ebay.com:8080/_srp-jsp/i.html?_nkw=nike"),
+			document = Jsoup.parse(new URL("https://www.sqe.com/StarWest/Register/SelectConference.aspx"),
 					TIMEOUT);
 		} catch (MalformedURLException e) {
 			throw new RuntimeException("Error due to malformed URL parameter", e);

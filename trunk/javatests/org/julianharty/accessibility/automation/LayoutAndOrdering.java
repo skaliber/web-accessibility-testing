@@ -128,6 +128,12 @@ public class LayoutAndOrdering extends TestCase {
 			currentElement = driver.switchTo().activeElement();
 			Point postTabLocation = currentElement.getLocation();
 			System.out.println(GeneralHelpers.printElementLocations(tabsIssued, preTabLocation, postTabLocation));
+			
+			if (GeneralHelpers.compareLocations(postTabLocation, preTabLocation)) {
+				// log termination condition;
+				// Tell the user to check native events are working
+				throw new InterruptedException("We don't seem to have moved, abandoning this test.");
+			}
 			if (currentElement.equals(firstElement) 
 					|| currentElement.getLocation().equals(firstElement.getLocation())) {
 				// Declare victory :)
