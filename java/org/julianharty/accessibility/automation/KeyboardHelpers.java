@@ -134,7 +134,7 @@ public class KeyboardHelpers {
 			 */
 			
 			if (GeneralHelpers.compareLocations(currentLocation, previousLocation) &&
-					currentTagName.equals(previousTagName)) {
+					currentTagName.equals(previousTagName) && !currentTagName.equals("body")) {
 				logTerminationCondition(
 					String.format("Bad news: Element %s seems to match %s after tabbing. Are NativeEvents working?", 
 							currentTagName, previousTagName), 
