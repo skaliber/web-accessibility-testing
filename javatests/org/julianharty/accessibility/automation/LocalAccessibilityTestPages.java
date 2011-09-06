@@ -17,6 +17,8 @@ limitations under the License.
 package org.julianharty.accessibility.automation;
 
 import org.mortbay.log.Log;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import junit.framework.TestCase;
@@ -36,14 +38,14 @@ import junit.framework.TestCase;
 public class LocalAccessibilityTestPages extends TestCase {
 
 	private static final int MAX_TABS_TO_EXPECT = 30;
-	private FirefoxDriver driver;
+	private WebDriver driver;
 	private LocalWebServer server;
 	private int port;
 	private static final int EXPECTED_MIN_TAB_COUNT = 3;
 
 	@Override
 	protected void setUp() {
-		driver = new FirefoxDriver();
+		driver = new ChromeDriver();
 		
 		server = new LocalWebServer();
 		server.start(8080);

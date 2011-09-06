@@ -106,7 +106,7 @@ public class KeyboardHelpers {
 
 			// Here is one of the termination conditions, if we find one of our titles.
 			if (currentTitle.contains(TAB_KEYWORD + 0)) {
-				logValidTerminationCondition(
+				logTerminationCondition(
 						String.format("Title %s of element matches the value set", currentTitle),
 						currentElement, tabsIssued);
 				return tabsIssued;
@@ -118,9 +118,12 @@ public class KeyboardHelpers {
 			tabsIssued++;
 			// TODO 2011Aug16 Don't sleep with IE driver, it's too slow
 			// Thread.sleep(500L);
+			
+			String previousTagName = currentTagName;
 			Point previousLocation = currentLocation;
 			currentElement = driver.switchTo().activeElement();
 			currentLocation = currentElement.getLocation();
+			currentTagName = currentElement.getTagName();
 			
 			/* Loop termination is still imprecise. Typically the first element
 			 * is the body element, however in some GWT applications it's a div
@@ -130,14 +133,18 @@ public class KeyboardHelpers {
 			 * on the page. 
 			 */
 			
-			if (GeneralHelpers.compareLocations(currentLocation, previousLocation)) {
-				// TODO 20110906 (jharty): log termination condition;
+			if (GeneralHelpers.compareLocations(currentLocation, previousLocation) &&
+					currentTagName.equals(previousTagName)) {
+				logTerminationCondition(
+					String.format("Bad news: Element %s seems to match %s after tabbing. Are NativeEvents working?", 
+							currentTagName, previousTagName), 
+					currentElement, tabsIssued);
 				// Tell the user to check native events are working
 				return -1;
 			}
 			
 			if (currentElement.equals(firstElement) && tabsIssued >= 3) {
-				logValidTerminationCondition("Current element matches first element", currentElement, tabsIssued);
+				logTerminationCondition("Current element matches first element", currentElement, tabsIssued);
 				return tabsIssued;
 			}
 		}
@@ -212,10 +219,10 @@ public class KeyboardHelpers {
 	 * @param currentElement the current element on the web page
 	 * @param tabsIssued the number of tab keys issued so far
 	 */
-	private static void logValidTerminationCondition(String whyTerminated, WebElement currentElement,
+	private static void logTerminationCondition(String whyTerminated, WebElement currentElement,
 			int tabsIssued) {
 		LOG.info(String.format(
-				"Looped through elements OK, terminated because [%s], tabbed through %d elements", 
+				"Terminating tabThroughWebPage because [%s], tabbed through %d elements", 
 				whyTerminated, tabsIssued));
 		LOG.info(String.format(
 				"Tag name %s WebElement %s name %s text %s value %s",
