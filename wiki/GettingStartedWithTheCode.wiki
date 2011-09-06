@@ -31,6 +31,7 @@ You might encounter strange errors when first getting the code working on your m
 
 === Fixing Build and Runtime issues ===
    * HttpHost not found - check you've included all the supporting jar files for Selenium/WebDriver. Currently there are roughly 10 jars in addition to the main selenium jar file.
+   * Jetty BindException Address in use: Although I thought jetty would pick an available port I managed to create an environment where it picked port 8080 even though Android's adb had port forwarding set for 8080. I noticed the problem by loading http://localhost:8080/ in a web browser when I noticed something looking like a webdriver instance (wd/hub etc). After running {{{adb kill-server}}} *my* jetty instance was able to use port 8080 and the relevant tests ran.
 
 === Problems and Issues with the code ===
 Please create a new issue on this site. Tell us which revision of the code you're using, the operating system details, which version of Selenium/WebDriver you're using, the Driver you're using (Firefox, Chrome, IE, etc), and ideally provide either a URL of a web page where you're finding problems or some sample Web Content and a simple example of the failing test.
