@@ -47,6 +47,22 @@ public class GeneralHelpers {
 		return result;
 		}
 	
+	/**
+	 * Compares 2 locations of WebElements.
+	 * @param currentLocation the location currently selected
+	 * @param previousLocation the previous location
+	 * @return true if they are equal, else false.
+	 */
+	public static boolean compareLocations(Point currentLocation,
+			Point previousLocation) {
+		// TODO 20110906 (jharty): consider how to use a general comparator approach.
+		if ((currentLocation.x == previousLocation.x) && 
+				(currentLocation.y == previousLocation.y)) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static boolean compareElementLocationsForSaneTabOrder(
 			Point preTabLocation, Point postTabLocation, Point tolerance) {
 		return (postTabLocation.x < (preTabLocation.x - tolerance.x) || 

@@ -57,7 +57,8 @@ public class SimpleDemo {
 		WebDriver driver = new FirefoxDriver();
 		driver.get(urlToVisit);
 		try {
-			KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);
+			int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);
+			System.out.println(tabs + " were issued.");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
