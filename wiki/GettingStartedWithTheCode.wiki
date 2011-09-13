@@ -26,6 +26,27 @@ You should now be able to compile and run the tests. The tests are written as JU
 
 Now you can experiment with creating tests for your web application. Good luck with your bug hunting!
 
+= Coding Examples =
+Here are some examples of how you can integrate our tests with your existing work.
+== Examples of using the Accessibility Decorators ==
+Here is a straight-forward example of running the Accessibility Decorators against this wiki page.
+The key steps are:
+   1. Get a copy of the HTML, in the following example we use jsoup. Tools such as Selenium would also work well and pages can even be loaded from a local file if all else fails.
+   1. Create a new 'evaluator' object. Then add one or more packages e.g. wcag here.
+   1. call `collectIssues` to apply the package(s) to the HTML contents.
+   1. In this simple example we simply write the results to the console. Often you would want to write these to a log file instead.
+{{{
+document = Jsoup.parse(new URL("http://code.google.com/p/web-accessibility-testing/wiki/GettingStartedWithTheCode"),
+                                        TIMEOUT);
+                Evaluator evaluator = new Evaluator();
+                evaluator.addPackage("org.a11ytesting.test.wcag");
+                List<Issue> result = evaluator.collectIssues(document);
+                
+                for (Issue issue : result) {
+        System.out.println(issue.toString());
+                }
+                  
+}}}
 == Fixing errors ==
 You might encounter strange errors when first getting the code working on your machine; or you may discover problems and issues with the code, our designs, implementations, strange quirks on web sites you'd like to test, etc. This section is the starting point for all these topics.
 
