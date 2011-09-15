@@ -18,25 +18,44 @@ package org.julianharty.accessibility.automation;
 
 import junit.framework.TestCase;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class LayoutAndOrdering extends TestCase {
 
 	private static final int MAX_TABS = 100;
 	private static final Point tolerance = new Point(2,2);
+	private LocalWebServer server;
+	private int port;
 
+	@Override
+	protected void setUp() {
+		if (server == null) {
+			server = new LocalWebServer();
+			server.start(8088);
+			port = server.getPort();
+		}
+	}
+	
+	@Override
+	protected void tearDown() {
+		server.stop();
+	}
+	
 	public void testDetectOutOfOrderTabNavigation() throws InterruptedException {
-		FirefoxDriver driver = new FirefoxDriver();
-		driver.get("http://localhost/accessibility/notabindex.html");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://localhost:" + port + "/notabindex.html");
 		tabLayoutTest(driver);
 	}
 	
 	public void testPassesForExplicitTabOrder() throws InterruptedException {
 		FirefoxDriver driver = new FirefoxDriver();
-		driver.get("http://localhost/accessibility/explicittabindex.html");
+		driver.get("http://localhost:" + port + "/explicittabindex.html");
 		tabLayoutTest(driver);
 	}
 
@@ -50,7 +69,7 @@ public class LayoutAndOrdering extends TestCase {
 	 */
 	public void testOffsetIncreasesAfterControlPlusKeyStroke() {
 		FirefoxDriver driver = new FirefoxDriver();
-		driver.get("http://localhost/accessibility/explicittabindex.html");
+		driver.get("http://localhost:" + port + "/explicittabindex.html");
 		WebElement firstElement = driver.switchTo().activeElement();
 		WebElement currentElement = firstElement;
 		
@@ -113,9 +132,9 @@ public class LayoutAndOrdering extends TestCase {
 		}
 	}
 	
-	private void tabLayoutTest(FirefoxDriver driver)
+	private void tabLayoutTest(WebDriver driver)
 			throws InterruptedException {
-		
+		WebElement bodyElement = driver.findElement(By.tagName("body"));
 		WebElement firstElement = driver.switchTo().activeElement();
 		WebElement currentElement = firstElement;
 		Point preTabLocation = currentElement.getLocation();
@@ -126,6 +145,9 @@ public class LayoutAndOrdering extends TestCase {
 			tabsIssued++;
 			Thread.sleep(50L);
 			currentElement = driver.switchTo().activeElement();
+			currentElement.sendKeys(Keys.TAB);
+			currentElement = driver.switchTo().activeElement();
+
 			Point postTabLocation = currentElement.getLocation();
 			System.out.println(GeneralHelpers.printElementLocations(tabsIssued, preTabLocation, postTabLocation));
 			
