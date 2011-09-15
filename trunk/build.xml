@@ -28,15 +28,13 @@
 	</target>
 	
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build}" includeantruntime="false"
-			excludes="org/julianharty/accessibility/automation/GeneralHelpers.java,org/julianharty/accessibility/automation/HighContrast.java,org/julianharty/accessibility/automation/KeyboardHelpers.java,org/julianharty/accessibility/automation/LocalWebServer.java,org/julianharty/accessibility/automation/Util.java">
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
 			<classpath refid="classpath" />
 		</javac>
 	</target>
 	
 	<target name="compile.test" depends="init,compile">
-		<javac srcdir="${src.test}" destdir="${tests}" includeantruntime="false"
-			excludes="org/julianharty/accessibility/automation/LayoutAndOrdering.java,org/julianharty/accessibility/automation/LocalAccessibilityTestPages.java,org/julianharty/accessibility/automation/GoogleSearchResults.java,org/julianharty/accessibility/automation/SimpleDemo.java,org/julianharty/accessibility/automation/eBayHomepage.java">
+		<javac srcdir="${src.test}" destdir="${tests}" includeantruntime="false">
 			<classpath refid="classpath.test" />
 		</javac>
 	</target>
