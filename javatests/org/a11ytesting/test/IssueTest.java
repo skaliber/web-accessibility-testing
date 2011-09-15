@@ -15,7 +15,7 @@ import org.a11ytesting.test.Issue.Severity;
  */
 public class IssueTest {
 	
-	private static final String NAME = "Erm, there was an issue dude",
+	private static final String NAME = "Erm, there was an issue",
 			DESCRIPTION = "like, er, something is broken";
 	private final Severity severity = Severity.WARNING;
 	private final Element doc = Jsoup.parse("<html><body><p>Im a body</p>" +
