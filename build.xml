@@ -1,5 +1,5 @@
 <project name="org.a11ytesting" basedir=".">
-	<taskdef resource="testngtasks" classpath="thirdparty/testng-6.1.1.jar"/>
+	<taskdef resource="testngtasks" classpath="thirdparty/testng/6.1.1/testng-6.1.1.jar"/>
 	
 	<property name="src" value="java" />
 	<property name="src.test" value="javatests" />
@@ -11,11 +11,11 @@
 	<property name="test.output" value="test-output" />
 	
 	<path id="classpath">
-		<fileset dir="${lib}" includes="*.jar" />
+		<fileset dir="${lib}" includes="**/*.jar" />
 	</path>
 	
 	<path id="classpath.test">
-		<fileset dir="${lib}" includes="*.jar" />
+		<fileset dir="${lib}" includes="**/*.jar" />
 		<pathelement location="${build}" />
 		<pathelement location="${tests}" />
 	</path>
