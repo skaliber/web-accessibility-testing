@@ -52,13 +52,9 @@
 	</target>
 
 	<target name="ui-test" depends="compile,compile.test">
-		<junit printsummary="yes">
-			<classpath refid="classpath.test" />
-			<batchtest>
-				<fileset dir="javatests"
-					includes="**.*Test.java"
-				/>
-		</batchtest>
+		<junit printsummary="yes" >
+			<classpath refid="classpath.test" /> 
+			<test name="org.julianharty.accessibility.automation.GoogleSearchResults.class"/>
 		</junit>
 	</target>
 	<target name="clean">
