@@ -54,8 +54,12 @@
 	<target name="ui-test" depends="compile,compile.test">
 		<junit printsummary="yes" filtertrace="no" logfailedtests="yes" >
 			<formatter type="plain" usefile="false" />
-			<classpath refid="classpath.test" /> 
-			<test name="org.julianharty.accessibility.automation.GoogleSearchResults"/>
+			<classpath refid="classpath.test" />
+			<batchtest>
+				<fileset dir ="${tests}" >
+					<include name="org/julianharty/accessibility/**/*.class" />
+				</fileset>
+			</batchtest>
 		</junit>
 	</target>
 	<target name="clean">
