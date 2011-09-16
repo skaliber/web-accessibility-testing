@@ -20,7 +20,7 @@ import java.io.File;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 /**
  * This program takes command line parameters for quick interactive checks.
@@ -54,7 +54,7 @@ public class SimpleDemo {
 			urlToVisit = "http://www.google.com";
 		}
 
-		WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new InternetExplorerDriver();
 		driver.get(urlToVisit);
 		try {
 			int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);
