@@ -46,7 +46,7 @@ public class LocalAccessibilityTestPages extends TestCase {
 
 	@Override
 	protected void setUp() {
-		driver = new InternetExplorerDriver();
+		driver = new ChromeDriver();
 		
 		server = new LocalWebServer();
 		server.start(8080);

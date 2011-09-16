@@ -32,9 +32,11 @@ public class LayoutAndOrdering extends TestCase {
 	private static final Point tolerance = new Point(2,2);
 	private LocalWebServer server;
 	private int port;
+	private ChromeDriver driver;
 
 	@Override
 	protected void setUp() {
+		driver = new ChromeDriver();
 		if (server == null) {
 			server = new LocalWebServer();
 			server.start(8088);
@@ -48,13 +50,11 @@ public class LayoutAndOrdering extends TestCase {
 	}
 	
 	public void testDetectOutOfOrderTabNavigation() throws InterruptedException {
-		WebDriver driver = new ChromeDriver();
 		driver.get("http://localhost:" + port + "/notabindex.html");
 		tabLayoutTest(driver);
 	}
 	
 	public void testPassesForExplicitTabOrder() throws InterruptedException {
-		FirefoxDriver driver = new FirefoxDriver();
 		driver.get("http://localhost:" + port + "/explicittabindex.html");
 		tabLayoutTest(driver);
 	}
@@ -68,7 +68,6 @@ public class LayoutAndOrdering extends TestCase {
 	 * may increase or decrease after the font size is changed.
 	 */
 	public void testOffsetIncreasesAfterControlPlusKeyStroke() {
-		FirefoxDriver driver = new FirefoxDriver();
 		driver.get("http://localhost:" + port + "/explicittabindex.html");
 		WebElement firstElement = driver.switchTo().activeElement();
 		WebElement currentElement = firstElement;
@@ -170,5 +169,4 @@ public class LayoutAndOrdering extends TestCase {
 			
 		}
 	}
-	
 }
