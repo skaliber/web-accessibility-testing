@@ -52,9 +52,10 @@
 	</target>
 
 	<target name="ui-test" depends="compile,compile.test">
-		<junit printsummary="yes" >
+		<junit printsummary="yes" filtertrace="no" logfailedtests="yes" >
+			<formatter type="plain" usefile="false" />
 			<classpath refid="classpath.test" /> 
-			<test name="org.julianharty.accessibility.automation.GoogleSearchResults.class"/>
+			<test name="org.julianharty.accessibility.automation.GoogleSearchResults"/>
 		</junit>
 	</target>
 	<target name="clean">
