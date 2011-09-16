@@ -19,15 +19,15 @@ limitations under the License.
  */
 package org.julianharty.accessibility.automation;
 
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import junit.framework.TestCase;
 
 public class eBayHomepage extends TestCase {
 
 	public void testTabbingThroughEbayHomepage() throws InterruptedException {
-		FirefoxDriver driver = new FirefoxDriver();
+		WebDriver driver = new ChromeDriver();
 		driver.get("http://www.ebay.co.uk");
 		int maxTabsToEnter = 300;
 		int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);

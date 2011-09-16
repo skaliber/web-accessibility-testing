@@ -23,8 +23,6 @@ import junit.framework.TestCase;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class GoogleSearchResults extends TestCase {
 
@@ -33,7 +31,7 @@ public class GoogleSearchResults extends TestCase {
 
 	public void testTabbingThroughGoogleSearchResults() throws InterruptedException {
 
-		WebDriver driver = new InternetExplorerDriver();
+		WebDriver driver = new ChromeDriver();
 		  
 		driver.get("http://www.google.co.uk/search?q=cheese");
 		int maxTabsToEnter = MAXIMUM_TAB_COUNT;
