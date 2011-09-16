@@ -50,7 +50,17 @@
 			<xmlfileset dir="javatests" includes="testng.xml" />
 		</testng>
 	</target>
-	
+
+	<target name="ui-test" depends="compile,compile.test">
+		<junit printsummary="yes">
+			<classpath refid="classpath.test" />
+			<batchtest>
+				<fileset dir="javatests"
+					includes="**.*Test.java"
+				/>
+		</batchtest>
+		</junit>
+	</target>
 	<target name="clean">
 		<delete dir="${build}" />
 		<delete dir="${dist}" />

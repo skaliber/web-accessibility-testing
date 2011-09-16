@@ -20,6 +20,7 @@ import org.mortbay.log.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import junit.framework.TestCase;
 
@@ -45,7 +46,7 @@ public class LocalAccessibilityTestPages extends TestCase {
 
 	@Override
 	protected void setUp() {
-		driver = new ChromeDriver();
+		driver = new InternetExplorerDriver();
 		
 		server = new LocalWebServer();
 		server.start(8080);
