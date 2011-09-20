@@ -6,8 +6,9 @@
 	<property name="lib" value="thirdparty" />
 	<property name="build" value="build" />
 	<property name="tests" value="tests" />
+	<property name="release.version" value="0.0.1a" />
 	<property name="dist" value="dist" />
-	<property name="a11yjar" value="a11ytesting.jar" />
+	<property name="a11yjar" value="a11ytesting-${release.version}.jar" />
 	<property name="test.output" value="test-output" />
 	
 	<path id="classpath">
