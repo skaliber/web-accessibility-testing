@@ -27,7 +27,7 @@ public class EventFilter extends ElementFilter {
 	
 	private static final String EVENT_ELEMENT_SELECTOR = "[onclick], " +
 			"[onkeyup], [onkeydown], [onkeypress], [onmousedown], " + 
-			"[onmouseup], [onmousemove], [onmouseout], [onmouseover]" +
+			"[onmouseup], [onmousemove], [onmouseout], [onmouseover], " +
 			"[onfocus], [onblur]";
 
 	@Override
