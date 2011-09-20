@@ -23,7 +23,7 @@ import org.jsoup.nodes.Element;
  */
 public class StyleElementFilter extends ElementFilter {
 
-	private static final String STYLE_SELECT = "FONT, B, I, U"; 
+	private static final String STYLE_SELECT = "font, b, i, u"; 
 
 	@Override
 	public Iterable<Element> result(Element element) {
