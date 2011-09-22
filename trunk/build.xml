@@ -1,4 +1,4 @@
-<project name="org.a11ytesting" basedir=".">
+<project name="org.a11ytesting" basedir="." default="jar">
 	<taskdef resource="testngtasks" classpath="thirdparty/testng/6.1.1/testng-6.1.1.jar"/>
 	
 	<property name="src" value="java" />
@@ -40,7 +40,7 @@
 		</javac>
 	</target>
 	
-	<target name="jar" depends="compile">
+	<target name="jar" depends="compile,test">
 		<jar destfile="${dist}/${a11yjar}" basedir="${build}">
 			<fileset dir="${build}" includes="**/*.class" />
 		</jar>
