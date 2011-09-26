@@ -26,6 +26,7 @@ import org.jsoup.nodes.Element;
 public class EventFilter extends ElementFilter {
 	
 	private static final String EVENT_ELEMENT_SELECTOR = "[onclick], " +
+			"[ondblclick], [onselect], [onchange], [onsubmit], [onreset], " +
 			"[onkeyup], [onkeydown], [onkeypress], [onmousedown], " + 
 			"[onmouseup], [onmousemove], [onmouseout], [onmouseover], " +
 			"[onfocus], [onblur]";
