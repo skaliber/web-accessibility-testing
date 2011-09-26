@@ -47,13 +47,6 @@
 		</jar>
 	</target>
 
-	<target name="standalone" depends="jar">
-		<zip destfile="${dist}/${standalone.jar}">
-        	<zipgroupfileset dir="${lib}" includes="**/*.jar" />
-            <zipgroupfileset dir="${dist}" includes="${a11yjar}" />
-        </zip>
-    </target>
-
 	<target name="test" depends="compile,compile.test">
 		<testng classpathref="classpath.test" outputdir="${test.output}">
 			<xmlfileset dir="javatests" includes="testng.xml" />
