@@ -6,9 +6,10 @@
 	<property name="lib" value="thirdparty" />
 	<property name="build" value="build" />
 	<property name="tests" value="tests" />
-	<property name="release.version" value="0.0.1a" />
+	<property name="release.version" value="0.0.2" />
 	<property name="dist" value="dist" />
 	<property name="a11yjar" value="a11ytesting-${release.version}.jar" />
+	<property name="standalone.jar" value="a11ytesting-standalone-${release.version}.jar" />
 	<property name="test.output" value="test-output" />
 	
 	<path id="classpath">
@@ -45,7 +46,14 @@
 			<fileset dir="${build}" includes="**/*.class" />
 		</jar>
 	</target>
-	
+
+	<target name="standalone" depends="jar">
+		<zip destfile="${dist}/${standalone.jar}">
+        	<zipgroupfileset dir="${lib}" includes="**/*.jar" />
+            <zipgroupfileset dir="${dist}" includes="${a11yjar}" />
+        </zip>
+    </target>
+
 	<target name="test" depends="compile,compile.test">
 		<testng classpathref="classpath.test" outputdir="${test.output}">
 			<xmlfileset dir="javatests" includes="testng.xml" />
@@ -63,10 +71,12 @@
 			</batchtest>
 		</junit>
 	</target>
+
 	<target name="clean">
 		<delete dir="${build}" />
 		<delete dir="${dist}" />
 		<delete dir="${tests}" />
 		<delete dir="${test.output}" />
 	</target>
+
 </project>

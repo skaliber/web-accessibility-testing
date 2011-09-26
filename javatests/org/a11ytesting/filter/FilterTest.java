@@ -14,7 +14,9 @@
  */
 package org.a11ytesting.filter;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
+
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -42,9 +44,8 @@ public class FilterTest {
 						filter.getClass().getName());
 			}
 		}
-		if (filterCount != elements.size()) {
-			fail("Filter returned a different number of elements than " +
-					"expected for filter " + filter.getClass().getName());
-		}
+		assertEquals(filterCount, elements.size(),
+				"Filter returned a different number of elements than " +
+				"expected for filter " + filter.getClass().getName());
 	}
 }
