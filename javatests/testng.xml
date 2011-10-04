@@ -1,24 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
   
 <suite name="a11y testing test suite" verbose="1">
-
-<!--
-  <listeners>
-    <listener class-name="priority.PriorityInterceptor" />
-  </listeners>
--->  
+  
   <test name="WCAG implementation tests" >
-<!--
-      <groups>
-      <run>
-        <include name="assert" />
-        <include name="fail" />
-        <include name="odd" />
-        <include name="even" />
-        <exclude name="broken" />
-      </run>        
-    </groups>
--->
+
     <classes>
       <class name="org.a11ytesting.aria.AriaTest" />
       <class name="org.a11ytesting.test.IssueTest" />
