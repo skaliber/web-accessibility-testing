@@ -104,6 +104,21 @@ public class UnderstandableTest {
 				"Expected error for control without description");
 	}
 	
+	@Test
+	public void testControlWithEmptyIdError() {
+		String html = "<html><body>" +
+		"<form>" +
+		"<input id=\"\" type=text name=boxyboxy></input>" +
+		"<label for=\"\" >A label</label>" +
+		"</form>" +
+		"</body></html>";
+		Element target = selectElement(html, INPUT);
+		ControlHasDescription understand = new ControlHasDescription();
+		Issue result = understand.check(target);
+		testError(result, target, Severity.ERROR,
+				"Expected error for control with empty id not matched");
+	}
+	
 	@DataProvider(name = "okControl")
 	Object[][] okControl() {
 		return new Object[][]{
