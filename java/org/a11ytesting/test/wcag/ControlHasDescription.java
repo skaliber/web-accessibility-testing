@@ -63,7 +63,8 @@ public class ControlHasDescription extends AbstractUnderstandableRule {
 				!control.attr(TITLE).trim().isEmpty()) {
 			return null;
 		}
-		if (control.hasAttr(ID)) {
+		if (control.hasAttr(ID) && 
+				!control.attr(ID).trim().isEmpty()) {
 			Element root = getRootElement(control);
 			Elements label = root.select("label[for=" + control.attr(ID) +
 					"]");
