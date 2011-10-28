@@ -21,6 +21,10 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
  * This program takes command line parameters for quick interactive checks.
@@ -32,7 +36,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author jharty
  *
  */
-public class SimpleDemo {
+public class Example {
 
 	private static String urlToVisit;
 	private static int maxTabsToEnter;
@@ -54,7 +58,8 @@ public class SimpleDemo {
 			urlToVisit = "http://www.google.com";
 		}
 
-		WebDriver driver = new ChromeDriver();
+		WebDriver driver = new FirefoxDriver();
+		
 		driver.get(urlToVisit);
 		try {
 			int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);
