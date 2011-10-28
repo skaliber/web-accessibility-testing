@@ -27,7 +27,8 @@ You should now be able to compile and run the tests. The tests are written as JU
 Now you can experiment with creating tests for your web application. Good luck with your bug hunting!
 
 = Coding Examples =
-Here are some examples of how you can integrate our tests with your existing work.
+We have provided 2 Examples, one for the WCAG decorators the other for the Tabbing test. These files are called {{{Example.java}}} You can edit these files to change the URL of the content to test, or you can pass the URL as a command line parameter without needing to change the code at all.
+
 == Examples of using the Accessibility Decorators ==
 Here is a straight-forward example of running the Accessibility Decorators against this wiki page.
 The key steps are:
