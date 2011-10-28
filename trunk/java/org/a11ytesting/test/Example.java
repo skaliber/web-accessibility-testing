@@ -32,10 +32,17 @@ public class Example {
 	private static final int TIMEOUT = 20000;
 	
 	public static void main(String[] args) throws Exception {
+	  
+	    String urlToVisit;
+	    if (args.length >= 1) {
+	      urlToVisit = args[0];
+	    } else {
+	      urlToVisit = "http://www.damienallison.info/index.php";
+	    }
+	     
 		Document document = null;
 		try {
-			document = Jsoup.parse(new URL("http://www.damienallison.info/index.php"),
-					TIMEOUT);
+			document = Jsoup.parse(new URL(urlToVisit), TIMEOUT);
 		} catch (MalformedURLException e) {
 			throw new RuntimeException("Error due to malformed URL parameter", e);
 		} catch (IOException e) {
