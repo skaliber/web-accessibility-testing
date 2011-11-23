@@ -21,13 +21,14 @@ package org.julianharty.accessibility.automation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import junit.framework.TestCase;
 
 public class eBayHomepage extends TestCase {
 
 	public void testTabbingThroughEbayHomepage() throws InterruptedException {
-		WebDriver driver = new ChromeDriver();
+		WebDriver driver = new FirefoxDriver();
 		driver.get("http://www.ebay.co.uk");
 		int maxTabsToEnter = 300;
 		int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);

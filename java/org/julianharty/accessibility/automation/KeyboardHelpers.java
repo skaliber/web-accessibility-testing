@@ -19,6 +19,7 @@ package org.julianharty.accessibility.automation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
@@ -35,6 +36,7 @@ import org.openqa.selenium.WebElement;
 public class KeyboardHelpers {
 	private static final Logger LOG = Logger.getLogger(KeyboardHelpers.class.getCanonicalName());
 	private static final String TAB_KEYWORD = "Tab:";
+  private static Dimension currentSize;
 	
 	private KeyboardHelpers() {
 		// Helper class. Stop callers from instantiating us.
@@ -121,8 +123,10 @@ public class KeyboardHelpers {
 			
 			String previousTagName = currentTagName;
 			Point previousLocation = currentLocation;
+			Dimension previousSize = currentSize;
 			currentElement = driver.switchTo().activeElement();
 			currentLocation = currentElement.getLocation();
+			currentSize = currentElement.getSize();
 			currentTagName = currentElement.getTagName();
 			
 			/* Loop termination is still imprecise. Typically the first element
@@ -133,7 +137,8 @@ public class KeyboardHelpers {
 			 * on the page. 
 			 */
 			
-			if (GeneralHelpers.compareLocations(currentLocation, previousLocation) &&
+			if (GeneralHelpers.locationMatches(currentLocation, previousLocation) &&
+			    GeneralHelpers.dimensionsAreEqual(currentSize, previousSize) && 
 					currentTagName.equals(previousTagName) && !currentTagName.equals("body")) {
 				logTerminationCondition(
 					String.format("Bad news: Element %s seems to match %s after tabbing. Are NativeEvents working?", 
