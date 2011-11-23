@@ -16,6 +16,7 @@ limitations under the License.
 
 package org.julianharty.accessibility.automation;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
@@ -53,7 +54,7 @@ public class GeneralHelpers {
 	 * @param previousLocation the previous location
 	 * @return true if they are equal, else false.
 	 */
-	public static boolean compareLocations(Point currentLocation,
+	public static boolean locationMatches(Point currentLocation,
 			Point previousLocation) {
 		// TODO 20110906 (jharty): consider how to use a general comparator approach.
 		if ((currentLocation.x == previousLocation.x) && 
@@ -98,4 +99,17 @@ public class GeneralHelpers {
 		}
 		return valuesCompare;
 	}
+
+	 /**
+	  * compares the size of the dimensions of 2 element sizes 
+	  * @param currentSize
+	  * @param previousSize
+	  * @return true if they are equal, else false
+	  */
+  public static boolean dimensionsAreEqual(Dimension currentSize, Dimension previousSize) {
+    if ((currentSize.height == previousSize.height) && (currentSize.width == previousSize.width)) {
+      return true;
+    }
+    return false;
+  }
 }

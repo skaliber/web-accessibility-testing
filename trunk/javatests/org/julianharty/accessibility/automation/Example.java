@@ -58,7 +58,9 @@ public class Example {
 			urlToVisit = "http://www.google.com";
 		}
 
-		WebDriver driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", "C:\\chromex\\chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
 		
 		driver.get(urlToVisit);
 		try {
