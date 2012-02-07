@@ -20,6 +20,7 @@ import java.io.File;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -58,18 +59,23 @@ public class Example {
 			urlToVisit = "http://www.google.com";
 		}
 
-		System.setProperty("webdriver.chrome.driver", "C:\\chromex\\chromedriver.exe");
-		
 		WebDriver driver = new ChromeDriver();
 		
 		driver.get(urlToVisit);
+		
+		File screenshotFileBeforeTest = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		System.out.println(screenshotFileBeforeTest.getPath());
+		
 		try {
 			int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);
 			System.out.println(tabs + " were issued.");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		} catch (WebDriverException wde) {
+			wde.printStackTrace();
 		}
-		File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		System.out.println(screenshotFile.getPath());
+		
+		File screenshotFileAfterTest = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		System.out.println(screenshotFileAfterTest.getPath());
 	}
 }
