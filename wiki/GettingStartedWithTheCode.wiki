@@ -19,7 +19,8 @@ For the internal tests, this project also relies on an older version of an embed
 You will also need a Java compiler. I typically use Oracle's JDK available to download from http://www.oracle.com/technetwork/java/javase/downloads/index.html
 If you use eclipse:
    * Create a new eclipse project, link it to the downloaded source for this project.
-   * Add all the libraries from the unpacked selenium-java-xxx.zip to the build path as external libraries.
+   * Add the jar files found in the {{{thirdparty/libs}}} to the java build path.
+   * Add all the libraries from the unpacked selenium-java-xxx.zip to the build path as external libraries. These include the core library, named {{{selenium-java-}}}_version-number_{{{.jar }}} and every file in the {{{libs}}} sub-folder. Currently there are around 45 jars in total.
    * Add the 3 jetty jar files from the lib folder to the build path in eclipse.
 
 You should now be able to compile and run the tests. The tests are written as JUnit tests. The tests should each start a fresh instance of Firefox, tab around the web page - highlighting the visited elements with an orange background and complete without error.
