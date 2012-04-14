@@ -34,6 +34,18 @@ public class Evaluator {
 	
 	private Set<Rule> forRules = new HashSet<Rule>();
 	
+	private int elementsChecked = 0;
+	
+	
+	/**
+	 * Get the number of elements checked in the last call to collect issues.
+	 *
+	 * @return the count of elements checked.
+	 */
+	public int getElementsCheckedCount() {
+	  return elementsChecked;
+	}
+	
 	/**
 	 * Add a package containing rule implementations to the evaluator. Every
 	 * class implementing the Rule interface in the given package will be added
@@ -78,10 +90,12 @@ public class Evaluator {
 	 */
 	public List<Issue> collectIssues(Element root) {
 		List<Issue> result = new ArrayList<Issue>();
+		elementsChecked = 0;
 		for (Rule rule : forRules) {
 			Filter filter = rule.getFilter();
 			for (Element target : filter.result(root)) {
 				Issue issue = rule.check(target);
+				elementsChecked++;
 				if (null != issue) {
 					result.add(issue);
 				}
