@@ -6,7 +6,7 @@
 	<property name="lib" value="thirdparty" />
 	<property name="build" value="build" />
 	<property name="tests" value="tests" />
-	<property name="release.version" value="0.0.3" />
+	<property name="release.version" value="0.0.4" />
 	<property name="dist" value="dist" />
 	<property name="a11yjar" value="a11ytesting-${release.version}.jar" />
 	<property name="standalone.jar" value="a11ytesting-standalone-${release.version}.jar" />
