@@ -106,6 +106,12 @@ public abstract class Shared {
 			builder.append(" ");
 			return;
 		}
+
+    // check for title text
+    if (node.hasAttr(TITLE)) {
+      builder.append(node.attr(TITLE));
+      builder.append(" ");
+    }
 		
 		// if the current node has alt text append it
 		if (node.hasAttr(ALT_TEXT)) {
