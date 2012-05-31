@@ -34,6 +34,9 @@ import org.a11ytesting.test.Issue.Severity;
  */
 public class HtmlHasValidLanguageCode extends AbstractUnderstandableRule {
 
+  private static final String MESSAGE = "Check that the html element has a " +
+      "valid language code";
+
 	@Override
 	public String getRuleName() {
 		return "checkHtmlHasValidLanguageCode";
@@ -56,11 +59,15 @@ public class HtmlHasValidLanguageCode extends AbstractUnderstandableRule {
 	@Override
 	public Issue check(Element html) {
 		List<String> codes = Arrays.asList(Locale.getISOLanguages());
-		if (!html.hasAttr(LANG) || !codes.contains(
-				html.attr(LANG).toLowerCase())) {
-			return new Issue("checkHtmlHasValidLanguageCode",
-					"Check that html element has a valid language code",
-					Severity.ERROR, html);
+    if (!html.hasAttr(LANG)) {
+      return new Issue(getRuleName(), MESSAGE, Severity.ERROR, html);
+    }
+    String code = html.attr(LANG);
+    if (code.length() > 2) {
+      code = code.substring(0, 2);
+    }
+		if (!codes.contains(code.toLowerCase())) {
+			return new Issue(getRuleName(), MESSAGE, Severity.ERROR, html);
 		}
 		return null;
 	}
