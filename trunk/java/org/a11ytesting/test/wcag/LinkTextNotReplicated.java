@@ -67,8 +67,8 @@ public class LinkTextNotReplicated extends AbstractOperableRule {
 					containedText(otherLink)) &&
 					!sameHref(link, otherLink)) {
 				return new Issue("checkLinkTextNotReplicated",
-						"Check that there are not two links with the same" +
-						"text but different href",
+						"Check that there are not two links with the same " +
+						"text but different href URL",
 						Severity.ERROR,
 						link);
 			}
