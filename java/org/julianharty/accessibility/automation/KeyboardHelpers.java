@@ -75,6 +75,7 @@ public class KeyboardHelpers {
 		
 		WebElement firstElement = driver.switchTo().activeElement();
 		WebElement currentElement = firstElement;
+		currentSize = firstElement.getSize();
 		
 		int tabsIssued = 0;
 		int iFrame = 0;

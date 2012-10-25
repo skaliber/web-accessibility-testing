@@ -107,6 +107,10 @@ public class GeneralHelpers {
 	  * @return true if they are equal, else false
 	  */
   public static boolean dimensionsAreEqual(Dimension currentSize, Dimension previousSize) {
+    if (previousSize == null || currentSize == null) {
+        return false;
+    }
+
     if ((currentSize.height == previousSize.height) && (currentSize.width == previousSize.width)) {
       return true;
     }
