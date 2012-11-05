@@ -78,7 +78,11 @@ public class LinkTextNotReplicated extends AbstractOperableRule {
 	
 	private boolean sameHref(Element link, Element otherLink) {
 		if (link.hasAttr(HREF) && otherLink.hasAttr(HREF)) {
-			return link.attr(HREF).equals(otherLink.attr(HREF));
+      if (!link.baseUri().isEmpty()) {
+        return link.absUrl(HREF).equals(otherLink.absUrl(HREF));
+      } else {
+        return link.attr(HREF).equals(otherLink.absUrl(HREF));
+      }
 		} else {
 			return false;
 		}
