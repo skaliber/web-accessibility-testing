@@ -18,10 +18,15 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
 import static org.a11ytesting.test.wcag.SharedTest.*;
+import static org.a11ytesting.test.wcag.Shared.getRootElement;
 
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -503,6 +508,53 @@ public class OperableTest {
 						"<a href=\"www.google.com\">Home</a>" +
 						"</body></html>"}};
 	}
+
+  @DataProvider(name = "mixedLinks")
+  Object[][] pagesWithMixedAbsoluteAndRelativeLinks() {
+    return new Object[][] {
+      {"<html><body>" +
+        "<a href=\"http://www.google.com/somepage.html\">Page</a>" +
+        "<a href=\"/somepage.html\">Page</a>" +
+        "</body></html>"}};
+  }
+  
+  @DataProvider(name = "allRelativeLinks")
+  Object[][] pagesWithAllAbsoluteAndRelativeLinks() {
+    return new Object[][] {
+      {"<html><body>" +
+        "<a href=\"/somepage.html\">Page</a>" +
+        "<a href=\"/somepageElse.html\">Page</a>" +
+        "</body></html>"}};
+  }
+
+  @Test(dataProvider = "allRelativeLinks")
+  public void testDocumentRootEmptyWhenNoneSet(String html) {
+    Element link = selectElement(html, ANCHOR);
+    assertEquals(link.baseUri(), "", "Expected empty base uri"); // check that the base is null
+    assertEquals(link.absUrl("href"), "", "Expected empty absUrl"); // and that the abs is also null
+  }
+
+  @Test(dataProvider = "mixedLinks")
+  public void testRelativeLinksResolvedAbsolutely(String html) {
+    Document doc = Jsoup.parse(html, "http://www.google.com/");
+    doc.setBaseUri("http://www.google.com/");
+    for (Element link : doc.select("a")) {
+      assertEquals(link.absUrl("href"), "http://www.google.com/somepage.html",
+          "Expected all links including relative to resolve to same url");
+    }
+  }
+
+
+  @Test(dataProvider = "mixedLinks")
+  public void testLinkTextNotDuplicatedRelativeMixed(String html) {
+    LinkTextNotReplicated test = new LinkTextNotReplicated();
+    Document doc = Jsoup.parse(html, "http://www.google.com/");
+    for (Element link : doc.select("a")) {
+      Issue result = test.check(link);
+      assertNull(result, "Expected use of absolute url to avoid mixed " +
+          "relative and absolute url where same");
+    }
+  }
 	
 	@Test(dataProvider = "nonRepeatedLinkText")
 	public void testLinkTextNotReplicatedOk(String html) {
