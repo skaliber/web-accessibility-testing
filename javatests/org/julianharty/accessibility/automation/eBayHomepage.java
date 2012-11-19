@@ -28,7 +28,7 @@ import junit.framework.TestCase;
 public class eBayHomepage extends TestCase {
 
 	public void testTabbingThroughEbayHomepage() throws InterruptedException {
-		WebDriver driver = new FirefoxDriver();
+		WebDriver driver = new ChromeDriver();
 		driver.get("http://www.ebay.co.uk");
 		int maxTabsToEnter = 300;
 		int tabs = KeyboardHelpers.tabThroughWebPage(driver, maxTabsToEnter);

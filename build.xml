@@ -1,6 +1,8 @@
 <project name="org.a11ytesting" basedir="." default="jar">
 	<taskdef resource="testngtasks" classpath="thirdparty/testng/6.1.1/testng-6.1.1.jar"/>
 	
+	<loadproperties srcFile="local.properties"/>
+
 	<property name="src" value="java" />
 	<property name="src.test" value="javatests" />
 	<property name="lib" value="thirdparty" />
