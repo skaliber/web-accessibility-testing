@@ -1,0 +1,27 @@
+<HTML>
+<!--
+This form includes explicit values for the tab index so the tab index is 'in an acceptable order' for the user even though the elements are declared in another order. A similar form (notabindex.html), without an explicit tab order demonstrates the difference that setting the tabindex attribute makes.
+
+Notes: 
+1. tabindex is not a panacea for good UI design, but a way to improve an otherwise poor UI.
+2. the page specified by the form action does not exist and the form is not intended to be submitted.
+-->
+
+<BODY>
+<FORM ACTION="../cgi-bin/mycgi.pl" METHOD=POST>
+<TABLE BORDER CELLPADDING=3 CELLSPACING=5 BGCOLOR="#FFFFCC">
+<TR>
+     <TD>name: <INPUT NAME="realname" TABINDEX=1></TD>
+     <TD ROWSPAN=3>comments<BR>
+     <TEXTAREA COLS=25 ROWS=5 TABINDEX=4></TEXTAREA></TD></TR>
+<TR> <TD>email: <INPUT NAME="email" TABINDEX=2></TD></TR>
+<TR> <TD>department: <SELECT NAME="dep" TABINDEX=3>
+     <OPTION VALUE="">...
+     <OPTION VALUE="mkt">Marketing
+     <OPTION VALUE="fin">Finance
+     <OPTION VALUE="dev">Development
+     <OPTION VALUE="prd">Production</SELECT></TD></TR>
+</TABLE>
+</FORM>
+</BODY>
+</HTML>
