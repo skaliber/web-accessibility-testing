@@ -52,11 +52,24 @@ public class FrameHasTitle extends AbstractOperableRule {
 	 */
 	@Override
 	public Issue check(HtmlVersion htmlVersion, Element frame) {
-		if (!frame.hasAttr(TITLE) || frame.attr(TITLE).trim().isEmpty()) {
-			return new Issue("checkFrameHasTitle",
-					"Check that frame elements define a title attribute",
-					Severity.ERROR, frame);
+		switch (htmlVersion) {
+		// frame tag is not supported by html5
+		case HTML5: {
+			if (frame.hasAttr(TITLE)) {
+				return new Issue("checkFrameHasTitle",
+						"Check that frame is not supported by html5",
+						Severity.WARNING, frame);
+			}
+			return null;
 		}
-		return null;
+		default: {
+			if (!frame.hasAttr(TITLE) || frame.attr(TITLE).trim().isEmpty()) {
+				return new Issue("checkFrameHasTitle",
+						"Check that frame elements define a title attribute",
+						Severity.ERROR, frame);
+			}
+			return null;
+		}
+		}
 	}
 }

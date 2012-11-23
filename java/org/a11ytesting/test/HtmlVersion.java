@@ -11,6 +11,8 @@ import org.jsoup.nodes.Node;
 
 /**
  * The <!DOCTYPE> declaration;
+ * The html version will help us to use wcag rules;
+ * Some of the attributes or tags are/will be deprecated.
  * 
  * @author panteha Saeedi
  * 

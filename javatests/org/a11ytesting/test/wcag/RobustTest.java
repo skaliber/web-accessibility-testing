@@ -16,6 +16,7 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.SharedTest.*;
 
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 import org.jsoup.nodes.Element;
@@ -46,7 +47,7 @@ public class RobustTest {
 	public void testStylingElementNotUsedError(String html) {
 		Element target = selectElement(html, SELECTOR);
 		StylingElementNotUsed robust = new StylingElementNotUsed();
-		Issue result = robust.check(null, target);
+		Issue result = robust.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for styling element");
 	}
