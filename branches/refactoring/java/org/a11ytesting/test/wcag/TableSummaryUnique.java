@@ -63,7 +63,7 @@ public class TableSummaryUnique extends AbstractPerceivableRule {
 		case HTML5: {
 			if (table.hasAttr(SUMMARY)) {
 				return new Issue("checkTableSummaryUnique",
-						"Check for html5 table summary is not supported",
+						"Check that table summary is not supported by html5",
 						Severity.WARNING, table);
 			}
 			return null;

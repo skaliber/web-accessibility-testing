@@ -54,25 +54,40 @@ public class FrameTitleUnique extends AbstractOperableRule {
 	 */
 	@Override
 	public Issue check(HtmlVersion htmlVersion, Element frame) {
-		// if the frame doesn't have a title skip
-		if (!frame.hasAttr(TITLE)) {
+
+		switch (htmlVersion) {
+		// frame tag is not supported by html5
+		case HTML5: {
+			if (frame.hasAttr(TITLE)) {
+				return new Issue("checkFrameTitleUnique",
+						"Check that frame is not supported by html5",
+						Severity.WARNING, frame);
+			}
 			return null;
 		}
-		Element root = getRootElement(frame);
-		ElementFilter filter = new FrameFilter();
-		for (Element otherFrame : filter.result(root)) {
-			// skip self
-			if (frame.equals(otherFrame)) {
-				continue;
+		default: {
+
+			// if the frame doesn't have a title skip
+			if (!frame.hasAttr(TITLE)) {
+				return null;
 			}
-			// @todo (dallison) Consider normalising the string.
-			if (otherFrame.hasAttr(TITLE) && frame.attr(TITLE).equals(
-					otherFrame.attr(TITLE))) {
-				return new Issue("checkFrameTitleUnique",
-						"Check that a frame title is unique",
-						Severity.ERROR, frame);
+			Element root = getRootElement(frame);
+			ElementFilter filter = new FrameFilter();
+			for (Element otherFrame : filter.result(root)) {
+				// skip self
+				if (frame.equals(otherFrame)) {
+					continue;
+				}
+				// @todo (dallison) Consider normalising the string.
+				if (otherFrame.hasAttr(TITLE)
+						&& frame.attr(TITLE).equals(otherFrame.attr(TITLE))) {
+					return new Issue("checkFrameTitleUnique",
+							"Check that a frame title is unique",
+							Severity.ERROR, frame);
+				}
 			}
+			return null;
 		}
-		return null;
+		}
 	}
 }

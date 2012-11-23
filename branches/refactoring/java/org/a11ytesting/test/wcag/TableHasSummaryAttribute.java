@@ -51,12 +51,26 @@ public class TableHasSummaryAttribute extends AbstractPerceivableRule {
 	 */
 	@Override
 	public Issue check(HtmlVersion htmlVersion, Element table) {
-		if (!table.hasAttr(SUMMARY)) {
-			// @todo(dallison) Consider checking length
-			return new Issue("checkTableHasSummaryAttribute",
-					"Check that data table has a summary attribute",
-					Severity.ERROR, table);
+		switch (htmlVersion) {
+		// summary attribute is not supported by html5
+		case HTML5: {
+			if (table.hasAttr(SUMMARY)) {
+				return new Issue("checkTableHasSummaryAttribute",
+						"Check that table summary is not supported by html5",
+						Severity.WARNING, table);
+			}
+			return null;
 		}
-		return null;
+
+		default: {
+			if (!table.hasAttr(SUMMARY)) {
+				// @todo(dallison) Consider checking length
+				return new Issue("checkTableHasSummaryAttribute",
+						"Check that data table has a summary attribute",
+						Severity.ERROR, table);
+			}
+			return null;
+		}
+		}
 	}
 }
