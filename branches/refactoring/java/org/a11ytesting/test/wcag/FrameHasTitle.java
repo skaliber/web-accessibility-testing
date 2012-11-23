@@ -20,11 +20,13 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.FrameFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
 /**
  * Rule for frame having title.
+ * The <frame> tag is not supported in HTML5.
  * 
  * @author dallison
  */
@@ -42,14 +44,14 @@ public class FrameHasTitle extends AbstractOperableRule {
 
 	/**
 	 * Check that frame elements have a title attribute
+	 * @param frame element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/10/
 	 * 
-	 * @param frame element to check
 	 * @return Issue or null
 	 */
 	@Override
-	public Issue check(Element frame) {
+	public Issue check(HtmlVersion htmlVersion, Element frame) {
 		if (!frame.hasAttr(TITLE) || frame.attr(TITLE).trim().isEmpty()) {
 			return new Issue("checkFrameHasTitle",
 					"Check that frame elements define a title attribute",

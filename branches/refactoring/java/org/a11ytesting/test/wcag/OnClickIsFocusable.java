@@ -25,6 +25,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.ClickFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -47,14 +48,14 @@ public class OnClickIsFocusable extends AbstractOperableRule {
 
 	/**
 	 * Elements with on click should be focusable.
+	 * @param document to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/61/
 	 * 
-	 * @param document to test
 	 * @return issues with document
 	 */
 	@Override
-	public Issue check(Element element) {
+	public Issue check(HtmlVersion htmlVersion, Element element) {
 		if (notFocusable(element)) {
 			return new Issue("checkOnClickIsFocusable",
 					"Check that when an element has onclick is is also " +

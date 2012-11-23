@@ -18,6 +18,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.TitleFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -42,14 +43,14 @@ public class TitleIsConcise extends AbstractOperableRule {
 
 	/**
 	 * Check that title text is concise.
+	 * @param title element to check.
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/24/
 	 * 
-	 * @param title element to check.
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element title) {
+	public Issue check(HtmlVersion htmlVersion, Element title) {
 		if (title.hasText() && MAX_TITLE_LENGTH < title.text().length()) {
 			return new Issue("checkTitleIsConcise",
 					"Check that the title element text is concise",

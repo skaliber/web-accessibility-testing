@@ -22,6 +22,7 @@ import org.jsoup.nodes.Element;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -46,7 +47,7 @@ public class PerceivableTest {
 	public void testAltTextOnImageError(String html) {
 		Element target = selectElement(html, IMG);
 		AltTextOnImage perceivable = new AltTextOnImage();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for image with no alt text");
 	}
@@ -70,7 +71,7 @@ public class PerceivableTest {
 	@Test(dataProvider = "imageOk")
 	public void testAltTextOnImageOk(String html) {
 		AltTextOnImage perceivable = new AltTextOnImage();
-		Issue result = perceivable.check(selectElement(html,
+		Issue result = perceivable.check(null, selectElement(html,
 				IMG));
 		assertNull(result, "Expected no error from image with alternative" +
 				"text");
@@ -93,7 +94,7 @@ public class PerceivableTest {
 	public void testAltTextOnImageNotBadError(String html) {
 		Element target = selectElement(html, IMG);
 		AltTextOnImageNotBad perceivable = new AltTextOnImageNotBad();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for bad image alt text value");
 	}
@@ -102,7 +103,7 @@ public class PerceivableTest {
 	public void testAltTextOnImageNotBadOk(String html) {
 		AltTextOnImageNotBad perceivable = new AltTextOnImageNotBad();
 		Issue result = perceivable.check(
-				selectElement(html, IMG));
+				null, selectElement(html, IMG));
 		assertNull(result, "Expected no error for valid alt text when" +
 				"checking for bad alt text values");
 	}
@@ -126,7 +127,7 @@ public class PerceivableTest {
 	public void testAltTextLengthReasonableBad(String html) {
 		Element target = selectElement(html, IMG);
 		AltTextLengthReasonable perceivable = new AltTextLengthReasonable();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.WARNING,
 				"Expected error for bad length alt text");
 	}
@@ -135,7 +136,7 @@ public class PerceivableTest {
 	public void testAltTextLengthReasonableOk(String html) {
 		AltTextLengthReasonable perceivable = new AltTextLengthReasonable();
 		Issue result = perceivable.check(
-				selectElement(html, IMG));
+				null, selectElement(html, IMG));
 		assertNull(result, "Expected no error for OK length alt text");
 	}
 
@@ -145,7 +146,7 @@ public class PerceivableTest {
 		"role=\"presentation\"></img></body></html>";
 		Element target = selectElement(html, IMG);
 		InvisibleImageNoTitle perceivable = new InvisibleImageNoTitle();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for invisible element with title");
 	}
@@ -156,7 +157,7 @@ public class PerceivableTest {
 			"role=\"presentation\"></img></body></html>";
 		InvisibleImageNoTitle perceivable = new InvisibleImageNoTitle();
 		Issue result = perceivable.check(
-				selectElement(html, IMG));
+				null, selectElement(html, IMG));
 		assertNull(result, "Expected no error for invisible image " +
 				"without title");
 	}
@@ -176,7 +177,7 @@ public class PerceivableTest {
 	public void testTableHasSummaryError(String html) {
 		Element target = selectElement(html, TABLE);
 		TableHasSummaryAttribute perceivable = new TableHasSummaryAttribute();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.ERROR, 
 				"Exepcted error for table without summary");
 	}
@@ -190,7 +191,7 @@ public class PerceivableTest {
 				"</body><html>";
 		TableHasSummaryAttribute perceivable = new TableHasSummaryAttribute();
 		Issue result = perceivable.check(
-				selectElement(html, TABLE));
+				null, selectElement(html, TABLE));
 		assertNull(result, "Expected no error for table with summary");
 	}
 
@@ -198,7 +199,7 @@ public class PerceivableTest {
 	public void testTableHasHeadingsError(String html) {
 		Element target = selectElement(html, TABLE);
 		TableHasHeadings perceivable = new TableHasHeadings();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for table without headers");
 	}
@@ -213,7 +214,7 @@ public class PerceivableTest {
 				"</body><html>";
 		TableHasHeadings perceivable = new TableHasHeadings();
 		Issue result = perceivable.check(
-				selectElement(html, TABLE));
+				null, selectElement(html, TABLE));
 		assertNull(result, "Expected no error for table with headings");
 	}
 
@@ -229,7 +230,7 @@ public class PerceivableTest {
 				"</body><html>";
 		Element target = selectElement(html, TABLE);
 		TableSummaryUnique perceivable = new TableSummaryUnique();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for duplicate table summary");
 	}
@@ -246,9 +247,37 @@ public class PerceivableTest {
 				"</body><html>";
 		TableSummaryUnique perceivable = new TableSummaryUnique();
 		Issue result = perceivable.check(
-				selectElement(html, TABLE));
+				HtmlVersion.UNKNOWN, selectElement(html, TABLE));
 		assertNull(result, "Expected no error for tables with unique" +
 				"summary values");
+	}
+	
+	@Test
+	public void testTableSummaryDuplicatedHtml5() {
+		String html = "<html><body>" + "<table summary=\"Table of nil\">"
+				+ "<tr><td>Nothing to say</td></tr>" + "</table>"
+				+ "<table summary=\"Table of nil\">"
+				+ "<tr><td>Different stuff but same summary</td></tr>"
+				+ "</table>" + "</body><html>";
+		Element target = selectElement(html, TABLE);
+		TableSummaryUnique perceivable = new TableSummaryUnique();
+		Issue result = perceivable.check(HtmlVersion.HTML5, target);
+		testError(result, target, Severity.WARNING,
+				"html5 table summary is not supported");
+	}
+
+	@Test
+	public void testTableSummaryUniqueHtml5() {
+		String html = "<html><body>" + "<table summary=\"Table of nil\">"
+				+ "<tr><td>Nothing to say</td></tr>" + "</table>"
+				+ "<table summary=\"Table of null\">"
+				+ "<tr><td>Different stuff but same summary</td></tr>"
+				+ "</table>" + "</body><html>";
+		Element target = selectElement(html, TABLE);
+		TableSummaryUnique perceivable = new TableSummaryUnique();
+		Issue result = perceivable.check(HtmlVersion.HTML5, target);
+		testError(result, target, Severity.WARNING,
+				"html5 table summary is not supported");
 	}
 
 	@DataProvider(name = "badComplexTable")
@@ -274,7 +303,7 @@ public class PerceivableTest {
 	public void testComplexTableHeadingHasIdError(String html) {
 		Element target = selectElement(html, TABLE);
 		ComplexTableHeadingHasId perceivable = new ComplexTableHeadingHasId();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for invalid complex table");
 	}
@@ -309,7 +338,7 @@ public class PerceivableTest {
 	public void testComplexTableheadngHasIdOk(String html) {
 		ComplexTableHeadingHasId perceivable = new ComplexTableHeadingHasId();
 		Issue issue = perceivable.check(
-				selectElement(html, TABLE));
+				null, selectElement(html, TABLE));
 		assertNull(issue, "Expected no error for complex table with heading IDs");
 	}
 	
@@ -320,7 +349,7 @@ public class PerceivableTest {
 		Element target = selectElement(sameId, TABLE);
 		ComplexTableHeadingIdUnique perceivable =
 				new ComplexTableHeadingIdUnique();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for duplicate column id on complex table");
 	}
@@ -330,7 +359,7 @@ public class PerceivableTest {
 		ComplexTableHeadingIdUnique perceivable =
 				new ComplexTableHeadingIdUnique();
 		Issue result = perceivable.check(
-				selectElement(html, TABLE));
+				null, selectElement(html, TABLE));
 		assertNull(result, "Expected no error for unique id on complex table");
 	}
 	
@@ -339,7 +368,7 @@ public class PerceivableTest {
 		Element target = selectElement(html, TABLE);
 		ComplexTableDataHasHeading perceivable =
 				new ComplexTableDataHasHeading();
-		Issue result = perceivable.check(target);
+		Issue result = perceivable.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for complex table with no data headings " +
 				"reference");
@@ -350,7 +379,7 @@ public class PerceivableTest {
 		ComplexTableDataHasHeading perceivable =
 				new ComplexTableDataHasHeading();
 		Issue result = perceivable.check(
-				selectElement(html, TABLE));
+				null, selectElement(html, TABLE));
 		assertNull(result, "Expected no error for complex data table with " +
 				"data headings");
 	}

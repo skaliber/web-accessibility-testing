@@ -23,6 +23,7 @@ import org.jsoup.nodes.Element;
 import org.a11ytesting.filter.ElementFilter;
 import org.a11ytesting.filter.LinkFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -45,17 +46,17 @@ public class LinkTextNotReplicated extends AbstractOperableRule {
 
 	/**
 	 * Check that links with the same text don't point to different hrefs
+	 * @param link to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/40/
 	 * 
-	 * @param link to check
 	 * @return Issue or null
 	 * 
 	 * @todo(dallison) Consider refactoring to include image areas: area[href]
 	 * @todo(dallison) Consider combining 40, 39, 41
 	 */
 	@Override
-	public Issue check(Element link) {
+	public Issue check(HtmlVersion htmlVersion, Element link) {
 		Element root = getRootElement(link);
 		ElementFilter linkFilter = new LinkFilter();
 		for (Element otherLink : linkFilter.result(root)) {

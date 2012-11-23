@@ -21,6 +21,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -44,14 +45,14 @@ public class InvisibleImageNoTitle extends AbstractPerceivableRule {
 	/**
 	 * Check that when an image is tagged as presentation that it doesn't
 	 * have a title.
+	 * @param image
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/31/
 	 *  
-	 * @param image
 	 * @return issue or null.
 	 */
 	@Override
-	public Issue check(Element image) {
+	public Issue check(HtmlVersion htmlVersion, Element image) {
 		// check that the image has alt text or
 		if (!isVisible(image) && image.hasAttr(TITLE)) {
 			return new Issue("checkInvisibleImageNoTitle",

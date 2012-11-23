@@ -21,6 +21,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -43,16 +44,16 @@ public class AltTextOnImage extends AbstractPerceivableRule {
 
 	/**
 	 * Image has alt text.
+	 * @param image to inspect.
 	 *
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/26/
 	 * 
-	 * @param image to inspect.
 	 * @return Issue identified or null if no issue was identified
 	 * 
 	 * @todo(dallison) If aria role is presentation must have length > 0
 	 */
 	@Override
-	public Issue check(Element image) {
+	public Issue check(HtmlVersion htmlVersion, Element image) {
 		// check that the image has alt text or
 		if (isVisible(image) && (!image.hasAttr(ALT_TEXT) ||
 				image.attr(ALT_TEXT).trim().isEmpty())) {

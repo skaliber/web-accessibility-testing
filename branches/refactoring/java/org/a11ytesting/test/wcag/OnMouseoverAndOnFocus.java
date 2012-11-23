@@ -20,6 +20,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.MouseOverFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -37,14 +38,14 @@ public class OnMouseoverAndOnFocus extends AbstractOperableRule {
 
 	/**
 	 * Element with mouse over also has on focus attribute.
+	 * @param element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/59/
 	 * 
-	 * @param element to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element element) {
+	public Issue check(HtmlVersion htmlVersion, Element element) {
 		if (!element.hasAttr(FOCUS)) {
 			return new Issue("checkOnMouseoverAndOnFocus", 
 					"Check that when an element has mouse over it also has " +

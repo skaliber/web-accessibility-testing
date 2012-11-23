@@ -20,6 +20,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.MouseOutFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -37,14 +38,14 @@ public class OnMouseOutAndOnBlur extends AbstractOperableRule {
 
 	/**
 	 * Element with mouse out also has blur attribute.
+	 * @param element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/60/
 	 * 
-	 * @param element to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element element) {
+	public Issue check(HtmlVersion htmlVersion, Element element) {
 		if (!element.hasAttr(BLUR)) {
 			return new Issue("checkOnMouseOutAndOnBlur",
 					"Check that when an element has a mouse out also has " +

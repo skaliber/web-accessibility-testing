@@ -46,7 +46,7 @@ public class RobustTest {
 	public void testStylingElementNotUsedError(String html) {
 		Element target = selectElement(html, SELECTOR);
 		StylingElementNotUsed robust = new StylingElementNotUsed();
-		Issue result = robust.check(target);
+		Issue result = robust.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for styling element");
 	}
