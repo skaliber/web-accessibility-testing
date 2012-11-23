@@ -20,6 +20,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -42,14 +43,14 @@ public class TableHasSummaryAttribute extends AbstractPerceivableRule {
 
 	/**
 	 * Check that data tables are using the summary attribute.
+	 * @param table to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/3/
 	 * 
-	 * @param table to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element table) {
+	public Issue check(HtmlVersion htmlVersion, Element table) {
 		if (!table.hasAttr(SUMMARY)) {
 			// @todo(dallison) Consider checking length
 			return new Issue("checkTableHasSummaryAttribute",

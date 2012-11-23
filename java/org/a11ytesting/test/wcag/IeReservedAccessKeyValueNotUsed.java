@@ -23,6 +23,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.AccessKeyFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -45,14 +46,14 @@ public class IeReservedAccessKeyValueNotUsed extends AbstractOperableRule {
 
 	/**
 	 * Check that access key attributes don't clash with IE shortcuts
+	 * @param access element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/2/
 	 * 
-	 * @param access element to check
 	 * @return Issue or null
 	 */
 	@Override
-	public Issue check(Element access) {
+	public Issue check(HtmlVersion htmlVersion, Element access) {
 		List<String> internetExplorerKeys = Arrays.asList(new String[] {
 				"a", "e", "f", "h", "t", "v"});
 		if (internetExplorerKeys.contains(

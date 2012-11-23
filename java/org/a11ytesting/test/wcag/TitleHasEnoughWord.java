@@ -18,6 +18,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.TitleFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -36,7 +37,7 @@ public class TitleHasEnoughWord extends AbstractOperableRule {
 	}
 
 	@Override
-	public Issue check(Element title) {
+	public Issue check(HtmlVersion htmlVersion, Element title) {
 		// split the string on non word characters.
 		if (title.hasText() && MIN_TITLE_WORDS > title.text().split("\\W").length) {
 			return new Issue("checkTitleHasMoreThanOneWord",

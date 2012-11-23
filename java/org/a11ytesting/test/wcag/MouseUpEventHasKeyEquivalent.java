@@ -20,6 +20,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.MouseUpFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -42,14 +43,14 @@ public class MouseUpEventHasKeyEquivalent extends AbstractOperableRule {
 
 	/**
 	 * On mouse up event should have a key equivalent.
+	 * @param element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/63/
 	 * 
-	 * @param element to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element element) {
+	public Issue check(HtmlVersion htmlVersion, Element element) {
 		// check mouse up
 		if (!element.hasAttr(KEY_UP)) {
 			return new Issue("checkMouseUpHaveKeyEquivalent",

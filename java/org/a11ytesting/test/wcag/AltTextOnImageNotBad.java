@@ -23,6 +23,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -48,16 +49,16 @@ public class AltTextOnImageNotBad extends AbstractPerceivableRule {
 
 	/**
 	 * Check for images with invalid alt text value.
+	 * @param element to inspect.
 	 *
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/28/
 	 * 
-	 * @param element to inspect.
 	 * @return Issue identified or null if none.
 	 * 
 	 * @todo(dallison) check that not just prefixes of file names.
 	 */
 	@Override
-	public Issue check(Element image) {
+	public Issue check(HtmlVersion htmlVersion, Element image) {
 		if (image.hasAttr(ALT_TEXT) && !image.attr(ALT_TEXT).trim().isEmpty()
 				&& BAD_ALT_WORDS.contains(
 				image.attr(ALT_TEXT).toLowerCase())) {

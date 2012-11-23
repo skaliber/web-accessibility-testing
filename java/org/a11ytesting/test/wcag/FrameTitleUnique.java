@@ -22,11 +22,13 @@ import org.jsoup.nodes.Element;
 import org.a11ytesting.filter.ElementFilter;
 import org.a11ytesting.filter.FrameFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
 /**
  * Rule for frame title uniqueness. 
+ * The <frame> tag is not supported in HTML5.
  * 
  * @author dallison
  */
@@ -44,14 +46,14 @@ public class FrameTitleUnique extends AbstractOperableRule {
 
 	/**
 	 * Check that frame title values are unique.
+	 * @param frame to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/11/
 	 * 
-	 * @param frame to check
 	 * @return Issue or null.
 	 */
 	@Override
-	public Issue check(Element frame) {
+	public Issue check(HtmlVersion htmlVersion, Element frame) {
 		// if the frame doesn't have a title skip
 		if (!frame.hasAttr(TITLE)) {
 			return null;

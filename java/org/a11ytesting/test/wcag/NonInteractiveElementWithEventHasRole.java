@@ -28,6 +28,7 @@ import org.jsoup.nodes.Element;
 import org.a11ytesting.aria.Role;
 import org.a11ytesting.filter.EventFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -51,14 +52,14 @@ public class NonInteractiveElementWithEventHasRole
 
 	/**
 	 * Elements other than link and form with event handlers also have valid roles.
+	 * @param document
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/94/
 	 * 
-	 * @param document
 	 * @return issues identified with the document
 	 */
 	@Override
-	public Issue check(Element element) {
+	public Issue check(HtmlVersion htmlVersion, Element element) {
 		List<String> interactive = Arrays.asList(new String[] {
 				ANCHOR, BUTTON, INPUT, SELECT});
 		if (!interactive.contains(element.tagName()) && !hasAriaRole(element)) {

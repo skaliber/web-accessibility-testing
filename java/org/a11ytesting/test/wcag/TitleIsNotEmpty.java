@@ -21,6 +21,7 @@ import org.jsoup.nodes.Element;
 
 import org.a11ytesting.filter.HtmlFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 
@@ -43,14 +44,14 @@ public class TitleIsNotEmpty extends AbstractOperableRule {
 
 	/**
 	 * Check that document has a title node.
+	 * @param the document
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/13/
 	 * 
-	 * @param the document
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element doc) {
+	public Issue check(HtmlVersion htmlVersion, Element doc) {
 		String IN_HEAD = HEAD + " > " + TITLE;
 		if (1 != doc.select(IN_HEAD).size() ||
 				(!doc.select(IN_HEAD).first().hasText() ||

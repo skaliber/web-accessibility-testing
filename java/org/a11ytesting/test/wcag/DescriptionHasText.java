@@ -16,6 +16,7 @@ package org.a11ytesting.test.wcag;
 
 import org.a11ytesting.filter.SummaryFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
 import org.jsoup.nodes.Element;
@@ -39,15 +40,15 @@ public class DescriptionHasText extends AbstractUnderstandableRule {
 	
 	/**
 	 * Check that text summary elements have text content
+	 * @param label to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/80/
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/81/
 	 * 
-	 * @param label to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element label) {
+	public Issue check(HtmlVersion htmlVersion, Element label) {
 		if (label.hasText() && !label.text().trim().isEmpty()) {
 			return null;
 		}
