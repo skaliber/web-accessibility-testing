@@ -2,11 +2,10 @@ package org.a11ytesting.test;
 
 import static org.testng.Assert.assertEquals;
 
+import org.a11ytesting.test.Issue.Severity;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.testng.annotations.Test;
-
-import org.a11ytesting.test.Issue.Severity;
 
 /**
  * Basic tests for the issue class.

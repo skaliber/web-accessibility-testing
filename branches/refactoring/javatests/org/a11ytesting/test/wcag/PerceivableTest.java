@@ -14,17 +14,18 @@
  */
 package org.a11ytesting.test.wcag;
 
+import static org.a11ytesting.test.wcag.SharedTest.IMG;
+import static org.a11ytesting.test.wcag.SharedTest.TABLE;
+import static org.a11ytesting.test.wcag.SharedTest.selectElement;
+import static org.a11ytesting.test.wcag.SharedTest.testError;
 import static org.testng.Assert.assertNull;
-
-import static org.a11ytesting.test.wcag.SharedTest.*;
-
-import org.jsoup.nodes.Element;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Tests for WCAG perceivable aspects.
@@ -39,6 +40,16 @@ public class PerceivableTest {
 				{"<html><body><img src=\"./img.png\">" + 
 					"</img></body></html>"},
 				{"<html><body><img src=\"./img.png\" title=\"\">" + 
+						"</img></body></html>"}
+		};
+	}
+	
+	@DataProvider(name = "imageOkEmptyAlt")
+	Object[][] imageEmptyAlt() {
+		return new Object[][]{
+				{"<html><body><img src=\"./img.png\" alt =\"\">" + 
+					"</img></body></html>"},
+				{"<html><body><img src=\"./img.png\" title=\"\" alt =\"\">" + 
 						"</img></body></html>"}
 		};
 	}
@@ -70,6 +81,15 @@ public class PerceivableTest {
 
 	@Test(dataProvider = "imageOk")
 	public void testAltTextOnImageOk(String html) {
+		AltTextOnImage perceivable = new AltTextOnImage();
+		Issue result = perceivable.check(HtmlVersion.UNKNOWN, selectElement(html,
+				IMG));
+		assertNull(result, "Expected no error from image with alternative" +
+				"text");
+	}
+	
+	@Test(dataProvider = "imageOkEmptyAlt")
+	public void testEmptyAltTextOnImageOk(String html) {
 		AltTextOnImage perceivable = new AltTextOnImage();
 		Issue result = perceivable.check(HtmlVersion.UNKNOWN, selectElement(html,
 				IMG));

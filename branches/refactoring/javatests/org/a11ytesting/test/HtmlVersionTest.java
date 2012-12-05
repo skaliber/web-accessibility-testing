@@ -1,8 +1,9 @@
 package org.a11ytesting.test;
 
 import static org.testng.Assert.assertEquals;
-import org.testng.annotations.Test;
+
 import org.jsoup.nodes.DocumentType;
+import org.testng.annotations.Test;
 
 /**
  * Test HtmlVersion generates correct versions according to the publicid 

@@ -14,9 +14,6 @@
  */
 package org.a11ytesting.test;
 
-import java.util.EnumSet;
-import java.util.Set;
-
 import org.jsoup.nodes.Element;
 
 /**

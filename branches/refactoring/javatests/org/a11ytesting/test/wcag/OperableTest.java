@@ -14,20 +14,28 @@
  */
 package org.a11ytesting.test.wcag;
 
+import static org.a11ytesting.test.wcag.SharedTest.ANCHOR;
+import static org.a11ytesting.test.wcag.SharedTest.BLINK;
+import static org.a11ytesting.test.wcag.SharedTest.BODY;
+import static org.a11ytesting.test.wcag.SharedTest.BUTTON;
+import static org.a11ytesting.test.wcag.SharedTest.HTML;
+import static org.a11ytesting.test.wcag.SharedTest.IFRAME;
+import static org.a11ytesting.test.wcag.SharedTest.INPUT;
+import static org.a11ytesting.test.wcag.SharedTest.MARQEE;
+import static org.a11ytesting.test.wcag.SharedTest.SELECT;
+import static org.a11ytesting.test.wcag.SharedTest.TEXTAREA;
+import static org.a11ytesting.test.wcag.SharedTest.TITLE;
+import static org.a11ytesting.test.wcag.SharedTest.selectElement;
+import static org.a11ytesting.test.wcag.SharedTest.testError;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
-
-import static org.a11ytesting.test.wcag.SharedTest.*;
-import static org.a11ytesting.test.wcag.Shared.getRootElement;
 
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

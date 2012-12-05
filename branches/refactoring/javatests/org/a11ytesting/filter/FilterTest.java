@@ -17,7 +17,6 @@ package org.a11ytesting.filter;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
-
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.testng.annotations.Test;

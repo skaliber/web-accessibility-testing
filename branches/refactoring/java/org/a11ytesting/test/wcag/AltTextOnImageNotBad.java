@@ -19,13 +19,12 @@ import static org.a11ytesting.test.wcag.Shared.ALT_TEXT;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for alt text badness.

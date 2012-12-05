@@ -17,9 +17,8 @@ package org.a11ytesting.filter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.test.Filter;
+import org.jsoup.nodes.Element;
 
 /**
  * Default element filter which returns the root. This class should be sub
