@@ -20,13 +20,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.HtmlFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for HTML must have a valid language code.

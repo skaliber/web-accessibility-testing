@@ -14,9 +14,15 @@
  */
 package org.a11ytesting.test.wcag;
 
+import static org.a11ytesting.test.wcag.SharedTest.BUTTON;
+import static org.a11ytesting.test.wcag.SharedTest.FIELDSET;
+import static org.a11ytesting.test.wcag.SharedTest.HTML;
+import static org.a11ytesting.test.wcag.SharedTest.INPUT;
+import static org.a11ytesting.test.wcag.SharedTest.LABEL;
+import static org.a11ytesting.test.wcag.SharedTest.LEGEND;
+import static org.a11ytesting.test.wcag.SharedTest.selectElement;
+import static org.a11ytesting.test.wcag.SharedTest.testError;
 import static org.testng.Assert.assertNull;
-
-import static org.a11ytesting.test.wcag.SharedTest.*;
 
 import java.util.Arrays;
 import java.util.List;

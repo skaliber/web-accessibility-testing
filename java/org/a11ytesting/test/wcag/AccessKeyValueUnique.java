@@ -17,18 +17,13 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.ACCESS_KEY;
 import static org.a11ytesting.test.wcag.Shared.getRootElement;
 
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.AccessKeyFilter;
 import org.a11ytesting.filter.ElementFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for access key uniqueness in a page.

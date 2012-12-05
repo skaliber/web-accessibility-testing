@@ -17,13 +17,12 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.ALT_TEXT;
 import static org.a11ytesting.test.wcag.Shared.isVisible;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for alt text presence on images.
@@ -55,8 +54,8 @@ public class AltTextOnImage extends AbstractPerceivableRule {
 	@Override
 	public Issue check(HtmlVersion htmlVersion, Element image) {
 		// check that the image has alt text or
-		if (isVisible(image) && (!image.hasAttr(ALT_TEXT) ||
-				image.attr(ALT_TEXT).trim().isEmpty())) {
+		// we ignore the empty alt text
+		if (isVisible(image) && (!image.hasAttr(ALT_TEXT))) {
 			return new Issue("checkAltTextOnImage",
 					"Check that visible images have alt text",
 					Severity.ERROR, image);

@@ -14,7 +14,8 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.wcag.SharedTest.*;
+import static org.a11ytesting.test.wcag.SharedTest.selectElement;
+import static org.a11ytesting.test.wcag.SharedTest.testError;
 
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;

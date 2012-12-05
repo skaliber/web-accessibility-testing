@@ -16,13 +16,11 @@ limitations under the License.
 
 package org.julianharty.accessibility.automation;
 
+import junit.framework.TestCase;
+
 import org.mortbay.log.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-
-import junit.framework.TestCase;
 
 /**
  * Uses some test pages stored on my local machine until I find a better way of

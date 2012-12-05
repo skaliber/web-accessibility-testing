@@ -16,13 +16,12 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.ON_CHANGE;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.SelectFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for select not using on change events.

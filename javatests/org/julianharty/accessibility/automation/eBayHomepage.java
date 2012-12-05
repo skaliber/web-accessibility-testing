@@ -19,11 +19,10 @@ limitations under the License.
  */
 package org.julianharty.accessibility.automation;
 
+import junit.framework.TestCase;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import junit.framework.TestCase;
 
 public class eBayHomepage extends TestCase {
 
