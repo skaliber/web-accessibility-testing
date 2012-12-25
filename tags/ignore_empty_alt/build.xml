@@ -1,0 +1,77 @@
+<project name="org.a11ytesting" basedir="." default="jar">
+	<taskdef resource="testngtasks" classpath="thirdparty/testng/6.1.1/testng-6.1.1.jar"/>
+	
+	<loadproperties srcFile="local.properties"/>
+
+	<property name="src" value="java" />
+	<property name="src.test" value="javatests" />
+	<property name="lib" value="thirdparty" />
+	<property name="build" value="build" />
+	<property name="tests" value="tests" />
+	<property name="release.version" value="0.0.8" />
+	<property name="dist" value="dist" />
+	<property name="a11yjar" value="a11ytesting-${release.version}.jar" />
+	<property name="standalone.jar" value="a11ytesting-standalone-${release.version}.jar" />
+	<property name="test.output" value="test-output" />
+	
+	<path id="classpath">
+		<fileset dir="${lib}" includes="**/*.jar" />
+	</path>
+	
+	<path id="classpath.test">
+		<fileset dir="${lib}" includes="**/*.jar" />
+		<pathelement location="${build}" />
+		<pathelement location="${tests}" />
+	</path>
+	
+	<target name="init">
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+		<mkdir dir="${test.output}" />
+		<mkdir dir="${tests}" />
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<target name="compile.test" depends="init,compile">
+		<javac srcdir="${src.test}" destdir="${tests}" includeantruntime="false">
+			<classpath refid="classpath.test" />
+		</javac>
+	</target>
+	
+	<target name="jar" depends="compile,test">
+		<jar destfile="${dist}/${a11yjar}" basedir="${build}">
+			<fileset dir="${build}" includes="**/*.class" />
+		</jar>
+	</target>
+
+	<target name="test" depends="compile,compile.test">
+		<testng classpathref="classpath.test" outputdir="${test.output}">
+			<xmlfileset dir="javatests" includes="testng.xml" />
+		</testng>
+	</target>
+
+	<target name="ui-test" depends="compile,compile.test">
+		<junit printsummary="yes" filtertrace="no" logfailedtests="yes" >
+			<formatter type="plain" usefile="false" />
+			<classpath refid="classpath.test" />
+			<batchtest>
+				<fileset dir ="${tests}" >
+					<include name="org/julianharty/accessibility/**/*.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+		<delete dir="${tests}" />
+		<delete dir="${test.output}" />
+	</target>
+
+</project>

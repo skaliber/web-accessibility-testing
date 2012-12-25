@@ -1,0 +1,48 @@
+<html>
+<!--
+This example is based on one from mozilla.org and helps to show one of the visual concepts we use in the keyboard helper code - of using css to visibly indicate which element currently has focus. The embedded css includes some unused styles which you may find insightful in your own investigations.
+-->
+
+<head>
+<style>
+
+a:focus
+{
+  border: 3px #eeee00 solid;
+  background: yellow;
+}
+
+*:focus
+{
+  border: 3px #00FF00 solid;
+  background: blue;
+}
+
+a:link { color: red; }
+a:visited { color: red; } 
+a:hover { color: blue; } 
+
+
+textarea:focus, button:focus, select:focus, input:focus
+{
+  -moz-outline-offset: -1px        !important;
+}
+
+input[type="radio"]:focus
+{
+  -moz-outline-radius: 12px        !important;
+  -moz-outline-offset: 0px         !important;
+}
+
+</style>
+</head>
+<body>
+
+Put some html here to test.
+<a href="http://www.mozilla.org/access/keyboard/snav/css_usage.html">original example of this code</a>
+
+<a href="www.commercetest.com">Commercetest</a>
+<a href="www.google.co.uk">Google UK</a>
+
+</body>
+</html>
