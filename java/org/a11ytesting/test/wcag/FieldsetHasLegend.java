@@ -16,13 +16,13 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.LEGEND;
 
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import org.a11ytesting.filter.FieldsetFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  * Rule for fieldset elements having a legend.
@@ -43,14 +43,14 @@ public class FieldsetHasLegend extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that field set elements have legend elements.
+	 * @param fieldset to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/73/
 	 * 
-	 * @param fieldset to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element fieldset) {
+	public Issue check(HtmlVersion htmlVersion, Element fieldset) {
 		Elements legends = fieldset.select(LEGEND);
 		if (legends.isEmpty()) {
 			return new Issue("checkFieldsetHasLegend",

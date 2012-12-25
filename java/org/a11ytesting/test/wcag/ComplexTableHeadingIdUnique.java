@@ -21,12 +21,12 @@ import static org.a11ytesting.test.wcag.Shared.notComplexTable;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Complex table heading unique rule.
@@ -47,14 +47,14 @@ public class ComplexTableHeadingIdUnique extends AbstractPerceivableRule {
 
 	/**
 	 * Check that 'complex' table heading IDs are unique.
+	 * @param table to check.
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/7/
 	 * 
-	 * @param table to check.
 	 * @return issue identified or null
 	 */
 	@Override
-	public Issue check(Element table) {
+	public Issue check(HtmlVersion htmlVersion, Element table) {
 		if (notComplexTable(table)) {
 			return null;
 		}

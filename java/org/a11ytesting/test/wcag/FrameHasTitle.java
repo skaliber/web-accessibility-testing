@@ -16,15 +16,16 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.TITLE;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.FrameFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for frame having title.
+ * The <frame> tag is not supported in HTML5.
  * 
  * @author dallison
  */
@@ -42,19 +43,32 @@ public class FrameHasTitle extends AbstractOperableRule {
 
 	/**
 	 * Check that frame elements have a title attribute
+	 * @param frame element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/10/
 	 * 
-	 * @param frame element to check
 	 * @return Issue or null
 	 */
 	@Override
-	public Issue check(Element frame) {
-		if (!frame.hasAttr(TITLE) || frame.attr(TITLE).trim().isEmpty()) {
-			return new Issue("checkFrameHasTitle",
-					"Check that frame elements define a title attribute",
-					Severity.ERROR, frame);
+	public Issue check(HtmlVersion htmlVersion, Element frame) {
+		switch (htmlVersion) {
+		// frame tag is not supported by html5
+		case HTML5: {
+			if (frame.hasAttr(TITLE)) {
+				return new Issue("checkFrameHasTitle",
+						"Check that frame is not supported by html5",
+						Severity.WARNING, frame);
+			}
+			return null;
 		}
-		return null;
+		default: {
+			if (!frame.hasAttr(TITLE) || frame.attr(TITLE).trim().isEmpty()) {
+				return new Issue("checkFrameHasTitle",
+						"Check that frame elements define a title attribute",
+						Severity.ERROR, frame);
+			}
+			return null;
+		}
+		}
 	}
 }

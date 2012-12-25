@@ -18,12 +18,12 @@ import static org.a11ytesting.test.wcag.Shared.ALT_TEXT;
 import static org.a11ytesting.test.wcag.Shared.TITLE;
 import static org.a11ytesting.test.wcag.Shared.isImageInput;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.InputControlFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 public class ImageInputHasDescription extends AbstractUnderstandableRule {
 
@@ -39,14 +39,14 @@ public class ImageInputHasDescription extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that image input elements have an alt or title attribute.
+	 * @param image input to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/76/
 	 * 
-	 * @param image input to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element image) {
+	public Issue check(HtmlVersion htmlVersion, Element image) {
 		// skip other input control types
 		if (!isImageInput(image)) {
 			return null;

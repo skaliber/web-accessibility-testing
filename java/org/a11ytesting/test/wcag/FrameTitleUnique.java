@@ -17,16 +17,17 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.TITLE;
 import static org.a11ytesting.test.wcag.Shared.getRootElement;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ElementFilter;
 import org.a11ytesting.filter.FrameFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for frame title uniqueness. 
+ * The <frame> tag is not supported in HTML5.
  * 
  * @author dallison
  */
@@ -44,33 +45,48 @@ public class FrameTitleUnique extends AbstractOperableRule {
 
 	/**
 	 * Check that frame title values are unique.
+	 * @param frame to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/11/
 	 * 
-	 * @param frame to check
 	 * @return Issue or null.
 	 */
 	@Override
-	public Issue check(Element frame) {
-		// if the frame doesn't have a title skip
-		if (!frame.hasAttr(TITLE)) {
+	public Issue check(HtmlVersion htmlVersion, Element frame) {
+
+		switch (htmlVersion) {
+		// frame tag is not supported by html5
+		case HTML5: {
+			if (frame.hasAttr(TITLE)) {
+				return new Issue("checkFrameTitleUnique",
+						"Check that frame is not supported by html5",
+						Severity.WARNING, frame);
+			}
 			return null;
 		}
-		Element root = getRootElement(frame);
-		ElementFilter filter = new FrameFilter();
-		for (Element otherFrame : filter.result(root)) {
-			// skip self
-			if (frame.equals(otherFrame)) {
-				continue;
+		default: {
+
+			// if the frame doesn't have a title skip
+			if (!frame.hasAttr(TITLE)) {
+				return null;
 			}
-			// @todo (dallison) Consider normalising the string.
-			if (otherFrame.hasAttr(TITLE) && frame.attr(TITLE).equals(
-					otherFrame.attr(TITLE))) {
-				return new Issue("checkFrameTitleUnique",
-						"Check that a frame title is unique",
-						Severity.ERROR, frame);
+			Element root = getRootElement(frame);
+			ElementFilter filter = new FrameFilter();
+			for (Element otherFrame : filter.result(root)) {
+				// skip self
+				if (frame.equals(otherFrame)) {
+					continue;
+				}
+				// @todo (dallison) Consider normalising the string.
+				if (otherFrame.hasAttr(TITLE)
+						&& frame.attr(TITLE).equals(otherFrame.attr(TITLE))) {
+					return new Issue("checkFrameTitleUnique",
+							"Check that a frame title is unique",
+							Severity.ERROR, frame);
+				}
 			}
+			return null;
 		}
-		return null;
+		}
 	}
 }

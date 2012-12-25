@@ -62,10 +62,11 @@ public interface Rule {
 	
 	/**
 	 * Check an element to see if there is an issue.
-	 * 
+	 * @param htmlVersion TODO
 	 * @param the element to check. The element will be one of the elements
 	 * 		selected by the filter returned by getFilter().
+	 * 
 	 * @return the issue identified or null
 	 */
-	public Issue check(Element element);
+	public Issue check(HtmlVersion htmlVersion, Element element);
 }

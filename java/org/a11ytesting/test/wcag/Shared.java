@@ -17,13 +17,12 @@ package org.a11ytesting.test.wcag;
 import java.util.Arrays;
 import java.util.List;
 
+import org.a11ytesting.aria.Role;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
-
-import org.a11ytesting.aria.Role;
 
 /**
  * Shared variables for common HTML element selectors.
@@ -177,14 +176,13 @@ public abstract class Shared {
 	static boolean isVisible(Element element) {
 		Attributes attributes = element.attributes();
 		if (attributes.hasKey("role")) {
-			if(attributes.get(ARIA_ROLE).equals(ARIA_PRESENTATION)) {
+			if (attributes.get(ARIA_ROLE).equals(ARIA_PRESENTATION)) {
 				return false;
 			} else {
 				return true;
 			}
-		} else {
-			return true;
 		}
+		return true;
 	}
 	
 	/**

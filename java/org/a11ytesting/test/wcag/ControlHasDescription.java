@@ -19,13 +19,13 @@ import static org.a11ytesting.test.wcag.Shared.TITLE;
 import static org.a11ytesting.test.wcag.Shared.getRootElement;
 import static org.a11ytesting.test.wcag.Shared.isImageInput;
 
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import org.a11ytesting.filter.InputControlFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  * Page control has a description rule.
@@ -47,14 +47,14 @@ public class ControlHasDescription extends AbstractUnderstandableRule {
 	/**
 	 * Check that control elements have either a label referencing them via a
 	 * for attribute or a title.
+	 * @param control to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/75/
 	 * 
-	 * @param control to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element control) {
+	public Issue check(HtmlVersion htmlVersion, Element control) {
 		// skip image input elements
 		if (isImageInput(control)) {
 			return null;

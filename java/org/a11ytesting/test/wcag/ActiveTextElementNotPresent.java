@@ -14,12 +14,12 @@
  */
 package org.a11ytesting.test.wcag;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ActiveTextFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for active text elements.
@@ -40,14 +40,14 @@ public class ActiveTextElementNotPresent extends AbstractOperableRule {
 
 	/**
 	 * Check that the marqee and blink elements are not used.
+	 * @param active element to check
 	 * 
 	 * @see  http://openajax-dev.jongund.webfactional.com/wcag20/rule/68/
 	 * 
-	 * @param active element to check
 	 * @return issue identified or null
 	 */
 	@Override
-	public Issue check(Element active) {
+	public Issue check(HtmlVersion htmlVersion, Element active) {
 		return new Issue("checkActiveTextElementNotPresent",
 				"Check that active text elements like marqee and blink " +
 				"are not present.", Severity.ERROR, active);

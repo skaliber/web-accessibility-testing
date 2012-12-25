@@ -14,12 +14,12 @@
  */
 package org.a11ytesting.test.wcag;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.StyleElementFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for styling element not present.
@@ -40,20 +40,20 @@ public class StylingElementNotUsed extends AbstractRobustRule {
 
 	/**
 	 * Check for style elements in the document
+	 * @param style element
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/67/
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/69/
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/70/
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/71/
 	 * 
-	 * @param style element
 	 * @return issue or null
 	 * 
 	 * @todo(dallison) Check the implementation for 69-71 to understand
 	 * 		the purpose of the same type iteration.
 	 */
 	@Override
-	public Issue check(Element style) {
+	public Issue check(HtmlVersion htmlVersion, Element style) {
 		return new Issue("checkStylingElementNotUsed",
 				"Check that style elements are not used",
 				Severity.ERROR, style);

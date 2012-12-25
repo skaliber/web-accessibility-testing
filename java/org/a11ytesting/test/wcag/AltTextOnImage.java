@@ -17,12 +17,12 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.ALT_TEXT;
 import static org.a11ytesting.test.wcag.Shared.isVisible;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for alt text presence on images.
@@ -43,19 +43,19 @@ public class AltTextOnImage extends AbstractPerceivableRule {
 
 	/**
 	 * Image has alt text.
+	 * @param image to inspect.
 	 *
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/26/
 	 * 
-	 * @param image to inspect.
 	 * @return Issue identified or null if no issue was identified
 	 * 
 	 * @todo(dallison) If aria role is presentation must have length > 0
 	 */
 	@Override
-	public Issue check(Element image) {
+	public Issue check(HtmlVersion htmlVersion, Element image) {
 		// check that the image has alt text or
-		if (isVisible(image) && (!image.hasAttr(ALT_TEXT) ||
-				image.attr(ALT_TEXT).trim().isEmpty())) {
+		// we ignore the empty alt text
+		if (isVisible(image) && (!image.hasAttr(ALT_TEXT))) {
 			return new Issue("checkAltTextOnImage",
 					"Check that visible images have alt text",
 					Severity.ERROR, image);

@@ -14,12 +14,12 @@
  */
 package org.a11ytesting.test.wcag;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for table heading presence.
@@ -40,14 +40,14 @@ public class TableHasHeadings extends AbstractPerceivableRule {
 
 	/**
 	 * Check that data tables are using headers.
+	 * @param table element to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/4/
 	 * 
-	 * @param table element to test
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element table) {
+	public Issue check(HtmlVersion htmlVersion, Element table) {
 		if (table.select("th").isEmpty()) {
 			// @todo(dallison) Consider checking headers have content / number
 			return new Issue("checkTableHasHeadings",

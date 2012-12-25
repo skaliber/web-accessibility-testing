@@ -18,12 +18,12 @@ import static org.a11ytesting.test.wcag.Shared.KEY_DOWN;
 import static org.a11ytesting.test.wcag.Shared.KEY_PRESS;
 import static org.a11ytesting.test.wcag.Shared.KEY_UP;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.MouseEventFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for mouse event having keyboard equivalent.
@@ -44,14 +44,14 @@ public class MouseEventHasKeyboardEvent extends AbstractOperableRule {
 
 	/**
 	 * Elements that have mouse events should have keyboard event handlers.
+	 * @param element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/95/
 	 * 
-	 * @param element to check
 	 * @return issue or null.
 	 */
 	@Override
-	public Issue check(Element element) {
+	public Issue check(HtmlVersion htmlVersion, Element element) {
 		String[] keyboardEvents = new String[]{KEY_DOWN, KEY_PRESS, KEY_UP};
 		for (String event : keyboardEvents) {
 			if (element.hasAttr(event)) {

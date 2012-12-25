@@ -19,12 +19,12 @@ import static org.a11ytesting.test.wcag.Shared.ACCESS_KEY;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.AccessKeyFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for MS internet explorer reserved access key value usage.
@@ -45,14 +45,14 @@ public class IeReservedAccessKeyValueNotUsed extends AbstractOperableRule {
 
 	/**
 	 * Check that access key attributes don't clash with IE shortcuts
+	 * @param access element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/2/
 	 * 
-	 * @param access element to check
 	 * @return Issue or null
 	 */
 	@Override
-	public Issue check(Element access) {
+	public Issue check(HtmlVersion htmlVersion, Element access) {
 		List<String> internetExplorerKeys = Arrays.asList(new String[] {
 				"a", "e", "f", "h", "t", "v"});
 		if (internetExplorerKeys.contains(

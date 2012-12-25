@@ -18,12 +18,12 @@ import static org.a11ytesting.test.wcag.Shared.HEADERS;
 import static org.a11ytesting.test.wcag.Shared.TD;
 import static org.a11ytesting.test.wcag.Shared.notComplexTable;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Complex table rule.
@@ -45,14 +45,14 @@ public class ComplexTableDataHasHeading extends AbstractPerceivableRule {
 	/**
 	 * Check that complex table with colspan or rowspan headers also use table
 	 * data element IDs referring to the header they are aligned to.
+	 * @param table to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/8/
 	 * 
-	 * @param table to check
 	 * @return issue identified or null
 	 */
 	@Override
-	public Issue check(Element table) {
+	public Issue check(HtmlVersion htmlVersion, Element table) {
 		if (notComplexTable(table)) {
 			return null;
 		}

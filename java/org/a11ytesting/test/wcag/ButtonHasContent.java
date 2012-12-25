@@ -14,12 +14,12 @@
  */
 package org.a11ytesting.test.wcag;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ButtonFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for button content.
@@ -40,15 +40,15 @@ public class ButtonHasContent extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that button elements have content
+	 * @param button to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/78/
 	 * 
-	 * @param button to check
 	 * @return issue or null
 	 * @todo(dallison) Consider implementing a button filter
 	 */
 	@Override
-	public Issue check(Element button) {
+	public Issue check(HtmlVersion htmlVersion, Element button) {
 		if ((button.hasText() && !button.text().trim().isEmpty())
 				|| !button.children().isEmpty()) {
 			return null;

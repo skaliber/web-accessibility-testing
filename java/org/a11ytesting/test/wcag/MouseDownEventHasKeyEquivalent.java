@@ -16,12 +16,12 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.KEY_DOWN;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.MouseDownFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for mouse down having equivalent keyboard event.
@@ -42,14 +42,14 @@ public class MouseDownEventHasKeyEquivalent extends AbstractOperableRule {
 
 	/**
 	 *  On mouse down event should have equivalent on key event.
+	 * @param element to check.
 	 *  
 	 *  @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/63/
 	 *  
-	 * @param element to check.
 	 * @return issue or null.
 	 */
 	@Override
-	public Issue check(Element element) {
+	public Issue check(HtmlVersion htmlVersion, Element element) {
 		if (!element.hasAttr(KEY_DOWN)) {
 			return new Issue("checkMouseEventsHasKeyEquivalent",
 					"Check that mouse down has evuivalent key event",

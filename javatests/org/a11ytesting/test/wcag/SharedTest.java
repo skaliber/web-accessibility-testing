@@ -14,10 +14,10 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertFalse;
+import static org.testng.AssertJUnit.assertTrue;
 
 import org.a11ytesting.test.Issue;
 import org.jsoup.Jsoup;

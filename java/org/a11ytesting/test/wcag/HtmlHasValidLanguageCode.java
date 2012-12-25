@@ -20,12 +20,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.HtmlFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for HTML must have a valid language code.
@@ -49,15 +49,15 @@ public class HtmlHasValidLanguageCode extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that every html page has a valid lang element
+	 * @param html
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/35/
 	 * @see http://download.oracle.com/javase/1.4.2/docs/api/java/util/Locale.html#getISOLanguages
 	 * 
-	 * @param html
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element html) {
+	public Issue check(HtmlVersion htmlVersion, Element html) {
 		List<String> codes = Arrays.asList(Locale.getISOLanguages());
     if (!html.hasAttr(LANG)) {
       return new Issue(getRuleName(), MESSAGE, Severity.ERROR, html);

@@ -19,12 +19,12 @@ import static org.a11ytesting.test.wcag.Shared.ID;
 import static org.a11ytesting.test.wcag.Shared.TH;
 import static org.a11ytesting.test.wcag.Shared.notComplexTable;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Complex table heading ID rule.
@@ -45,14 +45,14 @@ public class ComplexTableHeadingHasId extends AbstractPerceivableRule {
 
 	/**
 	 * Check that 'complex' data tables have IDs on the headers.
+	 * @param table to inspect
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/6/
 	 * 
-	 * @param table to inspect
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element table) {
+	public Issue check(HtmlVersion htmlVersion, Element table) {
 		if (notComplexTable(table)) {
 			return null;
 		}

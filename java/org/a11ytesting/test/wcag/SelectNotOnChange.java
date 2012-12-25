@@ -16,12 +16,12 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.ON_CHANGE;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.SelectFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for select not using on change events.
@@ -42,14 +42,14 @@ public class SelectNotOnChange extends AbstractOperableRule {
 
 	/**
 	 * On change should not be used with the select element.
+	 * @param select to scan
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/62/
 	 * 
-	 * @param select to scan
 	 * @return issues with the document
 	 */
 	@Override
-	public Issue check(Element select) {
+	public Issue check(HtmlVersion htmlVersion, Element select) {
 		if (select.hasAttr(ON_CHANGE)) {
 			return new Issue("checkSelectNotOnChange",
 					"Check that select element doesn't use on change",

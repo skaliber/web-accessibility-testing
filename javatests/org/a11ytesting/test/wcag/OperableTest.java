@@ -14,19 +14,28 @@
  */
 package org.a11ytesting.test.wcag;
 
+import static org.a11ytesting.test.wcag.SharedTest.ANCHOR;
+import static org.a11ytesting.test.wcag.SharedTest.BLINK;
+import static org.a11ytesting.test.wcag.SharedTest.BODY;
+import static org.a11ytesting.test.wcag.SharedTest.BUTTON;
+import static org.a11ytesting.test.wcag.SharedTest.HTML;
+import static org.a11ytesting.test.wcag.SharedTest.IFRAME;
+import static org.a11ytesting.test.wcag.SharedTest.INPUT;
+import static org.a11ytesting.test.wcag.SharedTest.MARQEE;
+import static org.a11ytesting.test.wcag.SharedTest.SELECT;
+import static org.a11ytesting.test.wcag.SharedTest.TEXTAREA;
+import static org.a11ytesting.test.wcag.SharedTest.TITLE;
+import static org.a11ytesting.test.wcag.SharedTest.selectElement;
+import static org.a11ytesting.test.wcag.SharedTest.testError;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
-import static org.a11ytesting.test.wcag.SharedTest.*;
-import static org.a11ytesting.test.wcag.Shared.getRootElement;
-
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -50,7 +59,7 @@ public class OperableTest {
 				"</body></html>";
 		OnMouseoverAndOnFocus operable = new OnMouseoverAndOnFocus();
 		Element target = selectElement(onClickHtmlBad, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for onmouseover with no on " +
 				"focus");
@@ -62,7 +71,7 @@ public class OperableTest {
 				"onfocus=\"alert('done')\"></body>";
 		OnMouseoverAndOnFocus operable = new OnMouseoverAndOnFocus();
 		Element target = selectElement(onClickHtmlOK, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for onmouseover and on focus " +
 				"element");
 	}
@@ -73,7 +82,7 @@ public class OperableTest {
 				"</body></html>";
 		OnMouseOutAndOnBlur operable = new OnMouseOutAndOnBlur();
 		Element target = selectElement(onOutAndBlurBad, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for mouse out with no on" +
 				"blur");
@@ -85,7 +94,7 @@ public class OperableTest {
 				"onblur=\"alert('all is well')\"></body></html>";
 		OnMouseOutAndOnBlur operable = new OnMouseOutAndOnBlur();
 		Element target = selectElement(onOutAndBlurOk, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for on mouse out and on blur" +
 				"element");
 	}
@@ -96,7 +105,7 @@ public class OperableTest {
 				"</body></html";
 		OnClickIsFocusable operable = new OnClickIsFocusable();
 		Element target = selectElement(onClickNotFocusable, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for mouse on click on non " +
 				"focusable element");
@@ -123,7 +132,7 @@ public class OperableTest {
 	public void testOnClickIsFocusableOk(String html, String select) {
 		OnClickIsFocusable operable = new OnClickIsFocusable();
 		Element target = selectElement(html, select);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for on mouse with focusable " +
 				"input element");
 	}
@@ -134,7 +143,7 @@ public class OperableTest {
 				"</body></html>";
 		OnClickIsFocusable operable = new OnClickIsFocusable();
 		Element target = selectElement(onClickFocusable, ANCHOR);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for on mouse with focusable " +
 				"anchor element");
 	}
@@ -145,7 +154,7 @@ public class OperableTest {
 				"><option value=t >v</option></select></form></body></html>";
 		SelectNotOnChange operable = new SelectNotOnChange();
 		Element target = selectElement(html, SELECT);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for on change event on " +
 				"select element");
@@ -157,7 +166,7 @@ public class OperableTest {
 				"<option value=t >v</option></select></form></body></html>";
 		SelectNotOnChange operable = new SelectNotOnChange();
 		Element target = selectElement(html, SELECT);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected error for on change event on " +
 				"select element");
 	}
@@ -169,7 +178,7 @@ public class OperableTest {
 		MouseDownEventHasKeyEquivalent operable = 
 				new MouseDownEventHasKeyEquivalent();
 		Element target = selectElement(html, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected an error for element with mouse " +
 				"down with no key down");
@@ -183,7 +192,7 @@ public class OperableTest {
 		MouseDownEventHasKeyEquivalent operable =
 				new MouseDownEventHasKeyEquivalent();
 		Element target = selectElement(html, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error with valid element with mouse " +
 				"down and key down");
 	}
@@ -194,7 +203,7 @@ public class OperableTest {
 				"</body></html>";
 		MouseUpEventHasKeyEquivalent operable = new MouseUpEventHasKeyEquivalent();
 		Element target = selectElement(html, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected an error for element with mouse " +
 				"up with no key down");
@@ -207,7 +216,7 @@ public class OperableTest {
 				"</body></html>";
 		MouseUpEventHasKeyEquivalent operable = new MouseUpEventHasKeyEquivalent();
 		Element target = selectElement(html, BODY);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error with valid element with mouse " +
 				"up and key up");
 	}
@@ -221,7 +230,7 @@ public class OperableTest {
 				new NonInteractiveElementWithEventHasRole();
 		Element target = selectElement(interactiveNoRole, BODY);
 		Issue result =
-				operable.check(target);
+				operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for non interactive element " +
 				"without aria role");
@@ -236,7 +245,7 @@ public class OperableTest {
 				new NonInteractiveElementWithEventHasRole();
 		Element target = selectElement(interactiveNoRole, BODY);
 		Issue result =
-				operable.check(target);
+				operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for interactive element " +
 				"with aria role");
 	}
@@ -259,7 +268,7 @@ public class OperableTest {
 	public void testCheckMouseEventElementHasKeyboardEventOk(String html) {
 		Element target = selectElement(html, BODY);
 		MouseEventHasKeyboardEvent operable = new MouseEventHasKeyboardEvent();
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error from mouse event that also " +
 				"has keyboard event");
 	}
@@ -280,7 +289,7 @@ public class OperableTest {
 	public void testCheckMouseEventElementHasKeyboardEventBad(String html) {
 		Element target = selectElement(html, BODY);
 		MouseEventHasKeyboardEvent operable = new MouseEventHasKeyboardEvent();
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for element with mouse event" +
 				"but no keyboard handler");
@@ -292,7 +301,7 @@ public class OperableTest {
 				"T</a><a href=\"#other\" accesskey=\"t\"></a></body></html>";
 		AccessKeyValueUnique operable = new AccessKeyValueUnique();
 		Element target = selectElement(html, ANCHOR);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected issue due to duplicate access key");
 	}
@@ -303,7 +312,7 @@ public class OperableTest {
 		"T</a><a href=\"#other\" accesskey=\"l\"></a></body></html>";
 		AccessKeyValueUnique operable = new AccessKeyValueUnique();
 		Element target = selectElement(html, ANCHOR);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for unique access keys");
 	}
 	
@@ -323,7 +332,7 @@ public class OperableTest {
 	public void testIeReservedAccessKeyValueNotUsed(String html) {
 		Element target = selectElement(html, ANCHOR);
 		IeReservedAccessKeyValueNotUsed operable = new IeReservedAccessKeyValueNotUsed();
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error using IE reserved access key");
 	}
@@ -335,7 +344,7 @@ public class OperableTest {
 		ActiveTextElementNotPresent operable = 
 				new ActiveTextElementNotPresent();
 		Element target = selectElement(html, MARQEE);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error using marqee text");
 	}
@@ -347,7 +356,7 @@ public class OperableTest {
 		ActiveTextElementNotPresent operable =
 				new ActiveTextElementNotPresent();
 		Element target = selectElement(html, BLINK);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error using blinking text");
 	}
@@ -358,7 +367,7 @@ public class OperableTest {
 				"</body><html>";
 		FrameHasTitle operable = new FrameHasTitle();
 		Element target = selectElement(html, IFRAME);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for frame with no title");
 	}
@@ -369,7 +378,7 @@ public class OperableTest {
 				"</body><html>";
 		FrameHasTitle operable = new FrameHasTitle();
 		Element target = selectElement(html, IFRAME);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for frame with title");
 	}
 
@@ -380,7 +389,7 @@ public class OperableTest {
 				"</body><html>";
 		FrameTitleUnique operable = new FrameTitleUnique();
 		Element target = selectElement(html, IFRAME);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error on duplicate frame title");
 	}
@@ -392,8 +401,20 @@ public class OperableTest {
 				"</body><html>";
 		FrameTitleUnique operable = new FrameTitleUnique();
 		Element target = selectElement(html, IFRAME);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for non duplicate frame");
+	}
+	
+	@Test
+	public void testFrameTitleHtml5() {
+		String html = "<html><body><iframe title=\"sometitle\"></iframe>" +
+				"<iframe title=\"othertitle\"></iframe>" +
+				"</body><html>";
+		FrameTitleUnique operable = new FrameTitleUnique();
+		Element target = selectElement(html, IFRAME);
+		Issue result = operable.check(HtmlVersion.HTML5, target);
+		testError(result, target, Severity.WARNING,
+				"html5 frame is not supported");
 	}
 
 	@DataProvider(name = "emptyTitle")
@@ -410,7 +431,7 @@ public class OperableTest {
 	public void testCheckTitleIsNotEmptyError(String html) {
 		TitleIsNotEmpty operable = new TitleIsNotEmpty();
 		Element target = selectElement(html, HTML);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for empty title");
 	}
@@ -421,7 +442,7 @@ public class OperableTest {
 				"</head></html>";
 		TitleIsNotEmpty operable = new TitleIsNotEmpty();
 		Element target = selectElement(html, HTML);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for non empty title");
 	}
 
@@ -429,7 +450,7 @@ public class OperableTest {
 	public void testTitleIsConciseError() {
 		Element target = selectElement(LONG_TITLE, TITLE);
 		TitleIsConcise operable = new TitleIsConcise();
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for non concise title");
 	}
@@ -440,7 +461,7 @@ public class OperableTest {
 				"</head></html>";
 		TitleIsConcise operable = new TitleIsConcise();
 		Element target = selectElement(html, TITLE);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for concise title");
 	}
 	
@@ -449,7 +470,7 @@ public class OperableTest {
 		String html = "<html><head><title>Bad</title></head></html>";
 		TitleHasEnoughWord operable = new TitleHasEnoughWord();
 		Element target = selectElement(html, TITLE);
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for title with a single word");
 	}
@@ -458,7 +479,7 @@ public class OperableTest {
 	public void testTitleHasMoreThanOneWordOk() {
 		Element target = selectElement(LONG_TITLE, TITLE);
 		TitleHasEnoughWord operable = new TitleHasEnoughWord();
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expect no error for title with more than one " + 
 				"word");
 	}
@@ -489,7 +510,7 @@ public class OperableTest {
 	public void testLinkTextNotReplicatedError(String html) {
 		Element target = selectElement(html, ANCHOR);
 		LinkTextNotReplicated operable = new LinkTextNotReplicated();
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for same text with different target");
 	}
@@ -550,7 +571,7 @@ public class OperableTest {
     LinkTextNotReplicated test = new LinkTextNotReplicated();
     Document doc = Jsoup.parse(html, "http://www.google.com/");
     for (Element link : doc.select("a")) {
-      Issue result = test.check(link);
+      Issue result = test.check(null, link);
       assertNull(result, "Expected use of absolute url to avoid mixed " +
           "relative and absolute url where same");
     }
@@ -560,7 +581,7 @@ public class OperableTest {
 	public void testLinkTextNotReplicatedOk(String html) {
 		Element target = selectElement(html, ANCHOR);
 		LinkTextNotReplicated operable = new LinkTextNotReplicated();
-		Issue result = operable.check(target);
+		Issue result = operable.check(HtmlVersion.UNKNOWN, target);
 		assertNull(result, "Expected no error for alternate link text" +
 				"both targeting same page");
 	}

@@ -17,12 +17,12 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.ALT_TEXT;
 import static org.a11ytesting.test.wcag.Shared.isVisible;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ImageFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for alt text of a reasonable length.
@@ -46,14 +46,14 @@ public class AltTextLengthReasonable extends AbstractPerceivableRule {
 
 	/**
 	 * Check the length of the alt text is of reasonable length.
+	 * @param image to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/29/
 	 * 
-	 * @param image to test
 	 * @return Issue if identified or null
 	 */
 	@Override
-	public Issue check(Element image) {
+	public Issue check(HtmlVersion htmlVersion, Element image) {
 		if (isVisible(image) && image.hasAttr(ALT_TEXT)
 				&& (image.attr(ALT_TEXT).length() < MIN_ALT_LENGTH || 
 						image.attr(ALT_TEXT).length() > MAX_ALT_LENGTH)) {

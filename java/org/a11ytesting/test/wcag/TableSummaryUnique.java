@@ -17,13 +17,13 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.SUMMARY;
 import static org.a11ytesting.test.wcag.Shared.getRootElement;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ElementFilter;
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for table summary uniqueness.
@@ -44,32 +44,49 @@ public class TableSummaryUnique extends AbstractPerceivableRule {
 
 	/**
 	 * Check that table summary content is unique.
+	 * @param table element to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/5/
 	 * 
-	 * @param table element to test
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element table) {
-		if (!table.hasAttr(SUMMARY)) {
+	public Issue check(HtmlVersion htmlVersion, Element table) {
+		
+		switch (htmlVersion) {
+		// summary attribute is not supported by html5
+		case HTML5: {
+			if (table.hasAttr(SUMMARY)) {
+				return new Issue("checkTableSummaryUnique",
+						"Check that table summary is not supported by html5",
+						Severity.WARNING, table);
+			}
 			return null;
 		}
-		Element root = getRootElement(table);
-		ElementFilter filter = new TableFilter();
-		for (Element otherTable : filter.result(root)) {
-			if (table.equals(otherTable)) { // Skip self
-				continue;
+
+		default: {
+			if (!table.hasAttr(SUMMARY)) {
+				return null;
 			}
-			if (!otherTable.hasAttr(SUMMARY)) {
-				continue;
+			Element root = getRootElement(table);
+			ElementFilter tableFilter = new TableFilter();
+
+			for (Element otherTable : tableFilter.result(root)) {
+				if (table.equals(otherTable)) { // Skip self
+					continue;
+				}
+				if (!otherTable.hasAttr(SUMMARY)) {
+					continue;
+				}
+				if (table.attr(SUMMARY).equals(otherTable.attr(SUMMARY))) {
+					return new Issue("checkTableSummaryUnique",
+							"Check that table summary is unique",
+							Severity.ERROR, table);
+				}
 			}
-			if (table.attr(SUMMARY).equals(otherTable.attr(SUMMARY))) {
-				return new Issue("checkTableSummaryUnique",
-						"Check that table summary is unique",
-						Severity.ERROR, table);
-			}
+			return null;
 		}
-		return null;
+		}
 	}
+
 }

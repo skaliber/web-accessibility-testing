@@ -16,12 +16,12 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.SUMMARY;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for table summary attribute presence.
@@ -42,20 +42,34 @@ public class TableHasSummaryAttribute extends AbstractPerceivableRule {
 
 	/**
 	 * Check that data tables are using the summary attribute.
+	 * @param table to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/3/
 	 * 
-	 * @param table to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element table) {
-		if (!table.hasAttr(SUMMARY)) {
-			// @todo(dallison) Consider checking length
-			return new Issue("checkTableHasSummaryAttribute",
-					"Check that data table has a summary attribute",
-					Severity.ERROR, table);
+	public Issue check(HtmlVersion htmlVersion, Element table) {
+		switch (htmlVersion) {
+		// summary attribute is not supported by html5
+		case HTML5: {
+			if (table.hasAttr(SUMMARY)) {
+				return new Issue("checkTableHasSummaryAttribute",
+						"Check that table summary is not supported by html5",
+						Severity.WARNING, table);
+			}
+			return null;
 		}
-		return null;
+
+		default: {
+			if (!table.hasAttr(SUMMARY)) {
+				// @todo(dallison) Consider checking length
+				return new Issue("checkTableHasSummaryAttribute",
+						"Check that data table has a summary attribute",
+						Severity.ERROR, table);
+			}
+			return null;
+		}
+		}
 	}
 }

@@ -17,12 +17,12 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.TITLE;
 import static org.a11ytesting.test.wcag.Shared.VALUE;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.FormControlFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for form control has description also.
@@ -43,14 +43,14 @@ public class FormControlHasDescription extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that form controls have either a value or title.
+	 * @param input to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/77/
 	 * 
-	 * @param input to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element input) {
+	public Issue check(HtmlVersion htmlVersion, Element input) {
 		if (input.hasAttr(TITLE) || input.hasAttr(VALUE)) {
 			return null;
 		}

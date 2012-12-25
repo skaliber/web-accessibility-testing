@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.reflections.Reflections;
 
@@ -85,16 +86,17 @@ public class Evaluator {
 	/**
 	 * Collect the issues for the current loaded set of
 	 * rules 
-	 * @param root element for analysis.
-	 * @return the collection of issues identified.
+	 * @param root Document for analysis.
+	 * @return the collection of issues identified for supported versions.
 	 */
-	public List<Issue> collectIssues(Element root) {
+	public List<Issue> collectIssues(Document root) {
+		HtmlVersion version = HtmlVersion.create(root);
 		List<Issue> result = new ArrayList<Issue>();
 		elementsChecked = 0;
-		for (Rule rule : forRules) {
+		for (Rule rule : forRules) {			
 			Filter filter = rule.getFilter();
 			for (Element target : filter.result(root)) {
-				Issue issue = rule.check(target);
+				Issue issue = rule.check(version, target);
 				elementsChecked++;
 				if (null != issue) {
 					result.add(issue);

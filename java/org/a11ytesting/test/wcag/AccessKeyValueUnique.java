@@ -17,13 +17,13 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.ACCESS_KEY;
 import static org.a11ytesting.test.wcag.Shared.getRootElement;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.AccessKeyFilter;
 import org.a11ytesting.filter.ElementFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for access key uniqueness in a page.
@@ -44,14 +44,14 @@ public class AccessKeyValueUnique extends AbstractOperableRule {
 
 	/**
 	 * Check that access key attributes are unique.
+	 * @param access element to check.
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/1/
 	 * 
-	 * @param access element to check.
 	 * @return Issue or null.
 	 */
 	@Override
-	public Issue check(Element access) {
+	public Issue check(HtmlVersion htmlVersion, Element access) {
 		Element root = getRootElement(access);
 		ElementFilter filter = new AccessKeyFilter();
 		for (Element other : filter.result(root)) {
@@ -69,4 +69,5 @@ public class AccessKeyValueUnique extends AbstractOperableRule {
 		}
 		return null;
 	}
+
 }

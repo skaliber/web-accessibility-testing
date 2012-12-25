@@ -14,9 +14,15 @@
  */
 package org.a11ytesting.test.wcag;
 
+import static org.a11ytesting.test.wcag.SharedTest.BUTTON;
+import static org.a11ytesting.test.wcag.SharedTest.FIELDSET;
+import static org.a11ytesting.test.wcag.SharedTest.HTML;
+import static org.a11ytesting.test.wcag.SharedTest.INPUT;
+import static org.a11ytesting.test.wcag.SharedTest.LABEL;
+import static org.a11ytesting.test.wcag.SharedTest.LEGEND;
+import static org.a11ytesting.test.wcag.SharedTest.selectElement;
+import static org.a11ytesting.test.wcag.SharedTest.testError;
 import static org.testng.Assert.assertNull;
-
-import static org.a11ytesting.test.wcag.SharedTest.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +57,7 @@ public class UnderstandableTest {
 		HtmlHasValidLanguageCode understand =
 				new HtmlHasValidLanguageCode();
 		Issue issue = understand.check(
-				selectElement(html, HTML));
+				null, selectElement(html, HTML));
 		assertNull(issue, "Expeced no error for valid ISO country code");
 	}
 
@@ -62,7 +68,7 @@ public class UnderstandableTest {
 		Element target = selectElement(html, HTML);
 		HtmlHasValidLanguageCode understand =
 				new HtmlHasValidLanguageCode();
-		Issue result = understand.check(target);
+		Issue result = understand.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error when using invalid language code");
 	}
@@ -74,7 +80,7 @@ public class UnderstandableTest {
 				"</body></html>";
 		FieldsetHasLegend understand = new FieldsetHasLegend();
 		Issue issue = understand.check(
-				selectElement(html, FIELDSET));
+				null, selectElement(html, FIELDSET));
 		assertNull(issue, "Expected no error as fieldset has legend");
 	}
 
@@ -85,7 +91,7 @@ public class UnderstandableTest {
 		"</body></html>";
 		Element target = selectElement(html, FIELDSET);
 		FieldsetHasLegend understand = new FieldsetHasLegend();
-		Issue result = understand.check(target);
+		Issue result = understand.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for fieldset without legend");
 	}
@@ -99,7 +105,7 @@ public class UnderstandableTest {
 				"</body></html>";
 		Element target = selectElement(html, INPUT);
 		ControlHasDescription understand = new ControlHasDescription();
-		Issue result = understand.check(target);
+		Issue result = understand.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for control without description");
 	}
@@ -114,7 +120,7 @@ public class UnderstandableTest {
 		"</body></html>";
 		Element target = selectElement(html, INPUT);
 		ControlHasDescription understand = new ControlHasDescription();
-		Issue result = understand.check(target);
+		Issue result = understand.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for control with empty id not matched");
 	}
@@ -141,7 +147,7 @@ public class UnderstandableTest {
 	public void testContolHasDescriptorOk(String html) {
 		ControlHasDescription understand = new ControlHasDescription();
 		Issue result = understand.check(
-				selectElement(html, INPUT));
+				null, selectElement(html, INPUT));
 		assertNull(result, "Expected no error for labelled control");
 	}
 
@@ -166,7 +172,7 @@ public class UnderstandableTest {
 	public void testImageInputHasDescriptionOk(String html) {
 		ImageInputHasDescription understand = new ImageInputHasDescription();
 		Issue result = understand.check(
-				selectElement(html, INPUT));
+				null, selectElement(html, INPUT));
 		assertNull(result, "Expected no error as image input has description");
 	}
 
@@ -180,7 +186,7 @@ public class UnderstandableTest {
 				"</body></html>";
 		Element target = selectElement(html, INPUT);
 		ImageInputHasDescription understand = new ImageInputHasDescription();
-		Issue result = understand.check(target);
+		Issue result = understand.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for image input without description");
 	}
@@ -192,7 +198,7 @@ public class UnderstandableTest {
 				"</body></html>";
 		Element target = selectElement(html, BUTTON);
 		ButtonHasContent understand = new ButtonHasContent();
-		Issue result = understand.check(target);
+		Issue result = understand.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error on empty button");
 	}
@@ -215,7 +221,7 @@ public class UnderstandableTest {
 	public void testButtonHasContentOk(String html) {
 		ButtonHasContent understand = new ButtonHasContent();
 		Issue result = understand.check(
-				selectElement(html, BUTTON));
+				null, selectElement(html, BUTTON));
 		assertNull(result, "Expected no error as button has content");
 	}
 
@@ -232,7 +238,7 @@ public class UnderstandableTest {
 	public void testDescriptionHasTextError(String html) {
 		Element target = selectElement(html, LABEL + ", " + LEGEND);
 		DescriptionHasText understand = new DescriptionHasText();
-		Issue result = understand.check(target);
+		Issue result = understand.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error for empty description");
 	}
@@ -248,7 +254,7 @@ public class UnderstandableTest {
 	public void testDescriptionHasTextOk(String html) {
 		DescriptionHasText understand = new DescriptionHasText();
 		Issue result = understand.check(
-				selectElement(html, LABEL + ", " + LEGEND));
+				null, selectElement(html, LABEL + ", " + LEGEND));
 		assertNull(result, "Expected no error for OK description");
 	}
 
@@ -258,7 +264,7 @@ public class UnderstandableTest {
 				"<input type=text id=thesame ></input></form></body></html>";
 		Element target = selectElement(html, INPUT);
 		ControlIdUnique understand = new ControlIdUnique();
-		Issue result = understand.check(target);
+		Issue result = understand.check(null, target);
 		testError(result, target, Severity.ERROR,
 				"Expected error on duplicate input control id");
 	}
@@ -269,7 +275,7 @@ public class UnderstandableTest {
 				"<input type=text id=sesameStreet ></input></form></body></html>";
 		ControlIdUnique understand = new ControlIdUnique();
 		Issue result = understand.check(
-				selectElement(html, INPUT));
+				null, selectElement(html, INPUT));
 		assertNull(result, "Expected no error for inputs with different id");
 	}
 }

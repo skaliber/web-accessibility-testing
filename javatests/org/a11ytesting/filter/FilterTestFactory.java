@@ -14,7 +14,6 @@
  */
 package org.a11ytesting.filter;
 
-import org.a11ytesting.test.Filter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,7 +23,7 @@ import org.testng.annotations.Factory;
 
 public class FilterTestFactory {
 	
-	private static final String HTML = "<html>" +
+	private static final String HTML = " <!DOCTYPE html> <html>" +
 			"<head><title>Some things are just blah</title></head>" +
 			"<body>" +
 			"<a accesskey=y>FirstLink</a>" +

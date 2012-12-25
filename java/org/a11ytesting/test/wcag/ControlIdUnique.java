@@ -17,13 +17,13 @@ package org.a11ytesting.test.wcag;
 import static org.a11ytesting.test.wcag.Shared.ID;
 import static org.a11ytesting.test.wcag.Shared.getRootElement;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ElementFilter;
 import org.a11ytesting.filter.InputControlFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for Control id uniqueness.
@@ -44,14 +44,14 @@ public class ControlIdUnique extends AbstractUnderstandableRule {
 
 	/**
  	 * Check that form controls have unique IDs
+	 * @param control to check
  	 * 
  	 *  @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/83/
  	 *  
-	 * @param control to check
 	 * @return issue or null
 	 */
 	@Override
-	public Issue check(Element control) {
+	public Issue check(HtmlVersion htmlVersion, Element control) {
 		if (!control.hasAttr(ID)) {
 			return null;
 		}

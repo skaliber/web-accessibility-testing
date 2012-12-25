@@ -21,12 +21,12 @@ import static org.a11ytesting.test.wcag.Shared.TAB_INDEX;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jsoup.nodes.Element;
-
 import org.a11ytesting.filter.ClickFilter;
 import org.a11ytesting.test.Filter;
+import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+import org.jsoup.nodes.Element;
 
 /**
  * Rule for on click elements also being focusable.
@@ -47,14 +47,14 @@ public class OnClickIsFocusable extends AbstractOperableRule {
 
 	/**
 	 * Elements with on click should be focusable.
+	 * @param document to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/61/
 	 * 
-	 * @param document to test
 	 * @return issues with document
 	 */
 	@Override
-	public Issue check(Element element) {
+	public Issue check(HtmlVersion htmlVersion, Element element) {
 		if (notFocusable(element)) {
 			return new Issue("checkOnClickIsFocusable",
 					"Check that when an element has onclick is is also " +
