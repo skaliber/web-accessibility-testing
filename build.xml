@@ -30,13 +30,13 @@
 	</target>
 	
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="false" target="1.6">
 			<classpath refid="classpath" />
 		</javac>
 	</target>
 	
 	<target name="compile.test" depends="init,compile">
-		<javac srcdir="${src.test}" destdir="${tests}" includeantruntime="false">
+		<javac srcdir="${src.test}" destdir="${tests}" includeantruntime="false" target="1.6">
 			<classpath refid="classpath.test" />
 		</javac>
 	</target>
