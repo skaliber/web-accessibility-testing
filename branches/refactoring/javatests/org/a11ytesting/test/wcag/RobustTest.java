@@ -14,15 +14,15 @@
  */
 package org.a11ytesting.test.wcag;
 
-import static org.a11ytesting.test.wcag.SharedTest.selectElement;
-import static org.a11ytesting.test.wcag.SharedTest.testError;
+import static org.a11ytesting.test.wcag.SharedTest.*;
+
+import org.jsoup.nodes.Element;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 /**
  * Tests for the WCAG robust aspect

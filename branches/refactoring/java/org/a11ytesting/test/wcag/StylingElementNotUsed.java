@@ -14,12 +14,14 @@
  */
 package org.a11ytesting.test.wcag;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.StyleElementFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
+
 
 /**
  * Rule for styling element not present.

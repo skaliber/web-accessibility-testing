@@ -19,12 +19,14 @@ import static org.a11ytesting.test.wcag.Shared.ACCESS_KEY;
 import java.util.Arrays;
 import java.util.List;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.AccessKeyFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
+
 
 /**
  * Rule for MS internet explorer reserved access key value usage.

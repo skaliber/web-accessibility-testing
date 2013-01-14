@@ -25,6 +25,7 @@ import static org.a11ytesting.test.wcag.SharedTest.MARQEE;
 import static org.a11ytesting.test.wcag.SharedTest.SELECT;
 import static org.a11ytesting.test.wcag.SharedTest.TEXTAREA;
 import static org.a11ytesting.test.wcag.SharedTest.TITLE;
+
 import static org.a11ytesting.test.wcag.SharedTest.selectElement;
 import static org.a11ytesting.test.wcag.SharedTest.testError;
 import static org.testng.Assert.assertEquals;
@@ -33,6 +34,7 @@ import static org.testng.Assert.assertNull;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
