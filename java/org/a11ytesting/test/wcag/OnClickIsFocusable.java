@@ -21,12 +21,14 @@ import static org.a11ytesting.test.wcag.Shared.TAB_INDEX;
 import java.util.Arrays;
 import java.util.List;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.ClickFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
+
 
 /**
  * Rule for on click elements also being focusable.

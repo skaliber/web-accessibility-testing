@@ -16,13 +16,15 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.LEGEND;
 
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import org.a11ytesting.filter.FieldsetFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
 
 /**
  * Rule for fieldset elements having a legend.

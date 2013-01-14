@@ -23,13 +23,15 @@ import static org.a11ytesting.test.wcag.Shared.SELECT;
 import java.util.Arrays;
 import java.util.List;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.aria.Role;
 import org.a11ytesting.filter.EventFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
+
 
 /**
  * Rule for non interactive elements with an even also has an Aria role.

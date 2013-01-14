@@ -18,14 +18,16 @@ import static org.a11ytesting.test.wcag.SharedTest.IMG;
 import static org.a11ytesting.test.wcag.SharedTest.TABLE;
 import static org.a11ytesting.test.wcag.SharedTest.selectElement;
 import static org.a11ytesting.test.wcag.SharedTest.testError;
+
 import static org.testng.Assert.assertNull;
+
+import org.jsoup.nodes.Element;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 /**
  * Tests for WCAG perceivable aspects.

@@ -18,12 +18,14 @@ import static org.a11ytesting.test.wcag.Shared.HEADERS;
 import static org.a11ytesting.test.wcag.Shared.TD;
 import static org.a11ytesting.test.wcag.Shared.notComplexTable;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
+
 
 /**
  * Complex table rule.

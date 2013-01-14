@@ -17,12 +17,13 @@ package org.a11ytesting.test.wcag;
 import java.util.Arrays;
 import java.util.List;
 
-import org.a11ytesting.aria.Role;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
+
+import org.a11ytesting.aria.Role;
 
 /**
  * Shared variables for common HTML element selectors.

@@ -19,13 +19,15 @@ import static org.a11ytesting.test.wcag.Shared.TITLE;
 import static org.a11ytesting.test.wcag.Shared.getRootElement;
 import static org.a11ytesting.test.wcag.Shared.isImageInput;
 
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import org.a11ytesting.filter.InputControlFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
 
 /**
  * Page control has a description rule.

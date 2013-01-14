@@ -16,12 +16,14 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.SUMMARY;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.TableFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
+
 
 /**
  * Rule for table summary attribute presence.

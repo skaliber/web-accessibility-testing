@@ -16,12 +16,14 @@ package org.a11ytesting.test.wcag;
 
 import static org.a11ytesting.test.wcag.Shared.FOCUS;
 
+import org.jsoup.nodes.Element;
+
 import org.a11ytesting.filter.MouseOverFilter;
 import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
+
 
 public class OnMouseoverAndOnFocus extends AbstractOperableRule {
 
