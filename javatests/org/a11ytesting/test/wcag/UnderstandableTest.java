@@ -21,11 +21,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.a11ytesting.test.Issue;
-import org.a11ytesting.test.Issue.Severity;
 import org.jsoup.nodes.Element;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import org.a11ytesting.test.Issue;
+import org.a11ytesting.test.Issue.Severity;
+
 /**
  * Tests for the understandable aspects of WCAG guidelines.
  * 
