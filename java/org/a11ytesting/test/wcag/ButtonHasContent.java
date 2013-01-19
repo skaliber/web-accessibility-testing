@@ -42,10 +42,10 @@ public class ButtonHasContent extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that button elements have content
-	 * @param button to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/78/
 	 * 
+	 * @param button to check
 	 * @return issue or null
 	 * @todo(dallison) Consider implementing a button filter
 	 */

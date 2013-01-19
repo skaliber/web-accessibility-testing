@@ -42,10 +42,10 @@ public class ActiveTextElementNotPresent extends AbstractOperableRule {
 
 	/**
 	 * Check that the marqee and blink elements are not used.
-	 * @param active element to check
 	 * 
 	 * @see  http://openajax-dev.jongund.webfactional.com/wcag20/rule/68/
 	 * 
+	 * @param active element to check
 	 * @return issue identified or null
 	 */
 	@Override

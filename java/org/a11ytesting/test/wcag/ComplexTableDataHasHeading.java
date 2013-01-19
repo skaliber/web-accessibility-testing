@@ -47,10 +47,10 @@ public class ComplexTableDataHasHeading extends AbstractPerceivableRule {
 	/**
 	 * Check that complex table with colspan or rowspan headers also use table
 	 * data element IDs referring to the header they are aligned to.
-	 * @param table to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/8/
 	 * 
+	 * @param table to check
 	 * @return issue identified or null
 	 */
 	@Override

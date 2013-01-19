@@ -53,10 +53,10 @@ public class NonInteractiveElementWithEventHasRole
 
 	/**
 	 * Elements other than link and form with event handlers also have valid roles.
-	 * @param document
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/94/
 	 * 
+	 * @param document
 	 * @return issues identified with the document
 	 */
 	@Override

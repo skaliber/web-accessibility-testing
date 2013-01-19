@@ -47,10 +47,10 @@ public class FrameTitleUnique extends AbstractOperableRule {
 
 	/**
 	 * Check that frame title values are unique.
-	 * @param frame to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/11/
 	 * 
+	 * @param frame to check
 	 * @return Issue or null.
 	 */
 	@Override

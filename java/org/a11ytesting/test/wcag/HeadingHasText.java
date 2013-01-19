@@ -44,10 +44,10 @@ public class HeadingHasText extends AbstractOperableRule {
 
 	/**
 	 * Check that heading elements have text.
-	 * @param heading
 	 * 
 	 * @see getNodeTextRecursively
 	 * 
+	 * @param heading
 	 * @return issue or null
 	 */
 	@Override

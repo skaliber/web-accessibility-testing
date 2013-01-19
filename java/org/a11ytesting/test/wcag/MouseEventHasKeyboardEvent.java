@@ -46,10 +46,10 @@ public class MouseEventHasKeyboardEvent extends AbstractOperableRule {
 
 	/**
 	 * Elements that have mouse events should have keyboard event handlers.
-	 * @param element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/95/
 	 * 
+	 * @param element to check
 	 * @return issue or null.
 	 */
 	@Override

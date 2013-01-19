@@ -45,10 +45,10 @@ public class FieldsetHasLegend extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that field set elements have legend elements.
-	 * @param fieldset to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/73/
 	 * 
+	 * @param fieldset to check
 	 * @return issue or null
 	 */
 	@Override

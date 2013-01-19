@@ -47,10 +47,10 @@ public class IeReservedAccessKeyValueNotUsed extends AbstractOperableRule {
 
 	/**
 	 * Check that access key attributes don't clash with IE shortcuts
-	 * @param access element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/2/
 	 * 
+	 * @param access element to check
 	 * @return Issue or null
 	 */
 	@Override

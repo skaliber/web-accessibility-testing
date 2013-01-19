@@ -48,10 +48,10 @@ public class AltTextLengthReasonable extends AbstractPerceivableRule {
 
 	/**
 	 * Check the length of the alt text is of reasonable length.
-	 * @param image to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/29/
 	 * 
+	 * @param image to test
 	 * @return Issue if identified or null
 	 */
 	@Override

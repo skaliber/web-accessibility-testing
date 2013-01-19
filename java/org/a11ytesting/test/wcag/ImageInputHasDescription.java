@@ -41,10 +41,10 @@ public class ImageInputHasDescription extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that image input elements have an alt or title attribute.
-	 * @param image input to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/76/
 	 * 
+	 * @param image input to check
 	 * @return issue or null
 	 */
 	@Override

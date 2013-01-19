@@ -46,10 +46,10 @@ public class InvisibleImageNoTitle extends AbstractPerceivableRule {
 	/**
 	 * Check that when an image is tagged as presentation that it doesn't
 	 * have a title.
-	 * @param image
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/31/
-	 *  
+	 * 
+	 * @param image
 	 * @return issue or null.
 	 */
 	@Override

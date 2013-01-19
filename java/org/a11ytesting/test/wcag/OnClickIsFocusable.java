@@ -49,10 +49,10 @@ public class OnClickIsFocusable extends AbstractOperableRule {
 
 	/**
 	 * Elements with on click should be focusable.
-	 * @param document to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/61/
 	 * 
+	 * @param document to test
 	 * @return issues with document
 	 */
 	@Override

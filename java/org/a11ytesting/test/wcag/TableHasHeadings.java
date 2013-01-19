@@ -42,10 +42,10 @@ public class TableHasHeadings extends AbstractPerceivableRule {
 
 	/**
 	 * Check that data tables are using headers.
-	 * @param table element to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/4/
 	 * 
+	 * @param table element to test
 	 * @return issue or null
 	 */
 	@Override

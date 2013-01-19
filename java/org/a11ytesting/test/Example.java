@@ -51,7 +51,6 @@ public class Example {
 		
 		Evaluator evaluator = new Evaluator();
 		evaluator.addPackage("org.a11ytesting.test.wcag");		
-		
 		List<Issue> result = evaluator.collectIssues(document);
 		
 		for (Issue issue : result) {

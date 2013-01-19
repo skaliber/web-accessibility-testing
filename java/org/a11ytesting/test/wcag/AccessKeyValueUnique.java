@@ -46,10 +46,10 @@ public class AccessKeyValueUnique extends AbstractOperableRule {
 
 	/**
 	 * Check that access key attributes are unique.
-	 * @param access element to check.
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/1/
 	 * 
+	 * @param access element to check.
 	 * @return Issue or null.
 	 */
 	@Override

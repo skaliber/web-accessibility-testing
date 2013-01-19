@@ -44,10 +44,10 @@ public class MouseDownEventHasKeyEquivalent extends AbstractOperableRule {
 
 	/**
 	 *  On mouse down event should have equivalent on key event.
-	 * @param element to check.
 	 *  
-	 *  @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/63/
-	 *  
+	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/63/
+	 * 
+	 * @param element to check. 
 	 * @return issue or null.
 	 */
 	@Override

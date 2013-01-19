@@ -39,10 +39,10 @@ public class OnMouseoverAndOnFocus extends AbstractOperableRule {
 
 	/**
 	 * Element with mouse over also has on focus attribute.
-	 * @param element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/59/
 	 * 
+	 * @param element to check
 	 * @return issue or null
 	 */
 	@Override

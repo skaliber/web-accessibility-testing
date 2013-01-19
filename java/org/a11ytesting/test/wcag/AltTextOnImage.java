@@ -45,10 +45,10 @@ public class AltTextOnImage extends AbstractPerceivableRule {
 
 	/**
 	 * Image has alt text.
-	 * @param image to inspect.
 	 *
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/26/
 	 * 
+	 * @param image to inspect.
 	 * @return Issue identified or null if no issue was identified
 	 * 
 	 * @todo(dallison) If aria role is presentation must have length > 0
