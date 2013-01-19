@@ -44,10 +44,10 @@ public class TableHasSummaryAttribute extends AbstractPerceivableRule {
 
 	/**
 	 * Check that data tables are using the summary attribute.
-	 * @param table to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/3/
 	 * 
+	 * @param table to check
 	 * @return issue or null
 	 */
 	@Override

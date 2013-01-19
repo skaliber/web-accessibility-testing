@@ -45,10 +45,10 @@ public class FormControlHasDescription extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that form controls have either a value or title.
-	 * @param input to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/77/
 	 * 
+	 * @param input to check
 	 * @return issue or null
 	 */
 	@Override

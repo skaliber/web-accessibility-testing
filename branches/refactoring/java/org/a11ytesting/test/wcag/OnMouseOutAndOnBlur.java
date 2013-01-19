@@ -39,10 +39,10 @@ public class OnMouseOutAndOnBlur extends AbstractOperableRule {
 
 	/**
 	 * Element with mouse out also has blur attribute.
-	 * @param element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/60/
 	 * 
+	 * @param element to check
 	 * @return issue or null
 	 */
 	@Override

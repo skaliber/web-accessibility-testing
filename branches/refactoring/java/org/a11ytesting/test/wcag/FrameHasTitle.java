@@ -45,10 +45,10 @@ public class FrameHasTitle extends AbstractOperableRule {
 
 	/**
 	 * Check that frame elements have a title attribute
-	 * @param frame element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/10/
 	 * 
+	 * @param frame element to check
 	 * @return Issue or null
 	 */
 	@Override

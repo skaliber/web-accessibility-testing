@@ -28,7 +28,6 @@ import org.a11ytesting.test.Filter;
 import org.a11ytesting.test.HtmlVersion;
 import org.a11ytesting.test.Issue;
 import org.a11ytesting.test.Issue.Severity;
-import org.jsoup.nodes.Element;
 
 /**
  * Complex table heading unique rule.
@@ -49,10 +48,10 @@ public class ComplexTableHeadingIdUnique extends AbstractPerceivableRule {
 
 	/**
 	 * Check that 'complex' table heading IDs are unique.
-	 * @param table to check.
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/7/
 	 * 
+	 * @param table to check.
 	 * @return issue identified or null
 	 */
 	@Override

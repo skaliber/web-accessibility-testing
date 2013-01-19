@@ -51,11 +51,11 @@ public class HtmlHasValidLanguageCode extends AbstractUnderstandableRule {
 
 	/**
 	 * Check that every html page has a valid lang element
-	 * @param html
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/35/
 	 * @see http://download.oracle.com/javase/1.4.2/docs/api/java/util/Locale.html#getISOLanguages
 	 * 
+	 * @param html
 	 * @return issue or null
 	 */
 	@Override

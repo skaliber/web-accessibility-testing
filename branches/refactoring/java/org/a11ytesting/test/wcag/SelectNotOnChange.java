@@ -44,10 +44,10 @@ public class SelectNotOnChange extends AbstractOperableRule {
 
 	/**
 	 * On change should not be used with the select element.
-	 * @param select to scan
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/62/
 	 * 
+	 * @param select to scan
 	 * @return issues with the document
 	 */
 	@Override

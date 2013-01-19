@@ -47,10 +47,10 @@ public class ComplexTableHeadingHasId extends AbstractPerceivableRule {
 
 	/**
 	 * Check that 'complex' data tables have IDs on the headers.
-	 * @param table to inspect
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/6/
 	 * 
+	 * @param table to inspect
 	 * @return issue or null
 	 */
 	@Override

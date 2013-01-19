@@ -44,10 +44,10 @@ public class MouseUpEventHasKeyEquivalent extends AbstractOperableRule {
 
 	/**
 	 * On mouse up event should have a key equivalent.
-	 * @param element to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/63/
-	 * 
+	 *
+	 * @param element to check
 	 * @return issue or null
 	 */
 	@Override

@@ -50,10 +50,10 @@ public class AltTextOnImageNotBad extends AbstractPerceivableRule {
 
 	/**
 	 * Check for images with invalid alt text value.
-	 * @param element to inspect.
 	 *
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/28/
 	 * 
+	 * @param element to inspect.
 	 * @return Issue identified or null if none.
 	 * 
 	 * @todo(dallison) check that not just prefixes of file names.

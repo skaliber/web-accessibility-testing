@@ -44,10 +44,10 @@ public class TitleIsConcise extends AbstractOperableRule {
 
 	/**
 	 * Check that title text is concise.
-	 * @param title element to check.
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/24/
 	 * 
+	 * @param title element to check.
 	 * @return issue or null
 	 */
 	@Override

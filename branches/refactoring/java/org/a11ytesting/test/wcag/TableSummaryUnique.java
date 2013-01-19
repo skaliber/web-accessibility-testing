@@ -46,10 +46,10 @@ public class TableSummaryUnique extends AbstractPerceivableRule {
 
 	/**
 	 * Check that table summary content is unique.
-	 * @param table element to test
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/5/
 	 * 
+	 * @param table element to test
 	 * @return issue or null
 	 */
 	@Override

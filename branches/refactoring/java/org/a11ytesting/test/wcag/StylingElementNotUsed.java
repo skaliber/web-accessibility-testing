@@ -42,13 +42,13 @@ public class StylingElementNotUsed extends AbstractRobustRule {
 
 	/**
 	 * Check for style elements in the document
-	 * @param style element
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/67/
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/69/
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/70/
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/71/
 	 * 
+	 * @param style element
 	 * @return issue or null
 	 * 
 	 * @todo(dallison) Check the implementation for 69-71 to understand

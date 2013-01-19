@@ -47,10 +47,10 @@ public class LinkTextNotReplicated extends AbstractOperableRule {
 
 	/**
 	 * Check that links with the same text don't point to different hrefs
-	 * @param link to check
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/40/
 	 * 
+	 * @param link to check
 	 * @return Issue or null
 	 * 
 	 * @todo(dallison) Consider refactoring to include image areas: area[href]

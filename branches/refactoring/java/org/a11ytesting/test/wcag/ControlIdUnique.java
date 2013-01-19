@@ -46,10 +46,10 @@ public class ControlIdUnique extends AbstractUnderstandableRule {
 
 	/**
  	 * Check that form controls have unique IDs
-	 * @param control to check
  	 * 
- 	 *  @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/83/
+ 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/83/
  	 *  
+ 	 * @param control to check
 	 * @return issue or null
 	 */
 	@Override

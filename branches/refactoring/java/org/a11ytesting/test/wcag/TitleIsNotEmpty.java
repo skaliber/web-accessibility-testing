@@ -45,10 +45,10 @@ public class TitleIsNotEmpty extends AbstractOperableRule {
 
 	/**
 	 * Check that document has a title node.
-	 * @param the document
 	 * 
 	 * @see http://openajax-dev.jongund.webfactional.com/wcag20/rule/13/
 	 * 
+	 * @param the document
 	 * @return issue or null
 	 */
 	@Override
