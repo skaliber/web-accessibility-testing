@@ -20,13 +20,13 @@ import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
-import org.a11ytesting.test.Issue;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.testng.annotations.Test;
+
+import org.a11ytesting.test.Issue;
 
 /** 
  * Shared methods and selectors AND tests for Shared.java
